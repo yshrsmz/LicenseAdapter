@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-import net.yslibrary.licenseadapter.BaseLicenseEntry;
+import net.yslibrary.licenseadapter.LicenseEntry;
 import net.yslibrary.licenseadapter.LicenseAdapter;
 import net.yslibrary.licenseadapter.Licenses;
 
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    List<BaseLicenseEntry> dataset = new ArrayList<>();
+    List<LicenseEntry> dataset = new ArrayList<>();
 
     dataset.add(Licenses.fromGitHub("google/dagger"));
     dataset.add(Licenses.fromGitHub("jakewharton/timber"));
@@ -32,14 +32,14 @@ public class MainActivity extends AppCompatActivity {
     list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     list.setAdapter(adapter);
 
-    new LicenseTask().execute(dataset.toArray(new BaseLicenseEntry[dataset.size()]));
+    new LicenseTask().execute(dataset.toArray(new LicenseEntry[dataset.size()]));
   }
 
-  private class LicenseTask extends AsyncTask<BaseLicenseEntry, Void, Void> {
+  private class LicenseTask extends AsyncTask<LicenseEntry, Void, Void> {
 
     @Override
-    protected Void doInBackground(BaseLicenseEntry... params) {
-      for (BaseLicenseEntry entry : params) {
+    protected Void doInBackground(LicenseEntry... params) {
+      for (LicenseEntry entry : params) {
         entry.load();
       }
       return null;

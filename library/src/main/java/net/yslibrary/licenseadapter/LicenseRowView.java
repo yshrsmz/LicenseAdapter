@@ -29,7 +29,7 @@ public class LicenseRowView extends FrameLayout {
   private int animDuration = DEF_ANIM_DURATION;
   private boolean isAnimationRunning;
   private boolean isOpened;
-  private BaseLicenseEntry data;
+  private LicenseEntry data;
 
   public LicenseRowView(Context context) {
     this(context, null);
@@ -45,7 +45,7 @@ public class LicenseRowView extends FrameLayout {
   }
 
   void onClickGroup(View view) {
-    if (!(data instanceof GitLicenseEntry)) {
+    if (!(data instanceof GitHubLicenseEntry)) {
       return;
     }
 
@@ -68,7 +68,7 @@ public class LicenseRowView extends FrameLayout {
     return true;
   }
 
-  public void setData(BaseLicenseEntry data) {
+  public void setData(LicenseEntry data) {
     this.data = data;
     library.setText(data.name);
     author.setText(data.author);
@@ -77,7 +77,7 @@ public class LicenseRowView extends FrameLayout {
     link.setFocusableInTouchMode(false);
     type.setText(data.license.name);
 
-    if (data instanceof GitLicenseEntry) {
+    if (data instanceof GitHubLicenseEntry) {
       arrow.setVisibility(VISIBLE);
     } else {
       arrow.setVisibility(INVISIBLE);

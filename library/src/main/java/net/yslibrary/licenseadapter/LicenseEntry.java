@@ -1,15 +1,48 @@
 package net.yslibrary.licenseadapter;
 
 import android.os.Parcel;
+import android.os.Parcelable;
 
-public class LicenseEntry extends BaseLicenseEntry {
+public abstract class LicenseEntry implements Parcelable {
+  public String name;
+  public String version;
+  public String author;
+  public String link;
 
-  public LicenseEntry(String name, String author, String url) {
-    super(name, null, author, url, new License(null, url));
+  public License license;
+
+  public LicenseEntry(String libraryName, String libraryVersion, String libraryAuthor,
+      String libraryLink, License license) {
+    this.name = libraryName;
+    this.version = libraryVersion;
+    this.author = libraryAuthor;
+    this.link = libraryLink;
+    this.license = license;
+  }
+
+  public LicenseEntry() {
+    name = null;
+    version = null;
+    author = null;
+    link = null;
+    license = null;
+  }
+
+  protected LicenseEntry(Parcel in) {
+    name = in.readString();
+    version = in.readString();
+    author = in.readString();
+    link = in.readString();
+    license = in.readParcelable(License.class.getClassLoader());
   }
 
   @Override
-  public void doLoad() {
+  public void writeToParcel(Parcel dest, int flags) {
+    dest.writeString(name);
+    dest.writeString(version);
+    dest.writeString(author);
+    dest.writeString(link);
+    dest.writeParcelable(license, flags);
   }
 
   @Override
@@ -17,24 +50,21 @@ public class LicenseEntry extends BaseLicenseEntry {
     return 0;
   }
 
+  public boolean isLoaded() {
+    return license.isLoaded();
+  }
+
+  public void load() {
+    if (license.isLoaded()) return;
+
+    doLoad();
+  }
+
+  protected abstract void doLoad();
+
   @Override
-  public void writeToParcel(Parcel dest, int flags) {
-    super.writeToParcel(dest, flags);
+  public String toString() {
+    return String.format("\n***** LIBRARY *****\n%s\n%s\n%s\n%s\n%s\n", name, version, author, link, license
+        .toString());
   }
-
-  protected LicenseEntry(Parcel in) {
-    super(in);
-  }
-
-  public static final Creator<LicenseEntry> CREATOR = new Creator<LicenseEntry>() {
-    @Override
-    public LicenseEntry createFromParcel(Parcel source) {
-      return new LicenseEntry(source);
-    }
-
-    @Override
-    public LicenseEntry[] newArray(int size) {
-      return new LicenseEntry[size];
-    }
-  };
 }

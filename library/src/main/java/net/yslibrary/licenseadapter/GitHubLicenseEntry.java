@@ -7,27 +7,27 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class GitLicenseEntry extends BaseLicenseEntry {
+public class GitHubLicenseEntry extends LicenseEntry {
 
-  public static final Creator<GitLicenseEntry> CREATOR = new Creator<GitLicenseEntry>() {
+  public static final Creator<GitHubLicenseEntry> CREATOR = new Creator<GitHubLicenseEntry>() {
     @Override
-    public GitLicenseEntry createFromParcel(Parcel source) {
-      return new GitLicenseEntry(source);
+    public GitHubLicenseEntry createFromParcel(Parcel source) {
+      return new GitHubLicenseEntry(source);
     }
 
     @Override
-    public GitLicenseEntry[] newArray(int size) {
-      return new GitLicenseEntry[size];
+    public GitHubLicenseEntry[] newArray(int size) {
+      return new GitHubLicenseEntry[size];
     }
   };
 
-  public GitLicenseEntry(String licenseName, String gitRepo, String branch, License license,
+  public GitHubLicenseEntry(String licenseName, String gitRepo, String branch, License license,
       String relLicensePath) {
     super(null, branch, null, null, null);
     init(licenseName, gitRepo, branch, license, relLicensePath);
   }
 
-  protected GitLicenseEntry(Parcel in) {
+  protected GitHubLicenseEntry(Parcel in) {
     super(in);
   }
 

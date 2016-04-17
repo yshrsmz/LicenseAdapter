@@ -12,9 +12,9 @@ import java.util.List;
  */
 public class LicenseAdapter extends RecyclerView.Adapter<LicenseAdapter.ViewHolder> {
 
-  private final List<BaseLicenseEntry> dataSet = new ArrayList<>();
+  private final List<LicenseEntry> dataSet = new ArrayList<>();
 
-  public LicenseAdapter(List<BaseLicenseEntry> dataSet) {
+  public LicenseAdapter(List<LicenseEntry> dataSet) {
     this.dataSet.addAll(dataSet);
   }
 
