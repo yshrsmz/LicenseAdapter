@@ -3,6 +3,7 @@ package net.yslibrary.licenseadapter;
 import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
@@ -17,22 +18,29 @@ public class LicenseRowView extends FrameLayout {
   private static final int DEF_ANIM_DURATION = 200;
   private final Handler handler = new Handler();
 
-  View child;
-  View group;
-  TextView library;
-  TextView author;
-  TextView link;
-  TextView type;
-  TextView license;
-  ImageView arrow;
+  private View child;
+  private TextView library;
+  private TextView author;
+  private TextView link;
+  private TextView type;
+  private TextView license;
+  private ImageView arrow;
 
   private int animDuration = DEF_ANIM_DURATION;
   private boolean isAnimationRunning;
   private boolean isOpened;
   private BaseLicenseEntry data;
 
+  public LicenseRowView(Context context) {
+    this(context, null);
+  }
+
   public LicenseRowView(Context context, AttributeSet attrs) {
-    super(context, attrs);
+    this(context, attrs, 0);
+  }
+
+  public LicenseRowView(Context context, AttributeSet attrs, int defStyleAttr) {
+    super(context, attrs, defStyleAttr);
     init();
   }
 
@@ -42,7 +50,7 @@ public class LicenseRowView extends FrameLayout {
     }
 
     Views.disableClick(view, animDuration);
-    license.setText(data.isLoaded() ? data.mLicense.mText : "Loading...");
+    license.setText(data.isLoaded() ? data.license.text : "Loading...");
     if (isOpened) {
       hide();
     } else {
@@ -62,12 +70,12 @@ public class LicenseRowView extends FrameLayout {
 
   public void setData(BaseLicenseEntry data) {
     this.data = data;
-    library.setText(data.mLibraryName);
-    author.setText(data.mLibraryAuthor);
-    link.setText(data.mLibraryLink);
+    library.setText(data.name);
+    author.setText(data.author);
+    link.setText(data.link);
     link.setFocusable(false);
     link.setFocusableInTouchMode(false);
-    type.setText(data.mLicense.mName);
+    type.setText(data.license.name);
 
     if (data instanceof GitLicenseEntry) {
       arrow.setVisibility(VISIBLE);
@@ -79,16 +87,17 @@ public class LicenseRowView extends FrameLayout {
   }
 
   private void init() {
-    inflate(getContext(), R.layout.license, this);
+    View view = LayoutInflater.from(getContext()).inflate(R.layout.license, null);
+    addView(view);
 
-    child = Views.byId(this, R.id.child);
-    group = Views.byId(this, R.id.group);
-    library = Views.byId(this, R.id.library);
-    author = Views.byId(this, R.id.author);
-    link = Views.byId(this, R.id.link);
-    type = Views.byId(this, R.id.licenseType);
-    license = Views.byId(this, R.id.license);
-    arrow = Views.byId(this, R.id.arrow);
+    child = Views.byId(view, R.id.child);
+    View group = Views.byId(view, R.id.group);
+    library = Views.byId(view, R.id.library);
+    author = Views.byId(view, R.id.author);
+    link = Views.byId(view, R.id.link);
+    type = Views.byId(view, R.id.licenseType);
+    license = Views.byId(view, R.id.license);
+    arrow = Views.byId(view, R.id.arrow);
 
     group.setOnClickListener(new OnClickListener() {
       @Override
@@ -104,7 +113,6 @@ public class LicenseRowView extends FrameLayout {
       }
     });
   }
-
 
   public void show() {
     if (!isAnimationRunning) {
@@ -150,7 +158,8 @@ public class LicenseRowView extends FrameLayout {
     child.setVisibility(VISIBLE);
     Animation animation = new Animation() {
       protected void applyTransformation(float interpolatedTime, Transformation t) {
-        child.getLayoutParams().height = interpolatedTime == 1.0F ? -2 : (int) ((float) targetHeight * interpolatedTime);
+        child.getLayoutParams().height =
+            interpolatedTime == 1.0F ? -2 : (int) ((float) targetHeight * interpolatedTime);
         child.requestLayout();
       }
 
@@ -171,7 +180,8 @@ public class LicenseRowView extends FrameLayout {
           child.setVisibility(GONE);
           isOpened = false;
         } else {
-          child.getLayoutParams().height = initialHeight - (int) ((float) initialHeight * interpolatedTime);
+          child.getLayoutParams().height =
+              initialHeight - (int) ((float) initialHeight * interpolatedTime);
           child.requestLayout();
         }
       }

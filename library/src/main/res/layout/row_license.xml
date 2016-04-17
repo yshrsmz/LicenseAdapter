@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<net.yslibrary.licenseadapter.LicenseRowView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/license"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+<net.yslibrary.licenseadapter.LicenseRowView android:id="@+id/license"
+                                             xmlns:android="http://schemas.android.com/apk/res/android"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content"
+  />

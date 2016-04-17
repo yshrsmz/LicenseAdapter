@@ -4,44 +4,45 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public abstract class BaseLicenseEntry implements Parcelable {
-  public String mLibraryName;
-  public String mLibraryVersion;
-  public String mLibraryAuthor;
-  public String mLibraryLink;
+  public String name;
+  public String version;
+  public String author;
+  public String link;
 
-  public License mLicense;
+  public License license;
 
-  public BaseLicenseEntry(String libraryName, String libraryVersion, String libraryAuthor, String libraryLink, License license) {
-    this.mLibraryName = libraryName;
-    this.mLibraryVersion = libraryVersion;
-    this.mLibraryAuthor = libraryAuthor;
-    this.mLibraryLink = libraryLink;
-    this.mLicense = license;
+  public BaseLicenseEntry(String libraryName, String libraryVersion, String libraryAuthor,
+      String libraryLink, License license) {
+    this.name = libraryName;
+    this.version = libraryVersion;
+    this.author = libraryAuthor;
+    this.link = libraryLink;
+    this.license = license;
   }
 
   public BaseLicenseEntry() {
-    mLibraryName = null;
-    mLibraryVersion = null;
-    mLibraryAuthor = null;
-    mLibraryLink = null;
-    mLicense = null;
+    name = null;
+    version = null;
+    author = null;
+    link = null;
+    license = null;
   }
 
   protected BaseLicenseEntry(Parcel in) {
-    mLibraryName = in.readString();
-    mLibraryVersion = in.readString();
-    mLibraryAuthor = in.readString();
-    mLibraryLink = in.readString();
-    mLicense = in.readParcelable(License.class.getClassLoader());
+    name = in.readString();
+    version = in.readString();
+    author = in.readString();
+    link = in.readString();
+    license = in.readParcelable(License.class.getClassLoader());
   }
 
   @Override
   public void writeToParcel(Parcel dest, int flags) {
-    dest.writeString(mLibraryName);
-    dest.writeString(mLibraryVersion);
-    dest.writeString(mLibraryAuthor);
-    dest.writeString(mLibraryLink);
-    dest.writeParcelable(mLicense, flags);
+    dest.writeString(name);
+    dest.writeString(version);
+    dest.writeString(author);
+    dest.writeString(link);
+    dest.writeParcelable(license, flags);
   }
 
   @Override
@@ -50,21 +51,20 @@ public abstract class BaseLicenseEntry implements Parcelable {
   }
 
   public boolean isLoaded() {
-    return mLicense.isLoaded();
+    return license.isLoaded();
   }
 
   public void load() {
-    if (mLicense.isLoaded())
-      return;
+    if (license.isLoaded()) return;
 
     doLoad();
   }
 
-  public abstract void doLoad();
+  protected abstract void doLoad();
 
   @Override
   public String toString() {
-    return String.format("\n***** LIBRARY *****\n%s\n%s\n%s\n%s\n%s\n", mLibraryName,
-        mLibraryVersion, mLibraryAuthor, mLibraryLink, mLicense.toString());
+    return String.format("\n***** LIBRARY *****\n%s\n%s\n%s\n%s\n%s\n", name, version, author, link, license
+        .toString());
   }
 }

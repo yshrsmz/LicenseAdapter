@@ -18,19 +18,19 @@ public class Licenses {
   public static final License LICENSE_APACHE_V2 =
       new License(DEF_LICENSE_NAME, "http://www.apache.org/licenses/LICENSE-2.0");
 
-  public static GitLicenseEntry createGitLicense(String gitRepo) {
+  public static GitLicenseEntry fromGitHub(String gitRepo) {
     return new GitLicenseEntry(DEF_LICENSE_NAME, gitRepo, DEF_BRANCH, null, LICENSE_TXT);
   }
 
-  public static GitLicenseEntry createGitLicense(String gitRepo, String relLicensePath) {
+  public static GitLicenseEntry fromGitHub(String gitRepo, String relLicensePath) {
     return new GitLicenseEntry(DEF_LICENSE_NAME, gitRepo, DEF_BRANCH, null, relLicensePath);
   }
 
-  public static GitLicenseEntry createGitLicense(String gitRepo, License license) {
+  public static GitLicenseEntry fromGitHub(String gitRepo, License license) {
     return new GitLicenseEntry(null, gitRepo, DEF_BRANCH, license, null);
   }
 
-  public static GitLicenseEntry createGitLicense(String gitRepo, String licenseName,
+  public static GitLicenseEntry fromGitHub(String gitRepo, String licenseName,
       String relLicensePath) {
     return new GitLicenseEntry(licenseName, gitRepo, DEF_BRANCH, null, relLicensePath);
   }
