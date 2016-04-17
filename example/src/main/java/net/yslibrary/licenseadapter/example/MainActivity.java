@@ -7,8 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-import net.yslibrary.licenseadapter.LicenseEntry;
 import net.yslibrary.licenseadapter.LicenseAdapter;
+import net.yslibrary.licenseadapter.LicenseEntry;
 import net.yslibrary.licenseadapter.Licenses;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,8 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
     dataset.add(Licenses.fromGitHub("google/dagger"));
     dataset.add(Licenses.fromGitHub("jakewharton/timber"));
-    dataset.add(Licenses.fromGitHub("reactivex/rxjava"));
-    dataset.add(Licenses.fromGitHub("reactivex/rxandroid"));
+    dataset.add(Licenses.fromGitHub("reactivex/rxjava", Licenses.LICENSE_NO_EXTENSION));
+    dataset.add(Licenses.fromGitHub("reactivex/rxandroid", Licenses.LICENSE_NO_EXTENSION));
+    dataset.add(Licenses.fromGitHub("realm/realm-java", Licenses.LICENSE_NO_EXTENSION));
     dataset.add(Licenses.fromGitHub("square/retrofit"));
     dataset.add(Licenses.fromGitHub("yshrsmz/simple-preferences"));
 
