@@ -5,7 +5,7 @@ import android.os.Parcel;
 /**
  * License without license text
  */
-public class NoContentLicenseEntry extends LicenseEntry {
+public class NoContentLicenseEntry extends BaseLicenseEntry {
 
   public static final Creator<NoContentLicenseEntry> CREATOR =
       new Creator<NoContentLicenseEntry>() {
@@ -40,5 +40,10 @@ public class NoContentLicenseEntry extends LicenseEntry {
   @Override
   public void writeToParcel(Parcel dest, int flags) {
     super.writeToParcel(dest, flags);
+  }
+
+  @Override
+  public boolean hasContent() {
+    return false;
   }
 }

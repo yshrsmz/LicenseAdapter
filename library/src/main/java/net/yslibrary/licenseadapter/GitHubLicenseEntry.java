@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class GitHubLicenseEntry extends LicenseEntry {
+public class GitHubLicenseEntry extends BaseLicenseEntry {
 
   public static final Creator<GitHubLicenseEntry> CREATOR = new Creator<GitHubLicenseEntry>() {
     @Override
@@ -77,5 +77,10 @@ public class GitHubLicenseEntry extends LicenseEntry {
   @Override
   public void writeToParcel(Parcel dest, int flags) {
     super.writeToParcel(dest, flags);
+  }
+
+  @Override
+  public boolean hasContent() {
+    return true;
   }
 }

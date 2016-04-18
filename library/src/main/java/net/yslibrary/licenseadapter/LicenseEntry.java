@@ -1,70 +1,23 @@
 package net.yslibrary.licenseadapter;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+/**
+ * Created by a12897 on 2016/04/18.
+ */
+public interface LicenseEntry {
 
-public abstract class LicenseEntry implements Parcelable {
-  public String name;
-  public String version;
-  public String author;
-  public String link;
+  void load();
 
-  public License license;
+  boolean isLoaded();
 
-  public LicenseEntry(String libraryName, String libraryVersion, String libraryAuthor,
-      String libraryLink, License license) {
-    this.name = libraryName;
-    this.version = libraryVersion;
-    this.author = libraryAuthor;
-    this.link = libraryLink;
-    this.license = license;
-  }
+  boolean hasContent();
 
-  public LicenseEntry() {
-    name = null;
-    version = null;
-    author = null;
-    link = null;
-    license = null;
-  }
+  String name();
 
-  protected LicenseEntry(Parcel in) {
-    name = in.readString();
-    version = in.readString();
-    author = in.readString();
-    link = in.readString();
-    license = in.readParcelable(License.class.getClassLoader());
-  }
+  String version();
 
-  @Override
-  public void writeToParcel(Parcel dest, int flags) {
-    dest.writeString(name);
-    dest.writeString(version);
-    dest.writeString(author);
-    dest.writeString(link);
-    dest.writeParcelable(license, flags);
-  }
+  String author();
 
-  @Override
-  public int describeContents() {
-    return 0;
-  }
+  String link();
 
-  public boolean isLoaded() {
-    return license.isLoaded();
-  }
-
-  public void load() {
-    if (license.isLoaded()) return;
-
-    doLoad();
-  }
-
-  protected abstract void doLoad();
-
-  @Override
-  public String toString() {
-    return String.format("\n***** LIBRARY *****\n%s\n%s\n%s\n%s\n%s\n", name, version, author, link, license
-        .toString());
-  }
+  License license();
 }

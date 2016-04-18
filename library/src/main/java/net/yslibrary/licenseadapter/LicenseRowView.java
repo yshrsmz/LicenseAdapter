@@ -45,12 +45,12 @@ public class LicenseRowView extends FrameLayout {
   }
 
   void onClickGroup(View view) {
-    if (!(data instanceof GitHubLicenseEntry)) {
+    if (!data.hasContent()) {
       return;
     }
 
     Views.disableClick(view, animDuration);
-    license.setText(data.isLoaded() ? data.license.text : "Loading...");
+    license.setText(data.isLoaded() ? data.license().text : "Loading...");
     if (isOpened) {
       hide();
     } else {
@@ -70,14 +70,14 @@ public class LicenseRowView extends FrameLayout {
 
   public void setData(LicenseEntry data) {
     this.data = data;
-    library.setText(data.name);
-    author.setText(data.author);
-    link.setText(data.link);
+    library.setText(data.name());
+    author.setText(data.author());
+    link.setText(data.link());
     link.setFocusable(false);
     link.setFocusableInTouchMode(false);
-    type.setText(data.license.name);
+    type.setText(data.license().name);
 
-    if (data instanceof GitHubLicenseEntry) {
+    if (data.hasContent()) {
       arrow.setVisibility(VISIBLE);
     } else {
       arrow.setVisibility(INVISIBLE);
