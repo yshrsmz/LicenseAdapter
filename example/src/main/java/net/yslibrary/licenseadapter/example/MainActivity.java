@@ -1,6 +1,5 @@
 package net.yslibrary.licenseadapter.example;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,17 +32,6 @@ public class MainActivity extends AppCompatActivity {
     list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     list.setAdapter(adapter);
 
-    new LicenseTask().execute(dataset.toArray(new LicenseEntry[dataset.size()]));
-  }
-
-  private class LicenseTask extends AsyncTask<LicenseEntry, Void, Void> {
-
-    @Override
-    protected Void doInBackground(LicenseEntry... params) {
-      for (LicenseEntry entry : params) {
-        entry.load();
-      }
-      return null;
-    }
+    Licenses.load(dataset);
   }
 }

@@ -1,5 +1,7 @@
 package net.yslibrary.licenseadapter;
 
+import java.util.List;
+
 /**
  * Created by a12897 on 2016/04/15.
  */
@@ -37,5 +39,9 @@ public class Licenses {
   public static GitHubLicenseEntry fromGitHub(String gitRepo, String licenseName,
       String relLicensePath) {
     return new GitHubLicenseEntry(licenseName, gitRepo, DEF_BRANCH, null, relLicensePath);
+  }
+
+  public static void load(List<LicenseEntry> entries) {
+    new LoadLicenseTask().execute(entries.toArray(new LicenseEntry[entries.size()]));
   }
 }
