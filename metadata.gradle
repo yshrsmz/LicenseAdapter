@@ -1,0 +1,6 @@
+ext {
+  metadata = [groupId   : 'net.yslibrary.licenseadapter',
+              website   : 'https://github.com/yshrsmz/LicenseAdapter',
+              repository: 'git@github.com:yshrsmz/LicenseAdapter.git',
+              licences  : ['Apache-2.0']]
+}
