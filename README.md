@@ -7,7 +7,13 @@ This library fetch license text from GitHub(and your custom location), so techni
 
 ## Installation
 
-TBD
+LicenseAdapter is distributed via jCenter.
+
+```gradle
+dependencies {
+  compile 'net.yslibrary.licenseadapter:licenseadapter:1.0.0'
+}
+```
 
 
 ## Usage
