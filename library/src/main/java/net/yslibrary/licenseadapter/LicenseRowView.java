@@ -77,6 +77,12 @@ public class LicenseRowView extends FrameLayout {
     link.setFocusableInTouchMode(false);
     type.setText(data.license().name);
 
+    int visibility = VISIBLE;
+    if (data.license().name == null || "".equals(data.license().name)) {
+      visibility = GONE;
+    }
+    type.setVisibility(visibility);
+
     if (data.hasContent()) {
       arrow.setVisibility(VISIBLE);
     } else {
