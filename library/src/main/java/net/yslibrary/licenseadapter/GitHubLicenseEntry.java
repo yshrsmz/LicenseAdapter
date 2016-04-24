@@ -57,7 +57,7 @@ public class GitHubLicenseEntry extends BaseLicenseEntry {
     if (license == null) {
       String licenseLink =
           (link + "/" + (branch != null ? branch : "master") + "/").replace("github.com",
-              "raw.github.com").replace("/tree/", "/") + relLicensePath;
+              "raw.githubusercontent.com").replace("/tree/", "/") + relLicensePath;
       this.license = new License(licenseName, licenseLink);
     } else {
       this.license = license;
