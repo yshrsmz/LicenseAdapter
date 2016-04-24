@@ -1,3 +1,11 @@
+## 1.0.2 - 2016/04/24
+
+### Fix
+
+- Update github raw content url
+
+
+
 ## 1.0.1 - 2016/04/22
 
 ### Enhancements

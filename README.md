@@ -11,7 +11,7 @@ LicenseAdapter is distributed via jCenter.
 
 ```gradle
 dependencies {
-  compile 'net.yslibrary.licenseadapter:licenseadapter:1.0.1'
+  compile 'net.yslibrary.licenseadapter:licenseadapter:1.0.2'
 }
 ```
 
@@ -19,7 +19,7 @@ dependencies {
 ## Usage
 
 
-Don't for get to add `android.permission.INTERNET` permission to your AndroidManifest.
+Don't forget to add `android.permission.INTERNET` permission to your AndroidManifest.
 
 
 ```java
