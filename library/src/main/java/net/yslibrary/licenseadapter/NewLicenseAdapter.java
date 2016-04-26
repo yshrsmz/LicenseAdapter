@@ -9,7 +9,7 @@ import net.yslibrary.licenseadapter.internal.LicenseViewHolder;
 import net.yslibrary.licenseadapter.internal.Wrapper;
 
 /**
- * Created by a12897 on 2016/04/26.
+ * Created by yshrsmz on 2016/04/26.
  */
 public class NewLicenseAdapter extends RecyclerView.Adapter<LicenseViewHolder> {
 

@@ -4,7 +4,7 @@ import net.yslibrary.licenseadapter.License;
 import net.yslibrary.licenseadapter.LicenseEntry;
 
 /**
- * Created by a12897 on 2016/04/26.
+ * Created by yshrsmz on 2016/04/26.
  */
 public class HeaderWrapper implements Wrapper {
 

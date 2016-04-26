@@ -3,7 +3,7 @@ package net.yslibrary.licenseadapter;
 import java.util.List;
 
 /**
- * Created by a12897 on 2016/04/15.
+ * Created by yshrsmz on 2016/04/15.
  */
 public class Licenses {
 
