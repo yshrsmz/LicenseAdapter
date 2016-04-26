@@ -89,7 +89,7 @@ public abstract class BaseLicenseEntry implements LicenseEntry, Parcelable {
 
   @Override
   public String toString() {
-    return String.format("\n***** LIBRARY *****\n%s\n%s\n%s\n%s\n%s\n", name, version, author, link, license
-        .toString());
+    return String.format("\n***** LIBRARY *****\n%s\n%s\n%s\n%s\n%s\n", name, version, author, link,
+        license.toString());
   }
 }
