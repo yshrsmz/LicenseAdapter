@@ -88,6 +88,7 @@ public class NewLicenseAdapter extends RecyclerView.Adapter<LicenseViewHolder> {
     }
   }
 
+  @SuppressWarnings("ConstantConditions")
   private int expand(int headerPosition) {
     int added = headerPosition + 1;
     ContentWrapper contentWrapper = new ContentWrapper(getItem(headerPosition).entry());
