@@ -1,11 +1,14 @@
 package net.yslibrary.licenseadapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
+import net.yslibrary.licenseadapter.internal.ContentWrapper;
 import net.yslibrary.licenseadapter.internal.HeaderWrapper;
 import net.yslibrary.licenseadapter.internal.LicenseViewHolder;
+import net.yslibrary.licenseadapter.internal.ViewType;
 import net.yslibrary.licenseadapter.internal.Wrapper;
 
 /**
@@ -26,7 +29,12 @@ public class NewLicenseAdapter extends RecyclerView.Adapter<LicenseViewHolder> {
 
   @Override
   public int getItemViewType(int position) {
-    return super.getItemViewType(position);
+    Wrapper wrapper = getItem(position);
+
+    if (wrapper == null) {
+      throw new IllegalStateException("No wrapper for this position: " + position);
+    }
+    return wrapper.type().ordinal();
   }
 
   @Override
@@ -36,14 +44,61 @@ public class NewLicenseAdapter extends RecyclerView.Adapter<LicenseViewHolder> {
 
   @SuppressWarnings("unchecked")
   @Override
-  public void onBindViewHolder(LicenseViewHolder holder, int position) {
-    Wrapper wrapper = getItem(position);
+  public void onBindViewHolder(final LicenseViewHolder holder, final int position) {
+    final Wrapper wrapper = getItem(position);
 
     if (wrapper == null) {
       throw new IllegalStateException("No wrapper for this position: " + position);
     }
 
-    holder.bind(wrapper.type().convert(wrapper));
+    ViewType viewType = wrapper.type();
+    // bind variable, not event
+    holder.bind(viewType.convert(wrapper));
+
+    switch (viewType) {
+      case HEADER:
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            boolean expanded = wrapper.isExpanded();
+            wrapper.setExpanded(!expanded);
+            if (expanded) {
+              int removed = collapse(position);
+              notifyItemChanged(position);
+              notifyItemRemoved(removed);
+            } else {
+              int added = expand(position);
+              notifyItemChanged(position);
+              notifyItemInserted(added);
+            }
+          }
+        });
+        break;
+      case CONTENT:
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            wrapper.setExpanded(false);
+            int removed = collapse(position - 1);
+            notifyItemChanged(position - 1);
+            notifyItemRemoved(removed);
+          }
+        });
+        break;
+    }
+  }
+
+  private int expand(int headerPosition) {
+    int added = headerPosition + 1;
+    ContentWrapper contentWrapper = new ContentWrapper(getItem(headerPosition).entry());
+    wrappedDataSet.add(added, contentWrapper);
+    return added;
+  }
+
+  private int collapse(int headerPosition) {
+    int removed = headerPosition + 1;
+    wrappedDataSet.remove(removed);
+    return removed;
   }
 
   @Override

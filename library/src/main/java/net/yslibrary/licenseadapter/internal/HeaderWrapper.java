@@ -27,14 +27,21 @@ public class HeaderWrapper implements Wrapper {
     this.expanded = false;
   }
 
+  @Override
   public boolean isExpanded() {
     return expanded;
+  }
+
+  @Override
+  public void setExpanded(boolean expand) {
+    this.expanded = expand;
   }
 
   public boolean hasContent() {
     return entry.hasContent();
   }
 
+  @Override
   public LicenseEntry entry() {
     return entry;
   }
