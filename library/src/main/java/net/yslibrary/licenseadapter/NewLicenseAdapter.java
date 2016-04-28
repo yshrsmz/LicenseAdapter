@@ -1,11 +1,14 @@
 package net.yslibrary.licenseadapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
+import net.yslibrary.licenseadapter.internal.ContentViewHolder;
 import net.yslibrary.licenseadapter.internal.ContentWrapper;
+import net.yslibrary.licenseadapter.internal.HeaderViewHolder;
 import net.yslibrary.licenseadapter.internal.HeaderWrapper;
 import net.yslibrary.licenseadapter.internal.LicenseViewHolder;
 import net.yslibrary.licenseadapter.internal.ViewType;
@@ -39,7 +42,23 @@ public class NewLicenseAdapter extends RecyclerView.Adapter<LicenseViewHolder> {
 
   @Override
   public LicenseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    return null;
+    ViewType type = ViewType.values()[viewType];
+    LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+    View view;
+
+    switch (type) {
+      case HEADER:
+        view = inflater.inflate(R.layout.license_header, parent);
+        return new HeaderViewHolder(view);
+
+      case CONTENT:
+        view = inflater.inflate(R.layout.license_content, parent);
+        return new ContentViewHolder(view);
+
+      default:
+        throw new IllegalArgumentException(
+            "No ViewHolder exists for ViewType: " + String.valueOf(viewType));
+    }
   }
 
   @SuppressWarnings("unchecked")
