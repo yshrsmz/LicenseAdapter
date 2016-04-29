@@ -11,7 +11,7 @@ LicenseAdapter is distributed via jCenter.
 
 ```gradle
 dependencies {
-  compile 'net.yslibrary.licenseadapter:licenseadapter:1.0.2'
+  compile 'net.yslibrary.licenseadapter:licenseadapter:1.1.0'
 }
 ```
 
@@ -26,13 +26,17 @@ Don't forget to add `android.permission.INTERNET` permission to your AndroidMani
 // create list of licenses
 List<LicenseEntry> dataset = new ArrayList<>();
 
+// library that is not hosted on GitHub
+licenses.add(Licenses.noContent("Android SDK", "Google Inc.", "https://developer.android.com/sdk/terms.html"));
+// library that is hosted on GitHub, but does not provide license text
+licenses.add(Licenses.fromGitHub("gabrielemariotti/changeloglib", Licenses.LICENSE_APACHE_V2));
+// library that is hosted on GitHub, and "LICENSE.txt" is provided
 dataset.add(Licenses.fromGitHub("google/dagger"));
-dataset.add(Licenses.fromGitHub("jakewharton/timber"));
+// library that is hosted on GitHub, and license file is provided as "LICENSE"
 dataset.add(Licenses.fromGitHub("reactivex/rxjava", Licenses.LICENSE_NO_EXTENSION));
 dataset.add(Licenses.fromGitHub("reactivex/rxandroid", Licenses.LICENSE_NO_EXTENSION));
 dataset.add(Licenses.fromGitHub("realm/realm-java", Licenses.LICENSE_NO_EXTENSION));
 dataset.add(Licenses.fromGitHub("square/retrofit"));
-dataset.add(Licenses.fromGitHub("yshrsmz/simple-preferences"));
 
 // create adapter
 LicenseAdapter adapter = new LicenseAdapter(dataset);
