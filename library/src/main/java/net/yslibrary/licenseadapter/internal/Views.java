@@ -7,7 +7,7 @@ import android.view.View;
 /**
  * Created by yshrsmz on 2016/04/16.
  */
-public class Views {
+class Views {
 
   @SuppressWarnings("unchecked")
   public static <T> T byId(final View view, @IdRes final int id) {

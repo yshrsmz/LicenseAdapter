@@ -1,3 +1,11 @@
+## 1.1.0 - 2016/04/29
+
+### Fix
+
+- can't display license content of the last item when the RecyclerView is placed in dialog
+- weired scrolling behaviour while trying to expand item
+
+
 ## 1.0.2 - 2016/04/24
 
 ### Fix
