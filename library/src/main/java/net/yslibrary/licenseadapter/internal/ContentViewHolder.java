@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.TextView;
 import net.yslibrary.licenseadapter.LicenseEntry;
 import net.yslibrary.licenseadapter.R;
-import net.yslibrary.licenseadapter.Views;
 
 /**
  * Created by yshrsmz on 2016/04/26.

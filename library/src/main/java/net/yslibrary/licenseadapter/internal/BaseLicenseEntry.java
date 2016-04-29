@@ -1,7 +1,9 @@
-package net.yslibrary.licenseadapter;
+package net.yslibrary.licenseadapter.internal;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import net.yslibrary.licenseadapter.License;
+import net.yslibrary.licenseadapter.LicenseEntry;
 
 public abstract class BaseLicenseEntry implements LicenseEntry, Parcelable {
   public String name;

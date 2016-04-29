@@ -1,6 +1,7 @@
 package net.yslibrary.licenseadapter;
 
 import java.util.List;
+import net.yslibrary.licenseadapter.internal.LoadLicenseTask;
 
 /**
  * Created by yshrsmz on 2016/04/15.

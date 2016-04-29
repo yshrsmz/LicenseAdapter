@@ -1,4 +1,4 @@
-package net.yslibrary.licenseadapter;
+package net.yslibrary.licenseadapter.internal;
 
 import android.os.Handler;
 import android.support.annotation.IdRes;

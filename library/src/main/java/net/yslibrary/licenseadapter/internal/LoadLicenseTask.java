@@ -1,6 +1,7 @@
-package net.yslibrary.licenseadapter;
+package net.yslibrary.licenseadapter.internal;
 
 import android.os.AsyncTask;
+import net.yslibrary.licenseadapter.LicenseEntry;
 
 /**
  * Created by yshrsmz on 2016/04/20.

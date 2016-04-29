@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import net.yslibrary.licenseadapter.LicenseEntry;
 import net.yslibrary.licenseadapter.R;
-import net.yslibrary.licenseadapter.Views;
 
 /**
  * Created by yshrsmz on 2016/04/26.
@@ -43,13 +42,19 @@ public class HeaderViewHolder extends LicenseViewHolder<HeaderWrapper> {
     }
     arrow.setImageResource(arrowRes);
 
+    int arrowVisibility = View.VISIBLE;
+    if (!entry.hasContent()) {
+      arrowVisibility = View.GONE;
+    }
+    arrow.setVisibility(arrowVisibility);
+
     libraryName.setText(entry.name());
 
     author.setText(entry.author());
 
     String type = entry.license() != null ? entry.license().name : "";
     int typeVisibility = View.VISIBLE;
-    if (type.equals("")) {
+    if (type == null || type.equals("")) {
       typeVisibility = View.GONE;
     }
     licenseType.setVisibility(typeVisibility);

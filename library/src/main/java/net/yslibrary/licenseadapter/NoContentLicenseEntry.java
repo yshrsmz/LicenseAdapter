@@ -1,6 +1,7 @@
 package net.yslibrary.licenseadapter;
 
 import android.os.Parcel;
+import net.yslibrary.licenseadapter.internal.BaseLicenseEntry;
 
 /**
  * License without license text

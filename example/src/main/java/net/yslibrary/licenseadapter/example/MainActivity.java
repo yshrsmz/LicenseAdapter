@@ -6,9 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-import net.yslibrary.licenseadapter.LicenseAdapter;
 import net.yslibrary.licenseadapter.LicenseEntry;
 import net.yslibrary.licenseadapter.Licenses;
+import net.yslibrary.licenseadapter.LicenseAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     licenses.add(Licenses.noContent("ChangeLog Library", "Gabriele Mariotti",
         "https://github.com/gabrielemariotti/changeloglib"));
     licenses.add(Licenses.fromGitHub("hdodenhof/CircleImageView"));
-    licenses.add(Licenses.fromGitHub("google/dagger"));
+    licenses.add(Licenses.fromGitHub("google/dagger", Licenses.LICENSE_TXT));
     licenses.add(Licenses.fromGitHub("bumptech/glide", Licenses.LICENSE_NAME_BSD,
         Licenses.LICENSE_NO_EXTENSION));
     licenses.add(Licenses.fromGitHub("evant/gradle-retrolambda"));
