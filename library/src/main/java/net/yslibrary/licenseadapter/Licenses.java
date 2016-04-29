@@ -36,13 +36,13 @@ public class Licenses {
   }
 
   /**
-   * create LicenseEntry from GitHub repository url & License text path.
+   * create LicenseEntry from GitHub repository url and License text path.
    * Regard license as Apache v2
    *
    * @param gitRepo        target library's GitHub repository. should be "user/repoName"
    * @param relLicensePath relative path to the license file. you can use predefined {@link
-   *                       Licenses.LICENSE_TXT}, {@link Licenses.LICENSE_MD}, {@link
-   *                       Licenses.LICENSE_NO_EXTENSION}
+   *                       Licenses#LICENSE_TXT}, {@link Licenses#LICENSE_MD}, {@link
+   *                       Licenses#LICENSE_NO_EXTENSION}
    * @return GitHubLicenseEntry
    */
   public static GitHubLicenseEntry fromGitHub(String gitRepo, String relLicensePath) {
@@ -50,9 +50,9 @@ public class Licenses {
   }
 
   /**
-   * create LicenseEntry from GitHub repository url & user define {@link License} instance.
+   * create LicenseEntry from GitHub repository url and user define {@link License} instance.
    * This method can be used when the repository does not provide license text file.
-   * You can use predefined {@link Licenses.LICENSE_APACHE_V2} or your own implementation.
+   * You can use predefined {@link Licenses#LICENSE_APACHE_V2} or your own implementation.
    *
    * @param gitRepo target library's GitHub repository. should be "user/repoName"
    * @param license user defined {@link License} instance
