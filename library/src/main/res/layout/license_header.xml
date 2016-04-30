@@ -17,6 +17,7 @@
     android:layout_alignParentRight="true"
     android:layout_centerVertical="true"
     android:src="@drawable/ic_expand_more_black_24dp"
+    android:tint="?attr/colorControlNormal"
     />
 
   <LinearLayout
