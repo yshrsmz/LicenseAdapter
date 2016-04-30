@@ -14,7 +14,7 @@ LicenseAdapter is distributed via jCenter.
 
 ```gradle
 dependencies {
-  compile 'net.yslibrary.licenseadapter:licenseadapter:1.1.0'
+  compile 'net.yslibrary.licenseadapter:licenseadapter:1.1.1'
 }
 ```
 
