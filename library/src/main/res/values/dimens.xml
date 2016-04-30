@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="horizontal_padding">16dp</dimen>
-    <dimen name="vertical_padding">8dp</dimen>
+  <dimen name="horizontal_padding">16dp</dimen>
+  <dimen name="vertical_padding">8dp</dimen>
 
 
-    <dimen name="font_size_s">12sp</dimen>
-    <dimen name="font_size_m">14sp</dimen>
-    <dimen name="font_size_l">16sp</dimen>
-    <dimen name="font_size_xl">20sp</dimen>
-    <dimen name="font_size_xxl">34sp</dimen>
+  <dimen name="font_size_s">12sp</dimen>
+  <dimen name="font_size_m">14sp</dimen>
+  <dimen name="font_size_l">16sp</dimen>
+  <dimen name="font_size_xl">20sp</dimen>
+  <dimen name="font_size_xxl">34sp</dimen>
 </resources>

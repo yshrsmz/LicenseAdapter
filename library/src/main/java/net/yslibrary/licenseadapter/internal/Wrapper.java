@@ -7,7 +7,10 @@ import net.yslibrary.licenseadapter.LicenseEntry;
  */
 public interface Wrapper {
   ViewType type();
+
   LicenseEntry entry();
+
   boolean isExpanded();
+
   void setExpanded(boolean expand);
 }
