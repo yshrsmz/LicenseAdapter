@@ -1,3 +1,10 @@
+## 1.1.1 - TBD
+
+### Enhancements
+
+- Tint arrow icon with `?attr/colorControlNormal` to support both Light & Dark theme.
+
+
 ## 1.1.0 - 2016/04/29
 
 ### Fix
