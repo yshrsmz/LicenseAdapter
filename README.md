@@ -51,6 +51,14 @@ list.setAdapter(adapter);
 Licenses.load(dataset);
 ```
 
+## Predefined License name strings
+
+License name | Actual variable
+--- | ---
+Apache License V2.0 | Licenses#LICENSE_NAME_APACHE_V2
+MIT LICENSE | Licenses#LICENSE_NAME_MIT
+BSD LICENSE | Licenses#LICENSE_NAME_BSD
+
 ## License
 
     Copyright 2016 Shimizu Yasuhiro (yshrsmz)
