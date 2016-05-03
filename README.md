@@ -51,6 +51,7 @@ list.setAdapter(adapter);
 Licenses.load(dataset);
 ```
 
+
 ## Predefined License name strings
 
 License name | Actual variable
@@ -58,6 +59,16 @@ License name | Actual variable
 Apache License V2.0 | Licenses#LICENSE_NAME_APACHE_V2
 MIT LICENSE | Licenses#LICENSE_NAME_MIT
 BSD LICENSE | Licenses#LICENSE_NAME_BSD
+
+
+## Predefined License file name
+
+License file name | Actual variable
+--- | ---
+LICENSE | Licenses#LICENSE_NO_EXTENSION
+LICENSE.txt | Licenses#LICENSE_TXT
+LICENSE.md | Licenses#LICENSE_MD
+
 
 ## License
 
