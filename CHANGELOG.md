@@ -1,3 +1,11 @@
+## 1.2.0 - 2016/05/03
+
+### Change
+
+- License name constants are renamed. `Licenses#LICENSE_NAME_XXX` -> `Licenses#NAME_XXX`
+- License file name constants are renamed `Licenses#LICENSE_XXX` -> `Licenses#FILE_XXX`
+
+
 ## 1.1.1 - 2016/04/30
 
 ### Enhancements
