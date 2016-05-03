@@ -25,28 +25,28 @@ public class MainActivity extends AppCompatActivity {
     licenses.add(Licenses.fromGitHub("jakewharton/butterknife"));
     licenses.add(Licenses.fromGitHub("gabrielemariotti/changeloglib", Licenses.LICENSE_APACHE_V2));
     licenses.add(Licenses.fromGitHub("hdodenhof/CircleImageView"));
-    licenses.add(Licenses.fromGitHub("google/dagger", Licenses.LICENSE_TXT));
-    licenses.add(Licenses.fromGitHub("bumptech/glide", Licenses.LICENSE_NAME_BSD,
-        Licenses.LICENSE_NO_EXTENSION));
+    licenses.add(Licenses.fromGitHub("google/dagger", Licenses.FILE_TXT));
+    licenses.add(Licenses.fromGitHub("bumptech/glide", Licenses.NAME_BSD,
+        Licenses.FILE_NO_EXTENSION));
     licenses.add(Licenses.fromGitHub("evant/gradle-retrolambda"));
-    licenses.add(Licenses.fromGitHub("google/gson", Licenses.LICENSE_NO_EXTENSION));
-    licenses.add(Licenses.fromGitHub("immutables/immutables", Licenses.LICENSE_NO_EXTENSION));
+    licenses.add(Licenses.fromGitHub("google/gson", Licenses.FILE_NO_EXTENSION));
+    licenses.add(Licenses.fromGitHub("immutables/immutables", Licenses.FILE_NO_EXTENSION));
     licenses.add(
-        Licenses.fromGitHub("jhy/jsoup", Licenses.LICENSE_NAME_MIT, Licenses.LICENSE_NO_EXTENSION));
+        Licenses.fromGitHub("jhy/jsoup", Licenses.NAME_MIT, Licenses.FILE_NO_EXTENSION));
     licenses.add(Licenses.fromGitHub("square/leakcanary"));
     licenses.add(Licenses.fromGitHub("square/okhttp"));
-    licenses.add(Licenses.fromGitHub("realm/realm-java", Licenses.LICENSE_NO_EXTENSION));
+    licenses.add(Licenses.fromGitHub("realm/realm-java", Licenses.FILE_NO_EXTENSION));
     licenses.add(Licenses.fromGitHub("yqritc/RecyclerView-MultipleViewTypesAdapter",
-        Licenses.LICENSE_NO_EXTENSION));
-    licenses.add(Licenses.fromGitHub("yshrsmz/LicenseAdapter", Licenses.LICENSE_NO_EXTENSION));
-    licenses.add(Licenses.fromGitHub("ReactiveX/RxAndroid", Licenses.LICENSE_NO_EXTENSION));
-    licenses.add(Licenses.fromGitHub("ReactiveX/RxJava", Licenses.LICENSE_NO_EXTENSION));
-    licenses.add(Licenses.fromGitHub("facebook/stetho", Licenses.LICENSE_NAME_BSD,
-        Licenses.LICENSE_NO_EXTENSION));
+        Licenses.FILE_NO_EXTENSION));
+    licenses.add(Licenses.fromGitHub("yshrsmz/LicenseAdapter", Licenses.FILE_NO_EXTENSION));
+    licenses.add(Licenses.fromGitHub("ReactiveX/RxAndroid", Licenses.FILE_NO_EXTENSION));
+    licenses.add(Licenses.fromGitHub("ReactiveX/RxJava", Licenses.FILE_NO_EXTENSION));
+    licenses.add(Licenses.fromGitHub("facebook/stetho", Licenses.NAME_BSD,
+        Licenses.FILE_NO_EXTENSION));
     licenses.add(Licenses.fromGitHub("jakewharton/threetenabp"));
     licenses.add(Licenses.fromGitHub("jakewharton/timber"));
     licenses.add(Licenses.fromGitHub("grandcentrix/tray"));
-    licenses.add(Licenses.fromGitHub("twitter/twitter-text", Licenses.LICENSE_NO_EXTENSION));
+    licenses.add(Licenses.fromGitHub("twitter/twitter-text", Licenses.FILE_NO_EXTENSION));
 
     LicenseAdapter adapter = new LicenseAdapter(licenses);
     RecyclerView list = (RecyclerView) findViewById(R.id.list);

@@ -8,15 +8,18 @@ import net.yslibrary.licenseadapter.internal.LoadLicenseTask;
  */
 public class Licenses {
 
-  public static final String LICENSE_NAME_APACHE_V2 = "Apache License V2.0";
-  public static final String LICENSE_NAME_MIT = "MIT LICENSE";
-  public static final String LICENSE_NAME_BSD = "BSD LICENSE";
+  // License names
+  public static final String NAME_APACHE_V2 = "Apache License V2.0";
+  public static final String NAME_MIT = "MIT LICENSE";
+  public static final String NAME_BSD = "BSD LICENSE";
 
-  public static final String LICENSE_NO_EXTENSION = "LICENSE";
-  public static final String LICENSE_TXT = "LICENSE.txt";
-  public static final String LICENSE_MD = "LICENSE.md";
+  // License file names
+  public static final String FILE_NO_EXTENSION = "LICENSE";
+  public static final String FILE_TXT = "LICENSE.txt";
+  public static final String FILE_MD = "LICENSE.md";
+
   private static final String DEF_BRANCH = "master";
-  private static final String DEF_LICENSE_NAME = LICENSE_NAME_APACHE_V2;
+  private static final String DEF_LICENSE_NAME = NAME_APACHE_V2;
 
   /**
    * predefined LicenseEntry for Apache License v2.0
@@ -32,7 +35,7 @@ public class Licenses {
    * @return GitHubLicenseEntry
    */
   public static GitHubLicenseEntry fromGitHub(String gitRepo) {
-    return new GitHubLicenseEntry(DEF_LICENSE_NAME, gitRepo, DEF_BRANCH, null, LICENSE_TXT);
+    return new GitHubLicenseEntry(DEF_LICENSE_NAME, gitRepo, DEF_BRANCH, null, FILE_TXT);
   }
 
   /**
@@ -41,8 +44,8 @@ public class Licenses {
    *
    * @param gitRepo        target library's GitHub repository. should be "user/repoName"
    * @param relLicensePath relative path to the license file. you can use predefined {@link
-   *                       Licenses#LICENSE_TXT}, {@link Licenses#LICENSE_MD}, {@link
-   *                       Licenses#LICENSE_NO_EXTENSION}
+   *                       Licenses#FILE_TXT}, {@link Licenses#FILE_MD}, {@link
+   *                       Licenses#FILE_NO_EXTENSION}
    * @return GitHubLicenseEntry
    */
   public static GitHubLicenseEntry fromGitHub(String gitRepo, String relLicensePath) {

@@ -36,9 +36,9 @@ licenses.add(Licenses.fromGitHub("gabrielemariotti/changeloglib", Licenses.LICEN
 // library that is hosted on GitHub, and "LICENSE.txt" is provided
 dataset.add(Licenses.fromGitHub("google/dagger"));
 // library that is hosted on GitHub, and license file is provided as "LICENSE"
-dataset.add(Licenses.fromGitHub("reactivex/rxjava", Licenses.LICENSE_NO_EXTENSION));
-dataset.add(Licenses.fromGitHub("reactivex/rxandroid", Licenses.LICENSE_NO_EXTENSION));
-dataset.add(Licenses.fromGitHub("realm/realm-java", Licenses.LICENSE_NO_EXTENSION));
+dataset.add(Licenses.fromGitHub("reactivex/rxjava", Licenses.FILE_NO_EXTENSION));
+dataset.add(Licenses.fromGitHub("reactivex/rxandroid", Licenses.FILE_NO_EXTENSION));
+dataset.add(Licenses.fromGitHub("realm/realm-java", Licenses.FILE_NO_EXTENSION));
 dataset.add(Licenses.fromGitHub("square/retrofit"));
 
 // create adapter
@@ -56,18 +56,18 @@ Licenses.load(dataset);
 
 License name | Actual variable
 --- | ---
-Apache License V2.0 | Licenses#LICENSE_NAME_APACHE_V2
-MIT LICENSE | Licenses#LICENSE_NAME_MIT
-BSD LICENSE | Licenses#LICENSE_NAME_BSD
+Apache License V2.0 | Licenses#NAME_APACHE_V2
+MIT LICENSE | Licenses#NAME_MIT
+BSD LICENSE | Licenses#NAME_BSD
 
 
 ## Predefined License file name
 
 License file name | Actual variable
 --- | ---
-LICENSE | Licenses#LICENSE_NO_EXTENSION
-LICENSE.txt | Licenses#LICENSE_TXT
-LICENSE.md | Licenses#LICENSE_MD
+LICENSE | Licenses#FILE_NO_EXTENSION
+LICENSE.txt | Licenses#FILE_TXT
+LICENSE.md | Licenses#FILE_MD
 
 
 ## License
