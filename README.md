@@ -1,6 +1,8 @@
 LicenseAdapter
 ===
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-LicenseAdapter-green.svg?style=true)](https://android-arsenal.com/details/1/3516)
+
 Adapter library for RecyclerView to display your app's OSS dependencies.
 
 This library fetch license text from GitHub(and your custom location), so technically this library is capable of displaying any license.
