@@ -1,3 +1,11 @@
+## 1.2.1 - 2016/05/06
+
+### Fix
+
+- Fatal Exception in pre-Lollipop device [issue #5]
+
+
+
 ## 1.2.0 - 2016/05/03
 
 ### Change
