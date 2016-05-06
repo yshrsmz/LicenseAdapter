@@ -30,6 +30,10 @@ public class HeaderViewHolder extends LicenseViewHolder<HeaderWrapper> {
     author = Views.byId(itemView, R.id.author);
     licenseType = Views.byId(itemView, R.id.licenseType);
     link = Views.byId(itemView, R.id.link);
+
+    // use TextView color for arrow color
+    int arrowColor = libraryName.getCurrentTextColor();
+    arrow.setColorFilter(arrowColor);
   }
 
   @Override
