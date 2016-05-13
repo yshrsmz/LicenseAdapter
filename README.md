@@ -13,7 +13,7 @@ This library fetch license text from GitHub(and your custom location), so techni
 
 ## Installation
 
-LicenseAdapter is distributed via jCenter.
+LicenseAdapter is distributed via jCenter.  
 You can check the latest version number from the badge above.
 
 ```gradle
