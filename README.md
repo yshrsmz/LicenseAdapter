@@ -2,6 +2,7 @@ LicenseAdapter
 ===
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-LicenseAdapter-green.svg?style=true)](https://android-arsenal.com/details/1/3516)
+[![Bintray](https://img.shields.io/bintray/v/yshrsmz/maven/licenseadapter.svg?maxAge=2592000)]()
 
 Adapter library for RecyclerView to display your app's OSS dependencies.
 
@@ -16,7 +17,7 @@ LicenseAdapter is distributed via jCenter.
 
 ```gradle
 dependencies {
-  compile 'net.yslibrary.licenseadapter:licenseadapter:1.2.1'
+  compile 'net.yslibrary.licenseadapter:licenseadapter:LATEST_LIBRARY_VERSION'
 }
 ```
 
