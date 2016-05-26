@@ -1,9 +1,15 @@
+## 1.2.2 - 2016/05/26
+
+### Fix
+
+- Header not updated when collapsed via content click [issue #6]
+
+
 ## 1.2.1 - 2016/05/06
 
 ### Fix
 
 - Fatal Exception in pre-Lollipop device [issue #5]
-
 
 
 ## 1.2.0 - 2016/05/03
