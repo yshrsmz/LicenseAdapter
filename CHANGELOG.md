@@ -1,3 +1,11 @@
+## 1.2.3 - 2016/05/27
+
+### Fix
+
+- When expanding the last two licenses, the second license appears above the header, and cannot be unexpanded. [issue #7](https://github.com/yshrsmz/LicenseAdapter/issues/7)
+
+
+
 ## 1.2.2 - 2016/05/26
 
 ### Fix

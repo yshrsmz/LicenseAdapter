@@ -79,6 +79,8 @@ public class LicenseAdapter extends RecyclerView.Adapter<LicenseViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
+            int position = holder.getAdapterPosition();
+
             if (!wrapper.entry().hasContent()) {
               return;
             }
@@ -101,6 +103,8 @@ public class LicenseAdapter extends RecyclerView.Adapter<LicenseViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
+            int position = holder.getAdapterPosition();
+
             int removed = collapse(position - 1);
             notifyItemChanged(position - 1);
             notifyItemRemoved(removed);
