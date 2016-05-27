@@ -2,7 +2,7 @@
 
 ### Fix
 
-- When expanding the last two licenses, the second license appears above the header, and cannot be unexpanded. [issue #7](https://github.com/yshrsmz/LicenseAdapter/issues/7)
+- When expanding the last two licenses, the second license appears above the header, and cannot be unexpanded. [[issue #7](https://github.com/yshrsmz/LicenseAdapter/issues/7)]
 
 
 
