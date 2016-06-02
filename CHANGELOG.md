@@ -1,3 +1,11 @@
+## 1.2.4 - 2016/06/02
+
+### Fix
+
+- Fix incorrect Parcelable inheritance. LicenseEntry now inherits Parcelable. [[issue #8](https://github.com/yshrsmz/LicenseAdapter/issues/8)]
+
+
+
 ## 1.2.3 - 2016/05/27
 
 ### Fix
