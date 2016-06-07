@@ -74,6 +74,12 @@ LICENSE.txt | Licenses#FILE_TXT
 LICENSE.md | Licenses#FILE_MD
 
 
+## Apps using LicenseAdapter
+
+Send PR if you want your app to be included here ;)
+
+- [Omnitweety](https://play.google.com/store/apps/details?id=net.yslibrary.omnitweety)
+
 ## License
 
     Copyright 2016 Shimizu Yasuhiro (yshrsmz)
