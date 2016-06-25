@@ -79,12 +79,14 @@ public class LicenseAdapter extends RecyclerView.Adapter<LicenseViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
+            int position = holder.getAdapterPosition();
+
             if (!wrapper.entry().hasContent()) {
               return;
             }
 
             boolean expanded = wrapper.isExpanded();
-            wrapper.setExpanded(!expanded);
+
             if (expanded) {
               int removed = collapse(position);
               notifyItemChanged(position);
@@ -101,7 +103,8 @@ public class LicenseAdapter extends RecyclerView.Adapter<LicenseViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-            wrapper.setExpanded(false);
+            int position = holder.getAdapterPosition();
+
             int removed = collapse(position - 1);
             notifyItemChanged(position - 1);
             notifyItemRemoved(removed);
@@ -114,14 +117,25 @@ public class LicenseAdapter extends RecyclerView.Adapter<LicenseViewHolder> {
   @SuppressWarnings("ConstantConditions")
   private int expand(int headerPosition) {
     int added = headerPosition + 1;
-    ContentWrapper contentWrapper = new ContentWrapper(getItem(headerPosition).entry());
+    Wrapper headerItem = getItem(headerPosition);
+    headerItem.setExpanded(true);
+
+    ContentWrapper contentWrapper = new ContentWrapper(headerItem.entry());
+
     wrappedDataSet.add(added, contentWrapper);
     return added;
   }
 
   private int collapse(int headerPosition) {
+    Wrapper headerItem = getItem(headerPosition);
+    Wrapper contentItem = getItem(headerPosition + 1);
+
+    headerItem.setExpanded(false);
+    contentItem.setExpanded(false);
+
     int removed = headerPosition + 1;
     wrappedDataSet.remove(removed);
+
     return removed;
   }
 

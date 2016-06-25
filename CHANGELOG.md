@@ -1,9 +1,31 @@
+## 1.2.4 - 2016/06/02
+
+### Fix
+
+- Fix incorrect Parcelable inheritance. LicenseEntry now inherits Parcelable. [[issue #8](https://github.com/yshrsmz/LicenseAdapter/issues/8)]
+
+
+
+## 1.2.3 - 2016/05/27
+
+### Fix
+
+- When expanding the last two licenses, the second license appears above the header, and cannot be unexpanded. [[issue #7](https://github.com/yshrsmz/LicenseAdapter/issues/7)]
+
+
+
+## 1.2.2 - 2016/05/26
+
+### Fix
+
+- Header not updated when collapsed via content click [issue #6]
+
+
 ## 1.2.1 - 2016/05/06
 
 ### Fix
 
 - Fatal Exception in pre-Lollipop device [issue #5]
-
 
 
 ## 1.2.0 - 2016/05/03

@@ -2,6 +2,7 @@ LicenseAdapter
 ===
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-LicenseAdapter-green.svg?style=true)](https://android-arsenal.com/details/1/3516)
+[![Bintray](https://img.shields.io/bintray/v/yshrsmz/maven/licenseadapter.svg)](https://bintray.com/yshrsmz/maven/licenseadapter/view)
 
 Adapter library for RecyclerView to display your app's OSS dependencies.
 
@@ -12,11 +13,12 @@ This library fetch license text from GitHub(and your custom location), so techni
 
 ## Installation
 
-LicenseAdapter is distributed via jCenter.
+LicenseAdapter is distributed via jCenter.  
+You can check the latest version number from the badge above.
 
 ```gradle
 dependencies {
-  compile 'net.yslibrary.licenseadapter:licenseadapter:1.2.1'
+  compile 'net.yslibrary.licenseadapter:licenseadapter:LATEST_LIBRARY_VERSION'
 }
 ```
 
@@ -71,6 +73,12 @@ LICENSE | Licenses#FILE_NO_EXTENSION
 LICENSE.txt | Licenses#FILE_TXT
 LICENSE.md | Licenses#FILE_MD
 
+
+## Apps using LicenseAdapter
+
+Send PR if you want your app to be included here ;)
+
+- [Omnitweety](https://play.google.com/store/apps/details?id=net.yslibrary.omnitweety)
 
 ## License
 
