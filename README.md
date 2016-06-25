@@ -11,6 +11,8 @@ This library fetch license text from GitHub(and your custom location), so techni
 ![screenshot_1](./assets/screenshot_1.png)
 ![screenshot_2](./assets/screenshot_2.png)
 
+![screen_gif](./assets/screen.gif)
+
 ## Installation
 
 LicenseAdapter is distributed via jCenter.  
