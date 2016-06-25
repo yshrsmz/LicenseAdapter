@@ -8,10 +8,10 @@ Adapter library for RecyclerView to display your app's OSS dependencies.
 
 This library fetch license text from GitHub(and your custom location), so technically this library is capable of displaying any license.
 
+![screen_gif](./assets/screen.gif)
+
 ![screenshot_1](./assets/screenshot_1.png)
 ![screenshot_2](./assets/screenshot_2.png)
-
-![screen_gif](./assets/screen.gif)
 
 ## Installation
 
