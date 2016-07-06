@@ -81,6 +81,7 @@ LICENSE.md | Licenses#FILE_MD
 Send PR if you want your app to be included here ;)
 
 - [Omnitweety](https://play.google.com/store/apps/details?id=net.yslibrary.omnitweety)
+- [KyudoScoreBookTeam](https://play.google.com/store/apps/details?id=com.bowyer.app.android.kyudoscoreteam)
 
 ## License
 
