@@ -83,6 +83,7 @@ Send PR if you want your app to be included here ;)
 - [Omnitweety](https://play.google.com/store/apps/details?id=net.yslibrary.omnitweety)
 - [KyudoScoreBookTeam](https://play.google.com/store/apps/details?id=com.bowyer.app.android.kyudoscoreteam)
 - [KyudoScoreBook](https://play.google.com/store/apps/details?id=com.bowyer.KyudoScoreBookSecond)
+- [Ameba](https://play.google.com/store/apps/details?id=jp.ameba)
 
 ## License
 
