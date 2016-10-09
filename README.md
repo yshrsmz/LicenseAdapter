@@ -36,9 +36,9 @@ Don't forget to add `android.permission.INTERNET` permission to your AndroidMani
 List<LicenseEntry> dataset = new ArrayList<>();
 
 // library that is not hosted on GitHub
-licenses.add(Licenses.noContent("Android SDK", "Google Inc.", "https://developer.android.com/sdk/terms.html"));
+dataset.add(Licenses.noContent("Android SDK", "Google Inc.", "https://developer.android.com/sdk/terms.html"));
 // library that is hosted on GitHub, but does not provide license text
-licenses.add(Licenses.fromGitHub("gabrielemariotti/changeloglib", Licenses.LICENSE_APACHE_V2));
+dataset.add(Licenses.fromGitHub("gabrielemariotti/changeloglib", Licenses.LICENSE_APACHE_V2));
 // library that is hosted on GitHub, and "LICENSE.txt" is provided
 dataset.add(Licenses.fromGitHub("google/dagger"));
 // library that is hosted on GitHub, and license file is provided as "LICENSE"
