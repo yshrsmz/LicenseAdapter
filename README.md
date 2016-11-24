@@ -84,6 +84,7 @@ Send PR if you want your app to be included here ;)
 - [KyudoScoreBookTeam](https://play.google.com/store/apps/details?id=com.bowyer.app.android.kyudoscoreteam)
 - [KyudoScoreBook](https://play.google.com/store/apps/details?id=com.bowyer.KyudoScoreBookSecond)
 - [Ameba](https://play.google.com/store/apps/details?id=jp.ameba)
+- [Monotweety](https://play.google.com/store/apps/details?id=net.yslibrary.monotweety)
 
 ## License
 
