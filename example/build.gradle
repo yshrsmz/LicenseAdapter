@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
   compileSdkVersion 25
-  buildToolsVersion "25.0.0"
+  buildToolsVersion "25.0.2"
   defaultConfig {
     applicationId 'net.yslibrary.licenseadapter.example'
     minSdkVersion 15
@@ -23,5 +23,5 @@ dependencies {
   compile fileTree(include: ['*.jar'], dir: 'libs')
   compile project(':library')
   testCompile 'junit:junit:4.12'
-  compile 'com.android.support:appcompat-v7:25.0.1'
+  compile "com.android.support:appcompat-v7:$supportlib_version"
 }
