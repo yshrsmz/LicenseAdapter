@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+apply plugin: 'net.yslibrary.licenseadapter.gradleplugin'
 
 android {
   compileSdkVersion 25
@@ -17,6 +19,12 @@ android {
     }
   }
   productFlavors {}
+}
+
+licenseAdapter {
+  testParam = 'foo'
+  excludeDependencyIds = ["io.realm:realm-annotations"]
+  includeIndirectDependency = true
 }
 
 dependencies {
