@@ -38,15 +38,24 @@ List<LicenseEntry> dataset = new ArrayList<>();
 
 // library that is not hosted on GitHub
 dataset.add(Licenses.noContent("Android SDK", "Google Inc.", "https://developer.android.com/sdk/terms.html"));
+
 // library that is hosted on GitHub, but does not provide license text
 dataset.add(Licenses.fromGitHub("gabrielemariotti/changeloglib", Licenses.LICENSE_APACHE_V2));
-// library that is hosted on GitHub, and "LICENSE.txt" is provided
-dataset.add(Licenses.fromGitHub("google/dagger"));
-// library that is hosted on GitHub, and license file is provided as "LICENSE"
-dataset.add(Licenses.fromGitHub("reactivex/rxjava", Licenses.FILE_NO_EXTENSION));
-dataset.add(Licenses.fromGitHub("reactivex/rxandroid", Licenses.FILE_NO_EXTENSION));
-dataset.add(Licenses.fromGitHub("realm/realm-java", Licenses.FILE_NO_EXTENSION));
-dataset.add(Licenses.fromGitHub("square/retrofit"));
+
+// Apache v2 library that is hosted on GitHub, and license file is provided as "LICENSE"
+dataset.add(Licenses.fromGitHubApacheV2("realm/realm-java", Licenses.FILE_NO_EXTENSION));
+// Apache v2 library that is hosted on GitHub and licence file is provided as "LICENSE.txt"
+dataset.add(Licenses.fromGitHubApacheV2("square/retrofit"));
+
+// BSD library that is hosted on GitHub, and license file is provided as "LICENSE"
+dataset.add(Licenses.fromGitHubBSD("bumptech/glide", Licenses.FILE_NO_EXTENSION));
+
+// MIT library that is hosted on GitHub, and license file is provided as "LICENSE"
+dataset.add(Licenses.fromGitHubMIT("jhy/jsoup", Licenses.FILE_NO_EXTENSION));
+
+// these 2 licenses have different branch name
+dataset.add(new GitHubLicenseEntry(Licenses.NAME_APACHE_V2, "ReactiveX/RxAndroid", "1.x/", null, Licenses.FILE_NO_EXTENSION));
+dataset.add(new GitHubLicenseEntry(Licenses.NAME_APACHE_V2, "ReactiveX/RxJava", "1.x/", null, Licenses.FILE_NO_EXTENSION));
 
 // create adapter
 LicenseAdapter adapter = new LicenseAdapter(dataset);
