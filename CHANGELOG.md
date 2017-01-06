@@ -1,3 +1,15 @@
+## unreleased
+
+### Change
+
+- Deprecate `Licenses#fromGitHub(String)` and `Licenses#fromGitHub(String, String)`, since these method implicitly use Apache v2 as default license.
+
+### Enhancement
+
+- Add `Licenses#fromGitHubApacheV2(String)`, `Licenses#fromGitHubApacheV2(String, String)`, `Licenses#fromGitHubMIT(String)`, `Licenses#fromGitHubMIT(String, String)`, `Licenses#fromGitHubBSD(String)`, `Licenses#fromGitHubBSD(String, String)`.  
+  For other licenses, use `Licenses#fromGitHub(String)` and `Licenses#fromGitHub(String, String, String)`, the same as before.
+
+
 ## 1.2.4 - 2016/06/02
 
 ### Fix
@@ -38,7 +50,7 @@
 
 ## 1.1.1 - 2016/04/30
 
-### Enhancements
+### Enhancement
 
 - Tint arrow icon with `?attr/colorControlNormal` to support both Light & Dark theme.
 
@@ -61,7 +73,7 @@
 
 ## 1.0.1 - 2016/04/22
 
-### Enhancements
+### Enhancement
 
 - Remove license type TextView when no type is provided.
 
