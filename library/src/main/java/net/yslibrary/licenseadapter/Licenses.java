@@ -33,7 +33,9 @@ public class Licenses {
    *
    * @param gitRepo target library's GitHub repository. should be "user/repoName"
    * @return GitHubLicenseEntry
+   * @deprecated use {@link Licenses#fromGitHubApacheV2(String)} instead.
    */
+  @Deprecated
   public static GitHubLicenseEntry fromGitHub(String gitRepo) {
     return new GitHubLicenseEntry(DEF_LICENSE_NAME, gitRepo, DEF_BRANCH, null, FILE_TXT);
   }
@@ -42,14 +44,16 @@ public class Licenses {
    * create LicenseEntry from GitHub repository url and License text path.
    * Regard license as Apache v2
    *
-   * @param gitRepo        target library's GitHub repository. should be "user/repoName"
-   * @param relLicensePath relative path to the license file. you can use predefined {@link
-   *                       Licenses#FILE_TXT}, {@link Licenses#FILE_MD}, {@link
-   *                       Licenses#FILE_NO_EXTENSION}
+   * @param gitRepo             target library's GitHub repository. should be "user/repoName"
+   * @param relativeLicensePath relative path to the license file. you can use predefined {@link
+   *                            Licenses#FILE_TXT}, {@link Licenses#FILE_MD}, {@link
+   *                            Licenses#FILE_NO_EXTENSION}
    * @return GitHubLicenseEntry
+   * @deprecated use {@link Licenses#fromGitHubApacheV2(String, String)} instead.
    */
-  public static GitHubLicenseEntry fromGitHub(String gitRepo, String relLicensePath) {
-    return new GitHubLicenseEntry(DEF_LICENSE_NAME, gitRepo, DEF_BRANCH, null, relLicensePath);
+  @Deprecated
+  public static GitHubLicenseEntry fromGitHub(String gitRepo, String relativeLicensePath) {
+    return new GitHubLicenseEntry(DEF_LICENSE_NAME, gitRepo, DEF_BRANCH, null, relativeLicensePath);
   }
 
   /**
@@ -65,9 +69,91 @@ public class Licenses {
     return new GitHubLicenseEntry(null, gitRepo, DEF_BRANCH, license, null);
   }
 
+  /**
+   * Create LicenseEntry from GitHub repository url and license name
+   *
+   * @param gitRepo             target library's GitHub repository. should be "user/repoName"
+   * @param licenseName         license name to use. you can use predefined {@link
+   *                            Licenses#NAME_APACHE_V2}, {@link Licenses#NAME_MIT} and {@link
+   *                            Licenses#NAME_BSD}
+   * @param relativeLicensePath relative path to the license file. you can use predefined {@link
+   *                            Licenses#FILE_TXT}, {@link Licenses#FILE_MD} and {@link
+   *                            Licenses#FILE_NO_EXTENSION}
+   * @return GitHubLicenseEntry
+   */
   public static GitHubLicenseEntry fromGitHub(String gitRepo, String licenseName,
-      String relLicensePath) {
-    return new GitHubLicenseEntry(licenseName, gitRepo, DEF_BRANCH, null, relLicensePath);
+      String relativeLicensePath) {
+    return new GitHubLicenseEntry(licenseName, gitRepo, DEF_BRANCH, null, relativeLicensePath);
+  }
+
+  /**
+   * Create Apache v2 LicenseEntry from GitHub repository url.
+   * Regard License text file name as "LICENSE.txt"
+   *
+   * @param gitRepo target library's GitHub repository. should be "user/repoName"
+   * @return GitHubLicenseEntry
+   */
+  public static GitHubLicenseEntry fromGitHubApacheV2(String gitRepo) {
+    return new GitHubLicenseEntry(NAME_APACHE_V2, gitRepo, DEF_BRANCH, null, FILE_TXT);
+  }
+
+  /**
+   * Create Apache v2 LicenseEntry from GitHub repository url.
+   *
+   * @param gitRepo             target library's GitHub repository. should be "user/repoName"
+   * @param relativeLicensePath relative path to the license file. you can use predefined {@link
+   *                            Licenses#FILE_TXT}, {@link Licenses#FILE_MD} and {@link
+   *                            Licenses#FILE_NO_EXTENSION}
+   * @return GitHubLicenseEntry
+   */
+  public static GitHubLicenseEntry fromGitHubApacheV2(String gitRepo, String relativeLicensePath) {
+    return new GitHubLicenseEntry(NAME_APACHE_V2, gitRepo, DEF_BRANCH, null, relativeLicensePath);
+  }
+
+  /**
+   * Create MIT LicenseEntry from GitHub repository url.
+   *
+   * @param gitRepo target library's GitHub repository. should be "user/repoName"
+   * @return GitHubLicenseEntry
+   */
+  public static GitHubLicenseEntry fromGitHubMIT(String gitRepo) {
+    return new GitHubLicenseEntry(NAME_MIT, gitRepo, DEF_BRANCH, null, FILE_TXT);
+  }
+
+  /**
+   * Create MIT LicenseEntry from GitHub repository url.
+   *
+   * @param gitRepo             target library's GitHub repository. should be "user/repoName"
+   * @param relativeLicensePath relative path to the license file. you can use predefined {@link
+   *                            Licenses#FILE_TXT}, {@link Licenses#FILE_MD} and {@link
+   *                            Licenses#FILE_NO_EXTENSION}
+   * @return GitHubLicenseEntry
+   */
+  public static GitHubLicenseEntry fromGitHubMIT(String gitRepo, String relativeLicensePath) {
+    return new GitHubLicenseEntry(NAME_MIT, gitRepo, DEF_BRANCH, null, relativeLicensePath);
+  }
+
+  /**
+   * Create BSD LicenseEntry from GitHub repository url.
+   *
+   * @param gitRepo target library's GitHub repository. should be "user/repoName"
+   * @return GitHubLicenseEntry
+   */
+  public static GitHubLicenseEntry fromGitHubBSD(String gitRepo) {
+    return new GitHubLicenseEntry(NAME_BSD, gitRepo, DEF_BRANCH, null, FILE_TXT);
+  }
+
+  /**
+   * Create BSD LicenseEntry from GitHub repository url.
+   *
+   * @param gitRepo             target library's GitHub repository. should be "user/repoName"
+   * @param relativeLicensePath relative path to the license file. you can use predefined {@link
+   *                            Licenses#FILE_TXT}, {@link Licenses#FILE_MD} and {@link
+   *                            Licenses#FILE_NO_EXTENSION}
+   * @return GitHubLicenseEntry
+   */
+  public static GitHubLicenseEntry fromGitHubBSD(String gitRepo, String relativeLicensePath) {
+    return new GitHubLicenseEntry(NAME_BSD, gitRepo, DEF_BRANCH, null, relativeLicensePath);
   }
 
   /**
