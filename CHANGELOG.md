@@ -7,7 +7,7 @@
 ### Enhancement
 
 - Add `Licenses#fromGitHubApacheV2(String)`, `Licenses#fromGitHubApacheV2(String, String)`, `Licenses#fromGitHubMIT(String)`, `Licenses#fromGitHubMIT(String, String)`, `Licenses#fromGitHubBSD(String)`, `Licenses#fromGitHubBSD(String, String)`.  
-  For other licenses, use `Licenses#fromGitHub(String)` and `Licenses#fromGitHub(String, String, String)`, the same as before.
+  For other licenses, use `Licenses#fromGitHub(String, License)` and `Licenses#fromGitHub(String, String, String)`, the same as before.
 
 
 ## 1.2.4 - 2016/06/02
