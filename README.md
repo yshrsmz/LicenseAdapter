@@ -16,8 +16,7 @@ This library fetch license text from GitHub(and your custom location), so techni
 
 ## Installation
 
-LicenseAdapter is distributed via jCenter.  
-You can check the latest version number from the badge above.
+LicenseAdapter is distributed via jCenter. [![Bintray](https://img.shields.io/bintray/v/yshrsmz/maven/licenseadapter.svg)](https://bintray.com/yshrsmz/maven/licenseadapter/view)
 
 ```gradle
 dependencies {
