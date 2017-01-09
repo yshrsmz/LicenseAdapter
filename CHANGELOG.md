@@ -2,7 +2,7 @@
 
 ### Change
 
-- Deprecate `Licenses#fromGitHub(String)` and `Licenses#fromGitHub(String, String)`, since these method implicitly use Apache v2 as default license.
+- Deprecate `Licenses#fromGitHub(String)` and `Licenses#fromGitHub(String, String)`, since these methods implicitly use Apache v2 as default license.
 
 ### Enhancement
 
