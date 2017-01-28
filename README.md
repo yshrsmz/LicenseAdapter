@@ -52,8 +52,8 @@ dataset.add(Licenses.fromGitHubBSD("bumptech/glide"));
 dataset.add(Licenses.fromGitHubMIT("jhy/jsoup"));
 
 // these 2 licenses have different branch name
-dataset.add(new GitHubLicenseEntry(Licenses.NAME_APACHE_V2, "ReactiveX/RxAndroid", "1.x/", null, Licenses.FILE_AUTO));
-dataset.add(new GitHubLicenseEntry(Licenses.NAME_APACHE_V2, "ReactiveX/RxJava", "1.x/", null, Licenses.FILE_AUTO));
+dataset.add(new GitHubLicenseEntry(Licenses.NAME_APACHE_V2, "ReactiveX/RxAndroid", "2.x/", null, Licenses.FILE_AUTO));
+dataset.add(new GitHubLicenseEntry(Licenses.NAME_APACHE_V2, "ReactiveX/RxJava", "2.x/", null, Licenses.FILE_AUTO));
 
 // create adapter
 LicenseAdapter adapter = new LicenseAdapter(dataset);
