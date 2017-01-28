@@ -14,6 +14,7 @@ public class Licenses {
   public static final String NAME_BSD = "BSD LICENSE";
 
   // License file names
+  public static final String FILE_AUTO = "license_file_auto";
   public static final String FILE_NO_EXTENSION = "LICENSE";
   public static final String FILE_TXT = "LICENSE.txt";
   public static final String FILE_MD = "LICENSE.md";
@@ -94,7 +95,7 @@ public class Licenses {
    * @return GitHubLicenseEntry
    */
   public static GitHubLicenseEntry fromGitHubApacheV2(String gitRepo) {
-    return new GitHubLicenseEntry(NAME_APACHE_V2, gitRepo, DEF_BRANCH, null, FILE_NO_EXTENSION);
+    return new GitHubLicenseEntry(NAME_APACHE_V2, gitRepo, DEF_BRANCH, null, FILE_AUTO);
   }
 
   /**
@@ -117,7 +118,7 @@ public class Licenses {
    * @return GitHubLicenseEntry
    */
   public static GitHubLicenseEntry fromGitHubMIT(String gitRepo) {
-    return new GitHubLicenseEntry(NAME_MIT, gitRepo, DEF_BRANCH, null, FILE_NO_EXTENSION);
+    return new GitHubLicenseEntry(NAME_MIT, gitRepo, DEF_BRANCH, null, FILE_AUTO);
   }
 
   /**
@@ -140,7 +141,7 @@ public class Licenses {
    * @return GitHubLicenseEntry
    */
   public static GitHubLicenseEntry fromGitHubBSD(String gitRepo) {
-    return new GitHubLicenseEntry(NAME_BSD, gitRepo, DEF_BRANCH, null, FILE_NO_EXTENSION);
+    return new GitHubLicenseEntry(NAME_BSD, gitRepo, DEF_BRANCH, null, FILE_AUTO);
   }
 
   /**

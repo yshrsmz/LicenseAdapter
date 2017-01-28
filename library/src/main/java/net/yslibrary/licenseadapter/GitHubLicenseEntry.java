@@ -4,8 +4,9 @@ import android.os.Parcel;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import net.yslibrary.licenseadapter.internal.BaseLicenseEntry;
 
 public class GitHubLicenseEntry extends BaseLicenseEntry {
@@ -42,8 +43,6 @@ public class GitHubLicenseEntry extends BaseLicenseEntry {
       while ((str = in.readLine()) != null) builder.append(str).append("\n");
       in.close();
       return builder.toString();
-    } catch (MalformedURLException e) {
-      return e.getMessage();
     } catch (IOException e) {
       return e.getMessage();
     }
@@ -67,7 +66,22 @@ public class GitHubLicenseEntry extends BaseLicenseEntry {
 
   @Override
   protected void doLoad() {
-    license.text = readFile(license.url);
+    if (license.url.contains(Licenses.FILE_AUTO)) {
+      List<String> possiblePaths =
+          Arrays.asList(Licenses.FILE_NO_EXTENSION, Licenses.FILE_TXT, Licenses.FILE_MD);
+
+      for (String relativePath : possiblePaths) {
+        String possibleUrl = license.url.replace(Licenses.FILE_AUTO, relativePath);
+        String response = readFile(possibleUrl);
+        if (!response.equals(possibleUrl)) {
+          license.text = response;
+          license.url = possibleUrl;
+          break;
+        }
+      }
+    } else {
+      license.text = readFile(license.url);
+    }
   }
 
   @Override
