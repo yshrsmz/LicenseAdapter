@@ -1,6 +1,7 @@
 package net.yslibrary.licenseadapter;
 
 import android.os.Parcel;
+import android.text.TextUtils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -78,6 +79,11 @@ public class GitHubLicenseEntry extends BaseLicenseEntry {
           license.url = possibleUrl;
           break;
         }
+      }
+
+      if (TextUtils.isEmpty(license.text)) {
+        license.text =
+            "No license file found. Searched for the following license files: " + possiblePaths;
       }
     } else {
       license.text = readFile(license.url);
