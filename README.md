@@ -41,20 +41,19 @@ dataset.add(Licenses.noContent("Android SDK", "Google Inc.", "https://developer.
 // library that is hosted on GitHub, but does not provide license text
 dataset.add(Licenses.fromGitHub("gabrielemariotti/changeloglib", Licenses.LICENSE_APACHE_V2));
 
-// Apache v2 library that is hosted on GitHub, and license file is provided as "LICENSE"
-dataset.add(Licenses.fromGitHubApacheV2("realm/realm-java", Licenses.FILE_NO_EXTENSION));
-// Apache v2 library that is hosted on GitHub and licence file is provided as "LICENSE.txt"
+// Apache v2 library that is hosted on GitHub
+dataset.add(Licenses.fromGitHubApacheV2("realm/realm-java"));
 dataset.add(Licenses.fromGitHubApacheV2("square/retrofit"));
 
-// BSD library that is hosted on GitHub, and license file is provided as "LICENSE"
-dataset.add(Licenses.fromGitHubBSD("bumptech/glide", Licenses.FILE_NO_EXTENSION));
+// BSD library that is hosted on GitHub
+dataset.add(Licenses.fromGitHubBSD("bumptech/glide"));
 
-// MIT library that is hosted on GitHub, and license file is provided as "LICENSE"
-dataset.add(Licenses.fromGitHubMIT("jhy/jsoup", Licenses.FILE_NO_EXTENSION));
+// MIT library that is hosted on GitHub
+dataset.add(Licenses.fromGitHubMIT("jhy/jsoup"));
 
 // these 2 licenses have different branch name
-dataset.add(new GitHubLicenseEntry(Licenses.NAME_APACHE_V2, "ReactiveX/RxAndroid", "1.x/", null, Licenses.FILE_NO_EXTENSION));
-dataset.add(new GitHubLicenseEntry(Licenses.NAME_APACHE_V2, "ReactiveX/RxJava", "1.x/", null, Licenses.FILE_NO_EXTENSION));
+dataset.add(new GitHubLicenseEntry(Licenses.NAME_APACHE_V2, "ReactiveX/RxAndroid", "1.x/", null, Licenses.FILE_AUTO));
+dataset.add(new GitHubLicenseEntry(Licenses.NAME_APACHE_V2, "ReactiveX/RxJava", "1.x/", null, Licenses.FILE_AUTO));
 
 // create adapter
 LicenseAdapter adapter = new LicenseAdapter(dataset);
@@ -80,6 +79,7 @@ BSD LICENSE | Licenses#NAME_BSD
 
 License file name | Actual variable
 --- | ---
+Automatically find the license file from the predefined set below | Licenses#FILE_AUTO
 LICENSE | Licenses#FILE_NO_EXTENSION
 LICENSE.txt | Licenses#FILE_TXT
 LICENSE.md | Licenses#FILE_MD
