@@ -2,13 +2,15 @@ package net.yslibrary.licenseadapter;
 
 import android.os.Parcel;
 import android.text.TextUtils;
+
+import net.yslibrary.licenseadapter.internal.BaseLicenseEntry;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
-import net.yslibrary.licenseadapter.internal.BaseLicenseEntry;
 
 public class GitHubLicenseEntry extends BaseLicenseEntry {
 
@@ -67,7 +69,8 @@ public class GitHubLicenseEntry extends BaseLicenseEntry {
 
   @Override
   protected void doLoad() {
-    if (license.url.contains(Licenses.FILE_AUTO)) {
+    String[] splitUrl = license.url.split("/");
+    if (splitUrl[splitUrl.length - 1].contains(Licenses.FILE_AUTO)) {
       List<String> possiblePaths =
           Arrays.asList(Licenses.FILE_NO_EXTENSION, Licenses.FILE_TXT, Licenses.FILE_MD);
 
