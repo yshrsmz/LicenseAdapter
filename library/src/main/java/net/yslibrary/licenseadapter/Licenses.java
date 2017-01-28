@@ -94,7 +94,7 @@ public class Licenses {
    * @return GitHubLicenseEntry
    */
   public static GitHubLicenseEntry fromGitHubApacheV2(String gitRepo) {
-    return new GitHubLicenseEntry(NAME_APACHE_V2, gitRepo, DEF_BRANCH, null, FILE_TXT);
+    return new GitHubLicenseEntry(NAME_APACHE_V2, gitRepo, DEF_BRANCH, null, FILE_NO_EXTENSION);
   }
 
   /**
@@ -117,7 +117,7 @@ public class Licenses {
    * @return GitHubLicenseEntry
    */
   public static GitHubLicenseEntry fromGitHubMIT(String gitRepo) {
-    return new GitHubLicenseEntry(NAME_MIT, gitRepo, DEF_BRANCH, null, FILE_TXT);
+    return new GitHubLicenseEntry(NAME_MIT, gitRepo, DEF_BRANCH, null, FILE_NO_EXTENSION);
   }
 
   /**
@@ -140,7 +140,7 @@ public class Licenses {
    * @return GitHubLicenseEntry
    */
   public static GitHubLicenseEntry fromGitHubBSD(String gitRepo) {
-    return new GitHubLicenseEntry(NAME_BSD, gitRepo, DEF_BRANCH, null, FILE_TXT);
+    return new GitHubLicenseEntry(NAME_BSD, gitRepo, DEF_BRANCH, null, FILE_NO_EXTENSION);
   }
 
   /**
