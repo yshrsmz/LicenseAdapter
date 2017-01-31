@@ -1,3 +1,12 @@
+## 1.4.0 - XXX
+
+### Enhancement
+
+- Add `Licenses#FILE_AUTO` option which automatically check & load `LICENSE` file regardless of its extension. [PR #22](https://github.com/yshrsmz/LicenseAdapter/pull/22)
+- `Licenses#fromGitHubApacheV2(String)`, `Licenses#fromGitHubMIT(String)` and `Licenses#fromGitHubBSD(String)` now check & load appropriate "LICENSE" file automatically. [PR #22](https://github.com/yshrsmz/LicenseAdapter/pull/22)
+  While this feature is convenient, it can increase network access. If you are certain about LICENSE file name and don't mind doing extra work, I recommend you to specify license filename explicitly.
+
+
 ## 1.3.0 - 2016/01/09
 
 ### Change
