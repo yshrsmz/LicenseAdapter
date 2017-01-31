@@ -1,12 +1,16 @@
 package net.yslibrary.licenseadapter;
 
 import android.os.Parcel;
+import android.text.TextUtils;
+
+import net.yslibrary.licenseadapter.internal.BaseLicenseEntry;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
-import net.yslibrary.licenseadapter.internal.BaseLicenseEntry;
+import java.util.Arrays;
+import java.util.List;
 
 public class GitHubLicenseEntry extends BaseLicenseEntry {
 
@@ -42,8 +46,6 @@ public class GitHubLicenseEntry extends BaseLicenseEntry {
       while ((str = in.readLine()) != null) builder.append(str).append("\n");
       in.close();
       return builder.toString();
-    } catch (MalformedURLException e) {
-      return e.getMessage();
     } catch (IOException e) {
       return e.getMessage();
     }
@@ -67,7 +69,28 @@ public class GitHubLicenseEntry extends BaseLicenseEntry {
 
   @Override
   protected void doLoad() {
-    license.text = readFile(license.url);
+    String[] splitUrl = license.url.split("/");
+    if (splitUrl[splitUrl.length - 1].contains(Licenses.FILE_AUTO)) {
+      List<String> possiblePaths =
+          Arrays.asList(Licenses.FILE_NO_EXTENSION, Licenses.FILE_TXT, Licenses.FILE_MD);
+
+      for (String relativePath : possiblePaths) {
+        String possibleUrl = license.url.replace(Licenses.FILE_AUTO, relativePath);
+        String response = readFile(possibleUrl);
+        if (!response.equals(possibleUrl)) {
+          license.text = response;
+          license.url = possibleUrl;
+          break;
+        }
+      }
+
+      if (TextUtils.isEmpty(license.text)) {
+        license.text =
+            "No license file found. Searched for the following license files: " + possiblePaths;
+      }
+    } else {
+      license.text = readFile(license.url);
+    }
   }
 
   @Override
