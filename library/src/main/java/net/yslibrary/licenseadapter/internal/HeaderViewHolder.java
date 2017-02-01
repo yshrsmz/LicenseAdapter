@@ -1,15 +1,13 @@
 package net.yslibrary.licenseadapter.internal;
 
 import android.support.annotation.DrawableRes;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import net.yslibrary.licenseadapter.LicenseEntry;
 import net.yslibrary.licenseadapter.R;
 
-/**
- * Created by yshrsmz on 2016/04/26.
- */
 public class HeaderViewHolder extends LicenseViewHolder<HeaderWrapper> {
 
   private ImageView arrow;
@@ -57,13 +55,9 @@ public class HeaderViewHolder extends LicenseViewHolder<HeaderWrapper> {
     author.setText(entry.author());
 
     String type = entry.license() != null ? entry.license().name : "";
-    int typeVisibility = View.VISIBLE;
-    if (type == null || type.equals("")) {
-      typeVisibility = View.GONE;
-    }
-    licenseType.setVisibility(typeVisibility);
+    licenseType.setVisibility(TextUtils.isEmpty(type) ? View.GONE : View.VISIBLE);
     licenseType.setText(type);
 
-    link.setText(entry.link());
+    link.setText(entry.license().url);
   }
 }

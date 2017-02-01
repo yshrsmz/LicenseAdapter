@@ -38,6 +38,9 @@ List<LicenseEntry> dataset = new ArrayList<>();
 // library that is not hosted on GitHub
 dataset.add(Licenses.noContent("Android SDK", "Google Inc.", "https://developer.android.com/sdk/terms.html"));
 
+// library that does not have their license online
+dataset.add(Licenses.noLink("Google Play Services", "Google Inc.", GoogleApiAvailability.getInstance().getOpenSourceSoftwareLicenseInfo(getContext())));
+
 // library that is hosted on GitHub, but does not provide license text
 dataset.add(Licenses.fromGitHub("gabrielemariotti/changeloglib", Licenses.LICENSE_APACHE_V2));
 

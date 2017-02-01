@@ -4,10 +4,9 @@ import android.os.Parcel;
 import net.yslibrary.licenseadapter.internal.BaseLicenseEntry;
 
 /**
- * License without license text
+ * License without license url
  */
-public class NoContentLicenseEntry extends BaseLicenseEntry {
-
+public class NoLinkLicenseEntry extends BaseLicenseEntry {
   public static final Creator<NoContentLicenseEntry> CREATOR =
       new Creator<NoContentLicenseEntry>() {
         @Override
@@ -21,11 +20,11 @@ public class NoContentLicenseEntry extends BaseLicenseEntry {
         }
       };
 
-  public NoContentLicenseEntry(String name, String author, String url) {
-    super(name, null, author, new License.Builder().setUrl(url).build());
+  public NoLinkLicenseEntry(String name, String author, String text) {
+    super(name, null, author, new License.Builder().setText(text).build());
   }
 
-  protected NoContentLicenseEntry(Parcel in) {
+  protected NoLinkLicenseEntry(Parcel in) {
     super(in);
   }
 
@@ -45,6 +44,6 @@ public class NoContentLicenseEntry extends BaseLicenseEntry {
 
   @Override
   public boolean hasContent() {
-    return false;
+    return true;
   }
 }

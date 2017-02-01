@@ -28,7 +28,7 @@ public class GitHubLicenseEntry extends BaseLicenseEntry {
 
   public GitHubLicenseEntry(String licenseName, String gitRepo, String branch, License license,
       String relLicensePath) {
-    super(null, branch, null, null, null);
+    super(null, branch, null, null);
     init(licenseName, gitRepo, branch, license, relLicensePath);
   }
 
@@ -55,13 +55,13 @@ public class GitHubLicenseEntry extends BaseLicenseEntry {
       String relLicensePath) {
     name = gitRepo.substring(gitRepo.indexOf("/") + 1);
     author = gitRepo.substring(0, gitRepo.indexOf("/"));
-    link = "https://github.com/" + gitRepo;
+    String link = "https://github.com/" + gitRepo;
 
     if (license == null) {
       String licenseLink =
           (link + "/" + (branch != null ? branch : "master") + "/").replace("github.com",
               "raw.githubusercontent.com").replace("/tree/", "/") + relLicensePath;
-      this.license = new License(licenseName, licenseLink);
+      this.license = new License.Builder().setName(licenseName).setUrl(licenseLink).build();
     } else {
       this.license = license;
     }

@@ -5,35 +5,23 @@ import net.yslibrary.licenseadapter.License;
 import net.yslibrary.licenseadapter.LicenseEntry;
 
 public abstract class BaseLicenseEntry implements LicenseEntry {
-  public String name;
-  public String version;
-  public String author;
-  public String link;
+  protected String name;
+  protected String version;
+  protected String author;
 
-  public License license;
+  protected License license;
 
-  public BaseLicenseEntry(String libraryName, String libraryVersion, String libraryAuthor,
-      String libraryLink, License license) {
+  public BaseLicenseEntry(String libraryName, String libraryVersion, String libraryAuthor, License license) {
     this.name = libraryName;
     this.version = libraryVersion;
     this.author = libraryAuthor;
-    this.link = libraryLink;
     this.license = license;
-  }
-
-  public BaseLicenseEntry() {
-    name = null;
-    version = null;
-    author = null;
-    link = null;
-    license = null;
   }
 
   protected BaseLicenseEntry(Parcel in) {
     name = in.readString();
     version = in.readString();
     author = in.readString();
-    link = in.readString();
     license = in.readParcelable(License.class.getClassLoader());
   }
 
@@ -42,17 +30,12 @@ public abstract class BaseLicenseEntry implements LicenseEntry {
     dest.writeString(name);
     dest.writeString(version);
     dest.writeString(author);
-    dest.writeString(link);
     dest.writeParcelable(license, flags);
   }
 
   @Override
   public int describeContents() {
     return 0;
-  }
-
-  public boolean isLoaded() {
-    return license.isLoaded();
   }
 
   public void load() {
@@ -77,11 +60,6 @@ public abstract class BaseLicenseEntry implements LicenseEntry {
   }
 
   @Override
-  public String link() {
-    return link;
-  }
-
-  @Override
   public License license() {
     return license;
   }
@@ -90,7 +68,6 @@ public abstract class BaseLicenseEntry implements LicenseEntry {
 
   @Override
   public String toString() {
-    return String.format("\n***** LIBRARY *****\n%s\n%s\n%s\n%s\n%s\n", name, version, author, link,
-        license.toString());
+    return String.format("***** LIBRARY *****\n%s\n%s\n%s\n%s\n", name, version, author, license.toString());
   }
 }

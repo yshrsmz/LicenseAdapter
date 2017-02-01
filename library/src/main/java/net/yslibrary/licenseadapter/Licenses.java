@@ -26,7 +26,10 @@ public class Licenses {
    * predefined LicenseEntry for Apache License v2.0
    */
   public static final License LICENSE_APACHE_V2 =
-      new License(DEF_LICENSE_NAME, "http://www.apache.org/licenses/LICENSE-2.0");
+      new License.Builder()
+          .setName(DEF_LICENSE_NAME)
+          .setUrl("http://www.apache.org/licenses/LICENSE-2.0")
+          .build();
 
   /**
    * create LicenseEntry from GitHub repository url.
@@ -176,6 +179,19 @@ public class Licenses {
    */
   public static NoContentLicenseEntry noContent(String name, String author, String link) {
     return new NoContentLicenseEntry(name, author, link);
+  }
+
+  /**
+   * Create LicenseEntry from provided name, author and text.
+   * This method can be used when the library does not provide the license online.
+   *
+   * @param name   Library's name
+   * @param author author's name
+   * @param text   the license
+   * @return NoContentLicenseEntry
+   */
+  public static NoLinkLicenseEntry noLink(String name, String author, String text) {
+    return new NoLinkLicenseEntry(name, author, text);
   }
 
   /**

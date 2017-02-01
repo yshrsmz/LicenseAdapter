@@ -5,9 +5,6 @@ import android.widget.TextView;
 import net.yslibrary.licenseadapter.LicenseEntry;
 import net.yslibrary.licenseadapter.R;
 
-/**
- * Created by yshrsmz on 2016/04/26.
- */
 public class ContentViewHolder extends LicenseViewHolder<ContentWrapper> {
 
   private TextView content;

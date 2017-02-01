@@ -3,9 +3,6 @@ package net.yslibrary.licenseadapter.internal;
 import net.yslibrary.licenseadapter.License;
 import net.yslibrary.licenseadapter.LicenseEntry;
 
-/**
- * Created by yshrsmz on 2016/04/26.
- */
 public class HeaderWrapper implements Wrapper {
 
   private final LicenseEntry entry;
