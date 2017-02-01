@@ -22,7 +22,7 @@ public class NoContentLicenseEntry extends BaseLicenseEntry {
       };
 
   public NoContentLicenseEntry(String name, String author, String url) {
-    super(name, null, author, new License.Builder().setUrl(url).build());
+    super(name, null, author, url, new License.Builder().setUrl(url).build());
   }
 
   protected NoContentLicenseEntry(Parcel in) {

@@ -53,7 +53,7 @@ public class HeaderViewHolder extends LicenseViewHolder<HeaderWrapper> {
     licenseType.setVisibility(TextUtils.isEmpty(type) ? View.GONE : View.VISIBLE);
     licenseType.setText(type);
 
-    String url = entry.license().url;
+    String url = entry.link();
     link.setVisibility(TextUtils.isEmpty(url) ? View.GONE : View.VISIBLE);
     link.setText(url);
   }

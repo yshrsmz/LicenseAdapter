@@ -8,13 +8,16 @@ public abstract class BaseLicenseEntry implements LicenseEntry {
   protected String name;
   protected String version;
   protected String author;
+  protected String link;
 
   protected License license;
 
-  public BaseLicenseEntry(String libraryName, String libraryVersion, String libraryAuthor, License license) {
+  public BaseLicenseEntry(String libraryName, String libraryVersion, String libraryAuthor,
+      String libraryLink, License license) {
     this.name = libraryName;
     this.version = libraryVersion;
     this.author = libraryAuthor;
+    this.link = libraryLink;
     this.license = license;
   }
 
@@ -22,6 +25,7 @@ public abstract class BaseLicenseEntry implements LicenseEntry {
     name = in.readString();
     version = in.readString();
     author = in.readString();
+    link = in.readString();
     license = in.readParcelable(License.class.getClassLoader());
   }
 
@@ -30,12 +34,17 @@ public abstract class BaseLicenseEntry implements LicenseEntry {
     dest.writeString(name);
     dest.writeString(version);
     dest.writeString(author);
+    dest.writeString(link);
     dest.writeParcelable(license, flags);
   }
 
   @Override
   public int describeContents() {
     return 0;
+  }
+
+  public boolean isLoaded() {
+    return license.isLoaded();
   }
 
   public void load() {
@@ -60,6 +69,11 @@ public abstract class BaseLicenseEntry implements LicenseEntry {
   }
 
   @Override
+  public String link() {
+    return link;
+  }
+
+  @Override
   public License license() {
     return license;
   }
@@ -68,6 +82,7 @@ public abstract class BaseLicenseEntry implements LicenseEntry {
 
   @Override
   public String toString() {
-    return String.format("***** LIBRARY *****\n%s\n%s\n%s\n%s\n", name, version, author, license.toString());
+    return String.format("\n***** LIBRARY *****\n%s\n%s\n%s\n%s\n%s\n", name, version, author, link,
+        license.toString());
   }
 }
