@@ -9,15 +9,10 @@ import net.yslibrary.licenseadapter.LicenseEntry;
 import net.yslibrary.licenseadapter.R;
 
 public class HeaderViewHolder extends LicenseViewHolder<HeaderWrapper> {
-
   private ImageView arrow;
-
   private TextView libraryName;
-
   private TextView author;
-
   private TextView licenseType;
-
   private TextView link;
 
   public HeaderViewHolder(View itemView) {
@@ -58,6 +53,8 @@ public class HeaderViewHolder extends LicenseViewHolder<HeaderWrapper> {
     licenseType.setVisibility(TextUtils.isEmpty(type) ? View.GONE : View.VISIBLE);
     licenseType.setText(type);
 
-    link.setText(entry.license().url);
+    String url = entry.license().url;
+    link.setVisibility(TextUtils.isEmpty(url) ? View.GONE : View.VISIBLE);
+    link.setText(url);
   }
 }
