@@ -29,6 +29,10 @@ public class License implements Parcelable {
     text = in.readString();
   }
 
+  public static Builder builder() {
+    return new Builder();
+  }
+
   @Override
   public int describeContents() {
     return 0;

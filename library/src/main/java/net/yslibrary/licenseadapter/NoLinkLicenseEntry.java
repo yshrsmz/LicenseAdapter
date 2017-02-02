@@ -21,7 +21,7 @@ public class NoLinkLicenseEntry extends BaseLicenseEntry {
       };
 
   public NoLinkLicenseEntry(String name, String author, String text) {
-    super(name, null, author, null, new License.Builder().setText(text).build());
+    super(name, null, author, null, License.builder().setText(text).build());
   }
 
   protected NoLinkLicenseEntry(Parcel in) {
