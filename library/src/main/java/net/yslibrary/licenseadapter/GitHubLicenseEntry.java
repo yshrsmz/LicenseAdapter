@@ -2,15 +2,13 @@ package net.yslibrary.licenseadapter;
 
 import android.os.Parcel;
 import android.text.TextUtils;
-
-import net.yslibrary.licenseadapter.internal.BaseLicenseEntry;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import net.yslibrary.licenseadapter.internal.BaseLicenseEntry;
 
 public class GitHubLicenseEntry extends BaseLicenseEntry {
 
@@ -43,7 +41,9 @@ public class GitHubLicenseEntry extends BaseLicenseEntry {
       BufferedReader in = new BufferedReader(reader);
       StringBuilder builder = new StringBuilder();
       String str;
-      while ((str = in.readLine()) != null) builder.append(str).append("\n");
+      while ((str = in.readLine()) != null) {
+        builder.append(str).append("\n");
+      }
       in.close();
       return builder.toString();
     } catch (IOException e) {

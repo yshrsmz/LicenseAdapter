@@ -48,7 +48,9 @@ public abstract class BaseLicenseEntry implements LicenseEntry {
   }
 
   public void load() {
-    if (license.isLoaded()) return;
+    if (license.isLoaded()) {
+      return;
+    }
 
     doLoad();
   }
