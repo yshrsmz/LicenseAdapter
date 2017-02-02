@@ -14,9 +14,6 @@ import net.yslibrary.licenseadapter.internal.LicenseViewHolder;
 import net.yslibrary.licenseadapter.internal.ViewType;
 import net.yslibrary.licenseadapter.internal.Wrapper;
 
-/**
- * Created by yshrsmz on 2016/04/26.
- */
 public class LicenseAdapter extends RecyclerView.Adapter<LicenseViewHolder> {
 
   private final List<LicenseEntry> originalDataSet = new ArrayList<>();

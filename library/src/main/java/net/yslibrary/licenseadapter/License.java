@@ -17,16 +17,16 @@ public class License implements Parcelable {
   public String url;
   public String text;
 
-  public License(String name, String url) {
+  protected License(String name, String url, String text) {
     this.name = name;
     this.url = url;
-    text = null;
+    this.text = text;
   }
 
   protected License(Parcel in) {
-    this.name = in.readString();
-    this.url = in.readString();
-    this.text = in.readString();
+    name = in.readString();
+    url = in.readString();
+    text = in.readString();
   }
 
   @Override
@@ -36,9 +36,9 @@ public class License implements Parcelable {
 
   @Override
   public void writeToParcel(Parcel dest, int flags) {
-    dest.writeString(this.name);
-    dest.writeString(this.url);
-    dest.writeString(this.text);
+    dest.writeString(name);
+    dest.writeString(url);
+    dest.writeString(text);
   }
 
   public boolean isLoaded() {
@@ -49,5 +49,30 @@ public class License implements Parcelable {
   public String toString() {
     return String.format("\n***** LICENSE *****\nName = %s\nUrl = %s\nText = %s\n", name, url,
         text);
+  }
+
+  public static class Builder {
+    private String name;
+    private String url;
+    private String text;
+
+    public Builder setName(String name) {
+      this.name = name;
+      return this;
+    }
+
+    public Builder setUrl(String url) {
+      this.url = url;
+      return this;
+    }
+
+    public Builder setText(String text) {
+      this.text = text;
+      return this;
+    }
+
+    public License build() {
+      return new License(name, url, text);
+    }
   }
 }

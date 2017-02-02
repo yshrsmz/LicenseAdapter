@@ -5,12 +5,12 @@ import net.yslibrary.licenseadapter.License;
 import net.yslibrary.licenseadapter.LicenseEntry;
 
 public abstract class BaseLicenseEntry implements LicenseEntry {
-  public String name;
-  public String version;
-  public String author;
-  public String link;
+  protected String name;
+  protected String version;
+  protected String author;
+  protected String link;
 
-  public License license;
+  protected License license;
 
   public BaseLicenseEntry(String libraryName, String libraryVersion, String libraryAuthor,
       String libraryLink, License license) {
@@ -19,14 +19,6 @@ public abstract class BaseLicenseEntry implements LicenseEntry {
     this.author = libraryAuthor;
     this.link = libraryLink;
     this.license = license;
-  }
-
-  public BaseLicenseEntry() {
-    name = null;
-    version = null;
-    author = null;
-    link = null;
-    license = null;
   }
 
   protected BaseLicenseEntry(Parcel in) {

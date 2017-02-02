@@ -3,7 +3,7 @@ apply from: "${project.rootDir}/gradle/version/version.gradle"
 apply from: "${project.rootDir}/metadata.gradle"
 
 buildscript {
-  ext.supportlib_version = '25.1.0'
+  ext.supportlib_version = '25.1.1'
   repositories {
     jcenter()
   }
