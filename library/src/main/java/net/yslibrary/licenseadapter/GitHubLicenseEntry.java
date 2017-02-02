@@ -61,7 +61,7 @@ public class GitHubLicenseEntry extends BaseLicenseEntry {
       String licenseUrl =
           (url + "/" + (branch != null ? branch : "master") + "/").replace("github.com",
               "raw.githubusercontent.com").replace("/tree/", "/") + relLicensePath;
-      this.license = License.builder().setName(licenseName).setUrl(licenseLink).build();
+      this.license = License.builder().setName(licenseName).setUrl(licenseUrl).build();
     } else {
       this.license = license;
     }
