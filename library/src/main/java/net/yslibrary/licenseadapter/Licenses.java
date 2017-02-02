@@ -25,11 +25,10 @@ public class Licenses {
   /**
    * predefined LicenseEntry for Apache License v2.0
    */
-  public static final License LICENSE_APACHE_V2 =
-      new License.Builder()
-          .setName(DEF_LICENSE_NAME)
-          .setUrl("http://www.apache.org/licenses/LICENSE-2.0")
-          .build();
+  public static final License LICENSE_APACHE_V2 = License.builder()
+      .setName(DEF_LICENSE_NAME)
+      .setUrl("http://www.apache.org/licenses/LICENSE-2.0")
+      .build();
 
   /**
    * create LicenseEntry from GitHub repository url.
