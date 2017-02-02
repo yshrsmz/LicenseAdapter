@@ -15,7 +15,10 @@ public interface LicenseEntry extends Parcelable {
 
   String author();
 
+  @Deprecated
   String link();
+
+  String url();
 
   License license();
 }

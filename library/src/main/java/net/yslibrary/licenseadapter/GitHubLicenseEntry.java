@@ -2,15 +2,13 @@ package net.yslibrary.licenseadapter;
 
 import android.os.Parcel;
 import android.text.TextUtils;
-
-import net.yslibrary.licenseadapter.internal.BaseLicenseEntry;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import net.yslibrary.licenseadapter.internal.BaseLicenseEntry;
 
 public class GitHubLicenseEntry extends BaseLicenseEntry {
 
@@ -36,14 +34,16 @@ public class GitHubLicenseEntry extends BaseLicenseEntry {
     super(in);
   }
 
-  private static String readFile(String link) {
+  private static String readFile(String licenseUrl) {
     try {
-      URL url = new URL(link);
+      URL url = new URL(licenseUrl);
       InputStreamReader reader = new InputStreamReader(url.openStream());
       BufferedReader in = new BufferedReader(reader);
       StringBuilder builder = new StringBuilder();
       String str;
-      while ((str = in.readLine()) != null) builder.append(str).append("\n");
+      while ((str = in.readLine()) != null) {
+        builder.append(str).append("\n");
+      }
       in.close();
       return builder.toString();
     } catch (IOException e) {
@@ -55,13 +55,13 @@ public class GitHubLicenseEntry extends BaseLicenseEntry {
       String relLicensePath) {
     name = gitRepo.substring(gitRepo.indexOf("/") + 1);
     author = gitRepo.substring(0, gitRepo.indexOf("/"));
-    link = "https://github.com/" + gitRepo;
+    url = "https://github.com/" + gitRepo;
 
     if (license == null) {
-      String licenseLink =
-          (link + "/" + (branch != null ? branch : "master") + "/").replace("github.com",
+      String licenseUrl =
+          (url + "/" + (branch != null ? branch : "master") + "/").replace("github.com",
               "raw.githubusercontent.com").replace("/tree/", "/") + relLicensePath;
-      this.license = License.builder().setName(licenseName).setUrl(licenseLink).build();
+      this.license = License.builder().setName(licenseName).setUrl(licenseUrl).build();
     } else {
       this.license = license;
     }

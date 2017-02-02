@@ -13,7 +13,7 @@ public class HeaderViewHolder extends LicenseViewHolder<HeaderWrapper> {
   private TextView libraryName;
   private TextView author;
   private TextView licenseType;
-  private TextView link;
+  private TextView url;
 
   public HeaderViewHolder(View itemView) {
     super(itemView);
@@ -22,7 +22,7 @@ public class HeaderViewHolder extends LicenseViewHolder<HeaderWrapper> {
     libraryName = Views.byId(itemView, R.id.library);
     author = Views.byId(itemView, R.id.author);
     licenseType = Views.byId(itemView, R.id.licenseType);
-    link = Views.byId(itemView, R.id.link);
+    url = Views.byId(itemView, R.id.url);
 
     // use TextView color for arrow color
     int arrowColor = libraryName.getCurrentTextColor();
@@ -53,8 +53,8 @@ public class HeaderViewHolder extends LicenseViewHolder<HeaderWrapper> {
     licenseType.setVisibility(TextUtils.isEmpty(type) ? View.GONE : View.VISIBLE);
     licenseType.setText(type);
 
-    String url = entry.link();
-    link.setVisibility(TextUtils.isEmpty(url) ? View.GONE : View.VISIBLE);
-    link.setText(url);
+    String url = entry.url();
+    this.url.setVisibility(TextUtils.isEmpty(url) ? View.GONE : View.VISIBLE);
+    this.url.setText(url);
   }
 }
