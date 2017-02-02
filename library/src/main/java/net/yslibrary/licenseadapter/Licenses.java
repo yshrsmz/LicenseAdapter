@@ -167,17 +167,17 @@ public class Licenses {
   }
 
   /**
-   * Create LicenseEntry from provided name, author and link.
+   * Create LicenseEntry from provided name, author and url.
    * This method can be used when the library is not hosted on GitHub, and does not provide license
    * info.
    *
    * @param name   Library's name
    * @param author author's name
-   * @param link   url for the library hosting page
+   * @param url    url for the library hosting page
    * @return NoContentLicenseEntry
    */
-  public static NoContentLicenseEntry noContent(String name, String author, String link) {
-    return new NoContentLicenseEntry(name, author, link);
+  public static NoContentLicenseEntry noContent(String name, String author, String url) {
+    return new NoContentLicenseEntry(name, author, url);
   }
 
   /**

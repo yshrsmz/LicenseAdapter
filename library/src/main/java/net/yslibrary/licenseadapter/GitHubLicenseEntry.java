@@ -36,9 +36,9 @@ public class GitHubLicenseEntry extends BaseLicenseEntry {
     super(in);
   }
 
-  private static String readFile(String link) {
+  private static String readFile(String licenseUrl) {
     try {
-      URL url = new URL(link);
+      URL url = new URL(licenseUrl);
       InputStreamReader reader = new InputStreamReader(url.openStream());
       BufferedReader in = new BufferedReader(reader);
       StringBuilder builder = new StringBuilder();
@@ -55,11 +55,11 @@ public class GitHubLicenseEntry extends BaseLicenseEntry {
       String relLicensePath) {
     name = gitRepo.substring(gitRepo.indexOf("/") + 1);
     author = gitRepo.substring(0, gitRepo.indexOf("/"));
-    link = "https://github.com/" + gitRepo;
+    url = "https://github.com/" + gitRepo;
 
     if (license == null) {
-      String licenseLink =
-          (link + "/" + (branch != null ? branch : "master") + "/").replace("github.com",
+      String licenseUrl =
+          (url + "/" + (branch != null ? branch : "master") + "/").replace("github.com",
               "raw.githubusercontent.com").replace("/tree/", "/") + relLicensePath;
       this.license = License.builder().setName(licenseName).setUrl(licenseLink).build();
     } else {
