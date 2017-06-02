@@ -97,6 +97,7 @@ Send PR if you want your app to be included here ;)
 - [KyudoScoreBook](https://play.google.com/store/apps/details?id=com.bowyer.KyudoScoreBookSecond)
 - [Ameba](https://play.google.com/store/apps/details?id=jp.ameba)
 - [Monotweety](https://play.google.com/store/apps/details?id=net.yslibrary.monotweety)
+- [🤖 Robot Scouter](https://play.google.com/store/apps/details?id=com.supercilex.robotscouter)
 
 ## License
 
