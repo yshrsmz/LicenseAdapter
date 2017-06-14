@@ -1,6 +1,6 @@
 ## 1.4.0 - 2016/02/05
 
-Thanks [@SUPERCILEX](https://github.com/SUPERCILEX) for adding great new featurse(#22, #25)!
+Thanks [@SUPERCILEX](https://github.com/SUPERCILEX) for adding great new features(#22, #25)!
 
 ### Change
 
