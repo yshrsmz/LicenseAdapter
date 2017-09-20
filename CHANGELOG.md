@@ -1,3 +1,11 @@
+## 1.4.1 - 2017/09/XX
+
+### Changes
+
+- Update to SDK26
+- Update to Support Library 26.1.0
+
+
 ## 1.4.0 - 2016/02/05
 
 Thanks [@SUPERCILEX](https://github.com/SUPERCILEX) for adding great new features(#22, #25)!

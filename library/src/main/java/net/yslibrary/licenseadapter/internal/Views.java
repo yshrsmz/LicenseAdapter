@@ -5,7 +5,7 @@ import android.view.View;
 
 class Views {
   @SuppressWarnings("unchecked")
-  public static <T> T byId(final View view, @IdRes final int id) {
-    return (T) view.findViewById(id);
+  public static <T extends View> T byId(final View view, @IdRes final int id) {
+    return view.findViewById(id);
   }
 }
