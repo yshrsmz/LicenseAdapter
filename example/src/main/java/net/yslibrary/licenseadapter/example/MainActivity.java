@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         Licenses.FILE_AUTO));
 
     LicenseAdapter adapter = new LicenseAdapter(licenses);
-    RecyclerView list = (RecyclerView) findViewById(R.id.list);
+    RecyclerView list = findViewById(R.id.list);
     list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     list.setAdapter(adapter);
 
