@@ -26,6 +26,7 @@ allprojects {
 
 ext {
   supportlib_version = '27.0.1'
+  architecture_version = '1.0.0'
   metadata.version = ext.versionName()
 }
 
