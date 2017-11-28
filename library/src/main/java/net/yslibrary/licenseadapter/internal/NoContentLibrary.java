@@ -12,6 +12,11 @@ public final class NoContentLibrary extends BaseLibrary {
   }
 
   @Override
+  public boolean isLoaded() {
+    return true;
+  }
+
+  @Override
   public void doLoad() {
     // There's no content
   }

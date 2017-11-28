@@ -3,12 +3,24 @@ package net.yslibrary.licenseadapter;
 import android.support.annotation.NonNull;
 import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
+import android.util.Log;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.concurrent.TimeUnit;
 
 public abstract class BaseLibrary implements Library {
+  private static final String TAG = "LicenseAdapter";
+  private static final int CACHE_TIMEOUT_DAYS = 14;
+
   private final String name;
   private final String author;
 
-  @NonNull protected License license;
+  @NonNull
+  protected License license;
 
   public BaseLibrary(@NonNull String name, @NonNull String author, @NonNull License license) {
     this.name = name;
@@ -16,12 +28,98 @@ public abstract class BaseLibrary implements Library {
     this.license = license;
   }
 
+  protected static String read(@NonNull BufferedReader in) throws IOException {
+    StringBuilder builder = new StringBuilder();
+    String str;
+    while ((str = in.readLine()) != null) {
+      builder.append(str).append("\n");
+    }
+    return builder.toString();
+  }
+
+  private static void cacheLicense(@NonNull File cache, @NonNull License license) {
+    if (TextUtils.isEmpty(license.text)) return;
+
+    FileOutputStream stream = null;
+    try {
+      File dir = cache.getParentFile();
+      if (!dir.exists() && !dir.mkdirs() || !cache.exists() && !cache.createNewFile()) {
+        Log.d(TAG, "Failed to create cache file: " + cache);
+        return;
+      }
+
+      stream = new FileOutputStream(cache);
+      stream.write(license.text.getBytes());
+    } catch (IOException e) {
+      Log.d(TAG, "Couldn't cache license: " + cache, e);
+    } finally {
+      try {
+        if (stream != null) {
+          stream.close();
+        }
+      } catch (IOException e) {
+        Log.e(TAG, "Couldn't close cache stream: " + cache, e);
+      }
+    }
+  }
+
+  private void loadLicenseFromCache(File cache) {
+    FileInputStream stream = null;
+    try {
+      stream = new FileInputStream(cache);
+      String licenseText = read(new BufferedReader(new InputStreamReader(stream)));
+
+      if (TextUtils.isEmpty(licenseText)) {
+        loadAndCache(cache);
+      } else {
+        license = new License.Builder(license)
+            .setText(licenseText)
+            .build();
+      }
+    } catch (IOException e) {
+      Log.d(TAG, "Couldn't open cache steam. Cleaning up and performing fresh load: " + cache, e);
+      delete(cache);
+
+      loadAndCache(cache);
+    } finally {
+      try {
+        if (stream != null) {
+          stream.close();
+        }
+      } catch (IOException e) {
+        Log.e(TAG, "Couldn't close cache steam: " + cache, e);
+      }
+    }
+  }
+
+  private void delete(File cache) {
+    if (!cache.delete()) {
+      Log.e(TAG, "Couldn't delete cache file. Performing fresh load: " + cache);
+    }
+  }
+
   @WorkerThread
   @Override
-  public final void load() {
-    if (hasContent() && TextUtils.isEmpty(license.text)) {
-      doLoad();
+  public final void load(@NonNull File cacheDir) {
+    if (hasContent() && !isLoaded()) {
+      File cache = new File(new File(cacheDir, author), name + ".txt");
+      if (cache.exists()) {
+        if (TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis() - cache.lastModified())
+            >= CACHE_TIMEOUT_DAYS) {
+          delete(cache);
+          loadAndCache(cache);
+        } else {
+          loadLicenseFromCache(cache);
+        }
+      } else {
+        loadAndCache(cache);
+      }
     }
+  }
+
+  private void loadAndCache(File cache) {
+    doLoad();
+    cacheLicense(cache, license);
   }
 
   @WorkerThread
@@ -52,14 +150,13 @@ public abstract class BaseLibrary implements Library {
 
     BaseLibrary that = (BaseLibrary) o;
 
-    return name.equals(that.name) && author.equals(that.author) && license.equals(that.license);
+    return name.equals(that.name) && author.equals(that.author);
   }
 
   @Override
   public int hashCode() {
     int result = name.hashCode();
     result = 31 * result + author.hashCode();
-    result = 31 * result + license.hashCode();
     return result;
   }
 

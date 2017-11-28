@@ -18,6 +18,8 @@ import net.yslibrary.licenseadapter.License;
 import net.yslibrary.licenseadapter.Licenses;
 
 public final class GitHubLibrary extends BaseLibrary {
+  private static final String TAG = "GitHubLibrary";
+
   private final List<String> possibleLicenseUrls;
 
   private GitHubLibrary(@NonNull String name, @NonNull String author, @NonNull License license,
@@ -31,22 +33,20 @@ public final class GitHubLibrary extends BaseLibrary {
   private static String loadContents(@NonNull String url) throws IOException {
     BufferedReader in = null;
     try {
-      in = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
-      StringBuilder builder = new StringBuilder();
-      String str;
-      while ((str = in.readLine()) != null) {
-        builder.append(str).append("\n");
-      }
-      in.close();
-      return builder.toString();
+      return read(in = new BufferedReader(new InputStreamReader(new URL(url).openStream())));
     } catch (IOException e) {
-      Log.d("TAG", e.toString());
+      Log.d(TAG, "Failed to load license.", e);
       throw e;
     } finally {
       if (in != null) {
         in.close();
       }
     }
+  }
+
+  @Override
+  public boolean isLoaded() {
+    return !TextUtils.isEmpty(license.text);
   }
 
   @WorkerThread
@@ -63,7 +63,7 @@ public final class GitHubLibrary extends BaseLibrary {
       }
     }
 
-    if (TextUtils.isEmpty(license.text)) {
+    if (!isLoaded()) {
       license = new License.Builder(license)
           .setText("Developer error: no license file found. "
               + "Searched for the following license files:\n" + possibleLicenseUrls)

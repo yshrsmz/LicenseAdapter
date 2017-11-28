@@ -2,9 +2,10 @@ package net.yslibrary.licenseadapter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import java.util.List;
 import net.yslibrary.licenseadapter.internal.GitHubLibrary;
-import net.yslibrary.licenseadapter.internal.LoadLicenseTask;
 import net.yslibrary.licenseadapter.internal.NoContentLibrary;
 import net.yslibrary.licenseadapter.internal.NoLinkLibrary;
 
@@ -157,7 +158,7 @@ public final class Licenses {
    *
    * @param name   library's name
    * @param author author's name
-   * @return the generated {@link Library} to be loaded with {@link #load(List)}
+   * @return the generated {@link Library} to be loaded with {@link #load(FragmentActivity, List)}
    */
   public static Library noContent(@NonNull String name, @NonNull String author,
       @NonNull String url) {
@@ -172,21 +173,12 @@ public final class Licenses {
    * @param name   library's name
    * @param author author's name
    * @param text   the license
-   * @return the generated {@link Library} to be loaded with {@link #load(List)}
-   * or {@link #load(List)}
+   * @return the generated {@link Library} to be loaded with {@link #load(FragmentActivity, List)}
+   * or {@link #load(Fragment, List)}
    */
   public static Library noLink(@NonNull String name, @NonNull String author,
       @NonNull String licenseName, @Nullable String text) {
     return new NoLinkLibrary(name, author,
         new License.Builder(licenseName).setText(text).build());
-  }
-
-  /**
-   * Load provided licenses
-   *
-   * @param libraries list of LicenseEntries to load
-   */
-  public static void load(List<Library> libraries) {
-    new LoadLicenseTask().execute(libraries.toArray(new Library[libraries.size()]));
   }
 }
