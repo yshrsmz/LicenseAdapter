@@ -7,13 +7,17 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+before_install:
+  - mkdir "$ANDROID_HOME/licenses" || true
+  - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55\nd56f5187479451eabf01fb78af6dfcb131a6481e" > "$ANDROID_HOME/licenses/android-sdk-license"
+  - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd\n504667f4c0de7af1a06de9f4b1727b84351f2910" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
 android:
   components:
+    # https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943
     - tools
-    - platform-tools
-    - build-tools-26.0.1
-    - android-26
-script: ./gradlew clean assembleDebug check
+    - tools
+before_script: echo y | ${ANDROID_HOME}tools/bin/sdkmanager --channel=3 "tools" "platform-tools" "platforms;android-27"
+script: ./gradlew build
 notifications:
   slack:
     secure: qiQOvtWWgRy2M//XCuGmXbQFULzYzSD9O5WLy+KPerKop8VcL3aLUt+y8w45jgZM9Loko2g2TQ46STFNNauhlJ3OyKTL+e7GqrNL63sdkkKodpNf9Gq7E9Br96umfr314cMpefu/NgGvlDKJib1mmtOHSrGoNxKAgYmO59L9X+67/C4SkTXN7MMGQujNWld6aEdFC5JnyH+mjSavpf1q7PBXVT+q9x8u3h+juFi1aP/SWr5TF3POZdNb9AqL9803tXg0bSJJlZZ9ZMZcSHzJpK6BmLhgCd8isJCUSTl0SO0d8t4ryLDOgXojLRMe4eq4EqMDaYDK+HxpuwFaQKpx/JR3qj4OgSBKG5G12Hkwnd/JVdIwXXHlPzuxlg/3fUCv61wSnsIOh2Vy7NqVolJ7rccbSxbRMes7nYkwQEskbvL6mVr5QnD3jirsCdVDqRZEybJR8UTpWfsxK4vjG6ehNBqwIwvZ0x6mx/0PYwtpUOhH182IZX17Hj3gYJRc+ko5pUhcTzOS3hWogkW45keW/hu3i+I53BRJCMmiS0yAAxpf7qrKWStvAXwFD29WqtL1ImMmBWc9pOSudlctqgnAMln8+udgGYfBvRlcESEYrQLzVthGhU1NTFaw+ErWzC+2XT4PV94LXnks3E6RObgmp9GRDWCxKbfgtwtKDkwJQkg=
