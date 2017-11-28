@@ -1,27 +1,18 @@
 apply plugin: 'com.android.application'
 
 android {
-  compileSdkVersion 26
-  buildToolsVersion "26.0.1"
+  compileSdkVersion 27
+
   defaultConfig {
     applicationId 'net.yslibrary.licenseadapter.example'
     minSdkVersion 15
-    targetSdkVersion 26
+    targetSdkVersion 27
     versionCode 1
     versionName "1.0"
   }
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-    }
-  }
-  productFlavors {}
 }
 
 dependencies {
-  compile fileTree(include: ['*.jar'], dir: 'libs')
-  compile project(':library')
-  testCompile 'junit:junit:4.12'
-  compile "com.android.support:appcompat-v7:$supportlib_version"
+  implementation project(':library')
+  implementation "com.android.support:appcompat-v7:$supportlib_version"
 }
