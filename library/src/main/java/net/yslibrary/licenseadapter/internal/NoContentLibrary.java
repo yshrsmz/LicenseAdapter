@@ -1,6 +1,7 @@
 package net.yslibrary.licenseadapter.internal;
 
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import net.yslibrary.licenseadapter.BaseLibrary;
 import net.yslibrary.licenseadapter.License;
 
@@ -10,6 +11,9 @@ import net.yslibrary.licenseadapter.License;
 public final class NoContentLibrary extends BaseLibrary {
   public NoContentLibrary(String name, String author, License license) {
     super(name, author, license);
+    if (TextUtils.isEmpty(license.url)) {
+      throw new IllegalArgumentException("License url must not be null.");
+    }
   }
 
   @Override

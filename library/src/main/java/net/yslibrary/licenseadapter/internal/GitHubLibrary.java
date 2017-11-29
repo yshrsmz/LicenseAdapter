@@ -18,6 +18,9 @@ import net.yslibrary.licenseadapter.License;
 import net.yslibrary.licenseadapter.Licenses;
 
 public final class GitHubLibrary extends BaseLibrary {
+  public static final String URL_BASE_PUBLIC = "https://github.com/";
+  public static final String URL_REPO_SPLIT = "/";
+
   private static final String TAG = "GitHubLibrary";
 
   private final List<String> possibleLicenseUrls;
@@ -74,8 +77,7 @@ public final class GitHubLibrary extends BaseLibrary {
   }
 
   public static final class Builder {
-    private static final String BASE = "https://raw.githubusercontent.com/";
-    private static final String REPO_SPLIT = "/";
+    private static final String URL_BASE_RAW = "https://raw.githubusercontent.com/";
 
     private final String author;
     private final String name;
@@ -92,18 +94,18 @@ public final class GitHubLibrary extends BaseLibrary {
     @NonNull
     private static String parseRepoAuthor(@NonNull String fullRepo) {
       checkValidRepoUrl(fullRepo);
-      return fullRepo.substring(0, fullRepo.indexOf(REPO_SPLIT));
+      return fullRepo.substring(0, fullRepo.indexOf(URL_REPO_SPLIT));
     }
 
     @NonNull
     private static String parseRepoName(@NonNull String fullRepo) {
       checkValidRepoUrl(fullRepo);
-      return fullRepo.substring(fullRepo.indexOf(REPO_SPLIT) + 1);
+      return fullRepo.substring(fullRepo.indexOf(URL_REPO_SPLIT) + 1);
     }
 
     private static void checkValidRepoUrl(@NonNull String fullRepo) {
-      int repoSplitIndex = fullRepo.indexOf(REPO_SPLIT);
-      if (repoSplitIndex == -1 || repoSplitIndex != fullRepo.lastIndexOf(REPO_SPLIT)) {
+      int repoSplitIndex = fullRepo.indexOf(URL_REPO_SPLIT);
+      if (repoSplitIndex == -1 || repoSplitIndex != fullRepo.lastIndexOf(URL_REPO_SPLIT)) {
         throw new IllegalArgumentException(
             "The GitHub repository url must be of the form `author/repo`.");
       }
@@ -119,7 +121,7 @@ public final class GitHubLibrary extends BaseLibrary {
     @NonNull
     public Builder setRelativeLicensePath(@NonNull String path) {
       possibleLicenseUrls = new ArrayList<>();
-      String fullBase = BASE + author + "/" + name + "/";
+      String fullBase = URL_BASE_RAW + author + "/" + name + "/";
 
       if (path.contains(Licenses.FILE_AUTO)) {
         List<String> possibleFiles = Arrays.asList(
