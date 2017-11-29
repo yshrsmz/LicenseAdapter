@@ -4,7 +4,7 @@ import net.yslibrary.licenseadapter.BaseLibrary;
 import net.yslibrary.licenseadapter.License;
 
 /**
- * License without license text
+ * Library without license text
  */
 public final class NoContentLibrary extends BaseLibrary {
   public NoContentLibrary(String name, String author, License license) {

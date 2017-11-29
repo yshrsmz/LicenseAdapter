@@ -133,7 +133,7 @@ public final class Licenses {
   public static Library fromGitHub(@NonNull String gitRepo, @NonNull String licenseName,
       @NonNull String relativeLicensePath) {
     return new GitHubLibrary.Builder(gitRepo, licenseName)
-        .setRelativeLicenseUrl(relativeLicensePath)
+        .setRelativeLicensePath(relativeLicensePath)
         .build();
   }
 
