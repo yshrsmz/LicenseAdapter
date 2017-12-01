@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * A library which handles loading and caching of licenses.
+ */
 public abstract class BaseLibrary implements Library {
   private static final String TAG = "LicenseAdapter";
 
@@ -24,7 +27,19 @@ public abstract class BaseLibrary implements Library {
 
   private License license;
 
-  public BaseLibrary(@NonNull String name, @NonNull String author, @NonNull License license) {
+  /**
+   * Initializes this abstract library with an immutable library name and author and mutable
+   * license.
+   * <p>
+   * The license text may be loaded or not. If it isn't loaded, an attempt to load it will be made
+   * if necessary through {@link #doLoad()}.
+   *
+   * @param name    the library's name
+   * @param author  the library's author
+   * @param license the library's license
+   * @see License
+   */
+  protected BaseLibrary(@NonNull String name, @NonNull String author, @NonNull License license) {
     this.name = name;
     this.author = author;
     this.license = license;
@@ -41,7 +56,7 @@ public abstract class BaseLibrary implements Library {
   }
 
   private static void cacheLicense(@NonNull File cache, @NonNull License license) {
-    if (TextUtils.isEmpty(license.text)) return;
+    if (TextUtils.isEmpty(license.getText())) return;
 
     FileOutputStream stream = null;
     try {
@@ -52,7 +67,7 @@ public abstract class BaseLibrary implements Library {
       }
 
       stream = new FileOutputStream(cache);
-      stream.write((license.url + "\n" + license.text).getBytes());
+      stream.write((license.getUrl() + "\n" + license.getText()).getBytes());
     } catch (IOException e) {
       Log.d(TAG, "Couldn't cache license: " + cache, e);
     } finally {
@@ -127,25 +142,38 @@ public abstract class BaseLibrary implements Library {
     cacheLicense(cache, license);
   }
 
+  /**
+   * Loads a fresh copy of the license.
+   * <p>
+   * In-memory and disk caching will be handled for you. Simply request the license's full legal
+   * text from wherever it may be acquired, network or otherwise. If this library doesn't have
+   * license text or it's short and already loaded in the original license, simply return the
+   * existing license through {@link #getLicense()}. Otherwise, block the current thread until the
+   * license is loaded.
+   *
+   * @return the fully loaded license
+   * @see #load(File)
+   * @see License
+   */
   @WorkerThread
   @NonNull
   protected abstract License doLoad();
 
   @NonNull
   @Override
-  public String name() {
+  public final String getName() {
     return name;
   }
 
   @NonNull
   @Override
-  public String author() {
+  public final String getAuthor() {
     return author;
   }
 
   @NonNull
   @Override
-  public License license() {
+  public License getLicense() {
     return license;
   }
 

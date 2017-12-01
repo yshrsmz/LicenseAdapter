@@ -5,7 +5,7 @@ import net.yslibrary.licenseadapter.BaseLibrary;
 import net.yslibrary.licenseadapter.License;
 
 /**
- * Library without license url
+ * Library without a license url.
  */
 public final class NoLinkLibrary extends BaseLibrary {
   public NoLinkLibrary(@NonNull String name, @NonNull String author,
@@ -22,7 +22,7 @@ public final class NoLinkLibrary extends BaseLibrary {
   @Override
   public License doLoad() {
     // There's no link to load
-    return license();
+    return getLicense();
   }
 
   @Override

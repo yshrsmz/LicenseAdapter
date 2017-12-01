@@ -6,12 +6,12 @@ import net.yslibrary.licenseadapter.BaseLibrary;
 import net.yslibrary.licenseadapter.License;
 
 /**
- * Library without license text
+ * Library without license text.
  */
 public final class NoContentLibrary extends BaseLibrary {
   public NoContentLibrary(String name, String author, License license) {
     super(name, author, license);
-    if (TextUtils.isEmpty(license.url)) {
+    if (TextUtils.isEmpty(license.getUrl())) {
       throw new IllegalArgumentException("License url must not be null.");
     }
   }
@@ -25,7 +25,7 @@ public final class NoContentLibrary extends BaseLibrary {
   @Override
   public License doLoad() {
     // There's no content
-    return license();
+    return getLicense();
   }
 
   @Override

@@ -2,6 +2,7 @@ package net.yslibrary.licenseadapter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import java.util.List;
 import net.yslibrary.licenseadapter.internal.GitHubLibrary;
 import net.yslibrary.licenseadapter.internal.NoContentLibrary;
@@ -11,152 +12,196 @@ import net.yslibrary.licenseadapter.internal.NoLinkLibrary;
  * Main entry point to get {@link Library}s and load them.
  */
 public final class Licenses {
-
-  // License names
+  /**
+   * The Apache license 2.0 name to be used with {@link License#License(String, String, String)}.
+   *
+   * @see #NAME_MIT
+   * @see #NAME_BSD
+   * @see #NAME_UNKNOWN
+   */
   public static final String NAME_APACHE_V2 = "Apache License 2.0";
+  /**
+   * The MIT license name to be used with {@link License#License(String, String, String)}.
+   *
+   * @see #NAME_APACHE_V2
+   * @see #NAME_BSD
+   * @see #NAME_UNKNOWN
+   */
   public static final String NAME_MIT = "MIT License";
+  /**
+   * The BSD 3-clause license name to be used with {@link License#License(String, String, String)}.
+   *
+   * @see #NAME_APACHE_V2
+   * @see #NAME_MIT
+   * @see #NAME_UNKNOWN
+   */
   public static final String NAME_BSD = "BSD 3-clause License";
+  /**
+   * A placeholder license name for when it is unknown. Commonly used with {@link #noContent(String,
+   * String, String)}
+   *
+   * @see #NAME_APACHE_V2
+   * @see #NAME_MIT
+   * @see #NAME_BSD
+   */
   public static final String NAME_UNKNOWN = "Unknown";
 
-  // License file names
+  /**
+   * A placeholder license file name used to tell LicenseAdapter to automatically look for the
+   * license file. It's most common use is with {@link #fromGitHubApacheV2(String, String)}.
+   *
+   * @see #FILE_NO_EXTENSION
+   * @see #FILE_TXT
+   * @see #FILE_MD
+   */
   public static final String FILE_AUTO = "net:yslibrary:licenseadapter:license_file_auto";
+  /**
+   * The license file name with no extension.
+   *
+   * @see #FILE_AUTO
+   * @see #FILE_TXT
+   * @see #FILE_MD
+   */
   public static final String FILE_NO_EXTENSION = "LICENSE";
+  /**
+   * The license file name with a {@code .txt} extension.
+   *
+   * @see #FILE_AUTO
+   * @see #FILE_NO_EXTENSION
+   * @see #FILE_MD
+   */
   public static final String FILE_TXT = "LICENSE.txt";
+  /**
+   * The license file name with a {@code .md} extension.
+   *
+   * @see #FILE_AUTO
+   * @see #FILE_NO_EXTENSION
+   * @see #FILE_TXT
+   */
   public static final String FILE_MD = "LICENSE.md";
 
-  private static final String DEF_BRANCH = "master";
-
   /**
-   * Predefined Library for Apache License v2.0.
+   * Predefined Apache {@link License} which directly references the license itself instead of its
+   * copy on GitHub. Commonly used when a library doesn't provide a license file.
+   *
+   * @see #fromGitHub(String, License)
    */
   public static final License LICENSE_APACHE_V2 = new License.Builder(NAME_APACHE_V2)
-      .setUrl("http://www.apache.org/licenses/LICENSE-2.0")
+      .setUrl("https://www.apache.org/licenses/LICENSE-2.0")
       .build();
+
+  private static final String DEF_BRANCH = "master";
 
   private Licenses() {
     throw new AssertionError("No instance for you!");
   }
 
   /**
-   * Create Apache v2 Library from GitHub repository url.
-   * LicenseAdapter will check if the repo has any of {@link Licenses#FILE_TXT},
-   * {@link Licenses#FILE_MD} or {@link Licenses#FILE_NO_EXTENSION}
+   * Creates a new library from the {@link #NAME_APACHE_V2 Apache License 2.0}. The library may be
+   * used with a {@link LicenseAdapter} to populate a {@link RecyclerView}. The GitHub url must be
+   * in the short format "author/name" where author is the GitHub user of this library and name is
+   * the name of the repository. Both of these fields are case insensitive.
+   * <p>
+   * This methods assumes the license file is on the "master" branch and is named one of {@link
+   * #FILE_NO_EXTENSION}, {@link #FILE_TXT}, or {@link #FILE_MD}. If the license file is not on the
+   * master branch or does not use a common file name, use {@link #fromGitHubApacheV2(String,
+   * String)} instead.
    *
-   * @param gitRepo target library's GitHub repository. should be "user/repoName"
-   * @return the generated {@link Library}
+   * @param shortUrl library's GitHub repository in short url format: "user/repoName"
+   * @return the generated {@link Library} used in {@link LicenseAdapter#LicenseAdapter(List)}
+   * @see Library
+   * @see LicenseAdapter
+   * @see #fromGitHubApacheV2(String, String)
+   * @see #NAME_APACHE_V2
    */
-  public static Library fromGitHubApacheV2(@NonNull String gitRepo) {
-    return fromGitHub(gitRepo, NAME_APACHE_V2, DEF_BRANCH + "/" + FILE_AUTO);
+  public static Library fromGitHubApacheV2(@NonNull String shortUrl) {
+    return fromGitHub(shortUrl, DEF_BRANCH + "/" + FILE_AUTO, NAME_APACHE_V2);
   }
 
   /**
-   * Create Apache v2 Library from GitHub repository url.
+   * Creates a new library from the {@link #NAME_APACHE_V2 Apache License 2.0} with a custom
+   * relative license path.
+   * <p>
+   * The relative path starts after the library's name. For example, if a library's license file is
+   * located at {@code github.com/author/name/my/custom/path/LICENSE.weirdextension}, the relative
+   * license path would be "my/custom/path/LICENSE.weirdextension".
    *
-   * @param gitRepo             target library's GitHub repository. should be "user/repoName"
-   * @param relativeLicensePath relative path to the license file. you can use predefined {@link
-   *                            Licenses#FILE_TXT}, {@link Licenses#FILE_MD}, {@link
-   *                            Licenses#FILE_NO_EXTENSION} or {@link Licenses#FILE_AUTO}
-   * @return the generated {@link Library}
+   * @see #fromGitHubApacheV2(String)
    */
-  public static Library fromGitHubApacheV2(@NonNull String gitRepo,
+  public static Library fromGitHubApacheV2(@NonNull String shortUrl,
       @NonNull String relativeLicensePath) {
-    return fromGitHub(gitRepo, NAME_APACHE_V2, relativeLicensePath);
+    return fromGitHub(shortUrl, relativeLicensePath, NAME_APACHE_V2);
   }
 
   /**
-   * Create MIT Library from GitHub repository url.
-   * LicenseAdapter will check if the repo has any of {@link Licenses#FILE_TXT},
-   * {@link Licenses#FILE_MD} or {@link Licenses#FILE_NO_EXTENSION}
+   * Creates a new library from the {@link #NAME_MIT MIT License}.
    *
-   * @param gitRepo target library's GitHub repository. should be "user/repoName"
-   * @return the generated {@link Library}
+   * @see #fromGitHubApacheV2(String)
    */
-  public static Library fromGitHubMIT(@NonNull String gitRepo) {
-    return fromGitHub(gitRepo, NAME_MIT, DEF_BRANCH + "/" + FILE_AUTO);
+  public static Library fromGitHubMIT(@NonNull String shortUrl) {
+    return fromGitHub(shortUrl, DEF_BRANCH + "/" + FILE_AUTO, NAME_MIT);
   }
 
   /**
-   * Create MIT Library from GitHub repository url.
+   * Creates a new library from the {@link #NAME_MIT MIT License} with a custom relative license
+   * path.
    *
-   * @param gitRepo             target library's GitHub repository. should be "user/repoName"
-   * @param relativeLicensePath relative path to the license file. you can use predefined {@link
-   *                            Licenses#FILE_TXT}, {@link Licenses#FILE_MD}, {@link
-   *                            Licenses#FILE_NO_EXTENSION} or {@link Licenses#FILE_AUTO}
-   * @return the generated {@link Library}
+   * @see #fromGitHubApacheV2(String, String)
    */
-  public static Library fromGitHubMIT(@NonNull String gitRepo,
+  public static Library fromGitHubMIT(@NonNull String shortUrl,
       @NonNull String relativeLicensePath) {
-    return fromGitHub(gitRepo, NAME_MIT, relativeLicensePath);
+    return fromGitHub(shortUrl, relativeLicensePath, NAME_MIT);
   }
 
   /**
-   * Create BSD Library from GitHub repository url.
-   * LicenseAdapter will check if the repo has any of {@link Licenses#FILE_TXT},
-   * {@link Licenses#FILE_MD} or {@link Licenses#FILE_NO_EXTENSION}
+   * Creates a new library from the {@link #NAME_BSD BSD License}.
    *
-   * @param gitRepo target library's GitHub repository. should be "user/repoName"
-   * @return the generated {@link Library}
+   * @see #fromGitHubApacheV2(String)
    */
-  public static Library fromGitHubBSD(@NonNull String gitRepo) {
-    return fromGitHub(gitRepo, NAME_BSD, DEF_BRANCH + "/" + FILE_AUTO);
+  public static Library fromGitHubBSD(@NonNull String shortUrl) {
+    return fromGitHub(shortUrl, DEF_BRANCH + "/" + FILE_AUTO, NAME_BSD);
   }
 
   /**
-   * Create BSD Library from GitHub repository url.
+   * Creates a new library from the {@link #NAME_BSD BSD License} with a custom relative license
+   * path.
    *
-   * @param gitRepo             target library's GitHub repository. should be "user/repoName"
-   * @param relativeLicensePath relative path to the license file. you can use predefined {@link
-   *                            Licenses#FILE_TXT}, {@link Licenses#FILE_MD} and {@link
-   *                            Licenses#FILE_NO_EXTENSION}
-   * @return the generated {@link Library}
+   * @see #fromGitHubApacheV2(String, String)
    */
-  public static Library fromGitHubBSD(@NonNull String gitRepo,
+  public static Library fromGitHubBSD(@NonNull String shortUrl,
       @NonNull String relativeLicensePath) {
-    return fromGitHub(gitRepo, NAME_BSD, relativeLicensePath);
+    return fromGitHub(shortUrl, relativeLicensePath, NAME_BSD);
   }
 
   /**
-   * Create a {@link Library} from a GitHub repository url and license name.
+   * Creates a new library from a custom license.
    *
-   * @param gitRepo             target library's GitHub repository, should be "user/repoName"
-   * @param licenseName         License name to use. you can use the predefined {@link
-   *                            Licenses#NAME_APACHE_V2}, {@link Licenses#NAME_MIT}, {@link
-   *                            Licenses#NAME_BSD}, or your own.
-   * @param relativeLicensePath Relative path to the license file. You can use the predefined
-   *                            {@link
-   *                            Licenses#FILE_TXT}, {@link Licenses#FILE_MD}, {@link
-   *                            Licenses#FILE_NO_EXTENSION}, {@link Licenses#FILE_AUTO}, or your
-   *                            own.
-   * @return the generated {@link Library}
+   * @see #fromGitHubApacheV2(String)
+   * @see License
    */
-  public static Library fromGitHub(@NonNull String gitRepo, @NonNull String licenseName,
-      @NonNull String relativeLicensePath) {
-    return new GitHubLibrary.Builder(gitRepo, licenseName)
+  public static Library fromGitHub(@NonNull String shortUrl, @NonNull License license) {
+    return new GitHubLibrary.Builder(shortUrl, license.getName()).setRawLicenseUrl(license.getUrl())
+        .build();
+  }
+
+  /**
+   * Creates a new library from a custom license name.
+   *
+   * @see #fromGitHubApacheV2(String)
+   * @see #fromGitHubApacheV2(String, String)
+   */
+  public static Library fromGitHub(@NonNull String shortUrl, @NonNull String relativeLicensePath,
+      @NonNull String licenseName) {
+    return new GitHubLibrary.Builder(shortUrl, licenseName)
         .setRelativeLicensePath(relativeLicensePath)
         .build();
   }
 
   /**
-   * Create a {@link Library} from a GitHub repository url and user defined {@link License}.
-   * This method can be used when the repository does not provide a license text file.
-   * You can use the predefined {@link Licenses#LICENSE_APACHE_V2} or your own implementation.
+   * Creates a new library with a name, author, and license url, but without any license text.
    *
-   * @param gitRepo target library's GitHub repository, should be "user/repoName"
-   * @param license custom {@link License}
-   * @return the generated {@link Library}
-   */
-  public static Library fromGitHub(@NonNull String gitRepo, @NonNull License license) {
-    return new GitHubLibrary.Builder(gitRepo, license.name).setRawLicenseUrl(license.url).build();
-  }
-
-  /**
-   * Create Library from provided name, author and url.
-   * This method can be used when the library is not hosted on GitHub, and does not provide license
-   * info.
-   *
-   * @param name   library's name
-   * @param author author's name
-   * @return the generated {@link Library} to be loaded with {@link #load(List)}
+   * @see #fromGitHubApacheV2(String)
+   * @see License
    */
   public static Library noContent(@NonNull String name, @NonNull String author,
       @NonNull String url) {
@@ -165,13 +210,10 @@ public final class Licenses {
   }
 
   /**
-   * Create Library from provided name, author and text.
-   * This method can be used when the library does not provide the license online.
+   * Creates a new library with a name, author, and license name, but no license text.
    *
-   * @param name   library's name
-   * @param author author's name
-   * @param text   the license
-   * @return the generated {@link Library} to be loaded with {@link #load(List)}
+   * @see #fromGitHubApacheV2(String)
+   * @see License
    */
   public static Library noLink(@NonNull String name, @NonNull String author,
       @NonNull String licenseName, @Nullable String text) {

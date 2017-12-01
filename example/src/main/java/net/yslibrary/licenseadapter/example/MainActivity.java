@@ -46,10 +46,8 @@ public class MainActivity extends AppCompatActivity {
     licenses.add(Licenses.fromGitHub("GabrieleMariotti/ChangelogLib", Licenses.LICENSE_APACHE_V2));
 
     // These 2 licenses have a different branch name
-    licenses.add(Licenses.fromGitHub("ReactiveX/RxAndroid", Licenses.NAME_APACHE_V2,
-        "2.x/" + Licenses.FILE_AUTO));
-    licenses.add(Licenses.fromGitHub("ReactiveX/RxJava", Licenses.NAME_APACHE_V2,
-        "2.x/" + Licenses.FILE_AUTO));
+    licenses.add(Licenses.fromGitHubApacheV2("ReactiveX/RxAndroid", "2.x/" + Licenses.FILE_AUTO));
+    licenses.add(Licenses.fromGitHubApacheV2("ReactiveX/RxJava", "2.x/" + Licenses.FILE_AUTO));
 
     licenses.add(Licenses.noLink("Library without a link to the license, like Google Play Services",
         "Author", "License name", "License content"));

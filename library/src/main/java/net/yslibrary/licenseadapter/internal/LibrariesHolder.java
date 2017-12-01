@@ -29,7 +29,7 @@ public final class LibrariesHolder extends AndroidViewModel {
   }
 
   public void load(final Library library, final Listener rawListener) {
-    if (library.isLoaded()) rawListener.onComplete(library.license(), null);
+    if (library.isLoaded()) rawListener.onComplete(library.getLicense(), null);
 
     final WeakReference<Listener> listener = new WeakReference<>(rawListener);
     License cache = cachedLicenses.get(library);
@@ -39,9 +39,9 @@ public final class LibrariesHolder extends AndroidViewModel {
         public void run() {
           try {
             library.load(new File(getApplication().getCacheDir(), CACHE_DIR_NAME + File.separator +
-                library.author() + File.separator + library.name()));
+                library.getAuthor() + File.separator + library.getName()));
 
-            License license = library.license();
+            License license = library.getLicense();
             cachedLicenses.put(library, license);
             notify(license, null);
           } catch (Exception e) {
