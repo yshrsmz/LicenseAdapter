@@ -7,10 +7,9 @@
 License adapter is an easy-to-use library that provides a RecyclerView
 adapter to display OSS dependencies and their associated licenses.
 
-![demo](./assets/demo.gif)
+<img src="assets/demo.gif" width="50%" height="50%" />
 
-![list](./assets/list.png)
-![expanded](./assets/expanded.png)
+<img src="assets/list.png" width="50%" height="50%" /><img src="assets/expanded.png" width="50%" height="50%" />
 
 ## Table of contents
 
