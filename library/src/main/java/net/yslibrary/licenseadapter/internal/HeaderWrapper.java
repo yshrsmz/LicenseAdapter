@@ -1,14 +1,15 @@
 package net.yslibrary.licenseadapter.internal;
 
+import android.support.annotation.NonNull;
+import net.yslibrary.licenseadapter.Library;
 import net.yslibrary.licenseadapter.License;
-import net.yslibrary.licenseadapter.LicenseEntry;
 
 public class HeaderWrapper implements Wrapper {
 
-  private final LicenseEntry entry;
+  private final Library entry;
   private boolean expanded;
 
-  public HeaderWrapper(LicenseEntry entry) {
+  public HeaderWrapper(Library entry) {
     this.entry = entry;
   }
 
@@ -39,7 +40,7 @@ public class HeaderWrapper implements Wrapper {
   }
 
   @Override
-  public LicenseEntry entry() {
+  public Library entry() {
     return entry;
   }
 
@@ -47,6 +48,7 @@ public class HeaderWrapper implements Wrapper {
     return entry.license();
   }
 
+  @NonNull
   @Override
   public ViewType type() {
     return ViewType.HEADER;

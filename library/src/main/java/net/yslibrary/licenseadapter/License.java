@@ -1,80 +1,77 @@
 package net.yslibrary.licenseadapter;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
-public class License implements Parcelable {
-  public static final Creator<License> CREATOR = new Creator<License>() {
-    public License createFromParcel(Parcel source) {
-      return new License(source);
-    }
+public final class License {
+  @NonNull public final String name;
+  @Nullable public final String url;
+  @Nullable public final String text;
 
-    public License[] newArray(int size) {
-      return new License[size];
-    }
-  };
-  public String name;
-  public String url;
-  public String text;
-
-  protected License(String name, String url, String text) {
+  private License(@NonNull String name, @Nullable String url, @Nullable String text) {
     this.name = name;
     this.url = url;
     this.text = text;
   }
 
-  protected License(Parcel in) {
-    name = in.readString();
-    url = in.readString();
-    text = in.readString();
-  }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
 
-  public static Builder builder() {
-    return new Builder();
+    License license = (License) o;
+
+    return name.equals(license.name)
+        && (url == null ? license.url == null : url.equals(license.url))
+        && (text == null ? license.text == null : text.equals(license.text));
   }
 
   @Override
-  public int describeContents() {
-    return 0;
-  }
-
-  @Override
-  public void writeToParcel(Parcel dest, int flags) {
-    dest.writeString(name);
-    dest.writeString(url);
-    dest.writeString(text);
-  }
-
-  public boolean isLoaded() {
-    return text != null;
+  public int hashCode() {
+    int result = name.hashCode();
+    result = 31 * result + (url == null ? 0 : url.hashCode());
+    result = 31 * result + (text == null ? 0 : text.hashCode());
+    return result;
   }
 
   @Override
   public String toString() {
-    return String.format("\n***** LICENSE *****\nName = %s\nUrl = %s\nText = %s\n", name, url,
-        text);
+    return "License{" +
+        "name='" + name + '\'' +
+        ", url='" + url + '\'' +
+        ", text='" + text + '\''
+        + '}';
   }
 
-  public static class Builder {
-    private String name;
+  public static final class Builder {
+    private final String name;
+
     private String url;
     private String text;
 
-    public Builder setName(String name) {
+    public Builder(@NonNull String name) {
       this.name = name;
-      return this;
     }
 
-    public Builder setUrl(String url) {
+    public Builder(@NonNull License license) {
+      name = license.name;
+      url = license.url;
+      text = license.text;
+    }
+
+    @NonNull
+    public Builder setUrl(@Nullable String url) {
       this.url = url;
       return this;
     }
 
-    public Builder setText(String text) {
+    @NonNull
+    public Builder setText(@Nullable String text) {
       this.text = text;
       return this;
     }
 
+    @NonNull
     public License build() {
       return new License(name, url, text);
     }

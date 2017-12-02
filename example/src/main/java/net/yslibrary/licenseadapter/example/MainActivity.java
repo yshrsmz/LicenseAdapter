@@ -6,9 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-import net.yslibrary.licenseadapter.GitHubLicenseEntry;
+import net.yslibrary.licenseadapter.Library;
 import net.yslibrary.licenseadapter.LicenseAdapter;
-import net.yslibrary.licenseadapter.LicenseEntry;
 import net.yslibrary.licenseadapter.Licenses;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    List<LicenseEntry> licenses = new ArrayList<>();
+    List<Library> licenses = new ArrayList<>();
 
     // libraries not hosted on GitHub(and you chose not to show license text)
     licenses.add(Licenses.noContent("Android SDK", "Google Inc.",
@@ -48,11 +47,10 @@ public class MainActivity extends AppCompatActivity {
     licenses.add(Licenses.fromGitHubBSD("facebook/stetho"));
 
     // these 2 licenses have different branch name
-    licenses.add(
-        new GitHubLicenseEntry(Licenses.NAME_APACHE_V2, "ReactiveX/RxAndroid", "2.x/", null,
-            Licenses.FILE_AUTO));
-    licenses.add(new GitHubLicenseEntry(Licenses.NAME_APACHE_V2, "ReactiveX/RxJava", "2.x/", null,
-        Licenses.FILE_AUTO));
+    licenses.add(Licenses.fromGitHub("ReactiveX/RxAndroid", Licenses.NAME_APACHE_V2,
+        "2.x/" + Licenses.FILE_AUTO));
+    licenses.add(Licenses.fromGitHub("ReactiveX/RxJava", Licenses.NAME_APACHE_V2,
+        "2.x/" + Licenses.FILE_AUTO));
 
     LicenseAdapter adapter = new LicenseAdapter(licenses);
     RecyclerView list = findViewById(R.id.list);

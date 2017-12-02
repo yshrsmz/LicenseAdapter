@@ -1,14 +1,11 @@
 package net.yslibrary.licenseadapter.internal;
 
-import net.yslibrary.licenseadapter.LicenseEntry;
+import net.yslibrary.licenseadapter.Library;
 
-/**
- * Created by yshrsmz on 2016/04/26.
- */
 public interface Wrapper {
   ViewType type();
 
-  LicenseEntry entry();
+  Library entry();
 
   boolean isExpanded();
 

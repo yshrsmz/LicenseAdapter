@@ -1,23 +1,25 @@
 package net.yslibrary.licenseadapter.internal;
 
-import net.yslibrary.licenseadapter.LicenseEntry;
+import android.support.annotation.NonNull;
+import net.yslibrary.licenseadapter.Library;
 
 public class ContentWrapper implements Wrapper {
 
-  private final LicenseEntry entry;
+  private final Library entry;
   private boolean expanded;
 
-  public ContentWrapper(LicenseEntry entry) {
+  public ContentWrapper(Library entry) {
     this.entry = entry;
   }
 
+  @NonNull
   @Override
   public ViewType type() {
     return ViewType.CONTENT;
   }
 
   @Override
-  public LicenseEntry entry() {
+  public Library entry() {
     return entry;
   }
 

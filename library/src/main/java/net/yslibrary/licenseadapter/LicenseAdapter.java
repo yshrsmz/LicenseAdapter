@@ -16,13 +16,13 @@ import net.yslibrary.licenseadapter.internal.Wrapper;
 
 public class LicenseAdapter extends RecyclerView.Adapter<LicenseViewHolder> {
 
-  private final List<LicenseEntry> originalDataSet = new ArrayList<>();
+  private final List<Library> originalDataSet = new ArrayList<>();
   private final List<Wrapper> wrappedDataSet = new ArrayList<>();
 
-  public LicenseAdapter(List<LicenseEntry> entries) {
+  public LicenseAdapter(List<Library> entries) {
     originalDataSet.addAll(entries);
 
-    for (LicenseEntry entry : originalDataSet) {
+    for (Library entry : originalDataSet) {
       wrappedDataSet.add(new HeaderWrapper(entry));
     }
   }
