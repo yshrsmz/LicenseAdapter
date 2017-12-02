@@ -64,10 +64,9 @@ public final class GitHubLibrary extends BaseLibrary {
     }
 
     if (!isLoaded()) {
-      license = new License.Builder(license)
-          .setText("Developer error: no license file found. "
-              + "Searched for the following license files:\n" + possibleLicenseUrls)
-          .build();
+      Log.e(TAG, "Developer error: no license file found. "
+          + "Searched for the following license files:\n" + possibleLicenseUrls);
+      throw new IllegalStateException("Unable to load license");
     }
   }
 
@@ -120,16 +119,18 @@ public final class GitHubLibrary extends BaseLibrary {
     }
 
     @NonNull
-    public Builder setRelativeLicenseUrl(@NonNull String url) {
+    public Builder setRelativeLicensePath(@NonNull String path) {
       possibleLicenseUrls = new ArrayList<>();
       String fullBase = BASE + author + "/" + name + "/";
 
-      if (url.contains(Licenses.FILE_AUTO)) {
+      if (path.contains(Licenses.FILE_AUTO)) {
         List<String> possibleFiles = Arrays.asList(
             Licenses.FILE_NO_EXTENSION, Licenses.FILE_TXT, Licenses.FILE_MD);
         for (String possibleFile : possibleFiles) {
-          possibleLicenseUrls.add(fullBase + url.replace(Licenses.FILE_AUTO, possibleFile));
+          possibleLicenseUrls.add(fullBase + path.replace(Licenses.FILE_AUTO, possibleFile));
         }
+      } else {
+        possibleLicenseUrls.add(fullBase + path);
       }
 
       return this;
