@@ -1,94 +1,93 @@
-LicenseAdapter
-===
+# License Adapter
 
 [![Build Status](https://travis-ci.org/yshrsmz/LicenseAdapter.svg?branch=master)](https://travis-ci.org/yshrsmz/LicenseAdapter)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-LicenseAdapter-green.svg?style=true)](https://android-arsenal.com/details/1/3516)
 [![Bintray](https://img.shields.io/bintray/v/yshrsmz/maven/licenseadapter.svg)](https://bintray.com/yshrsmz/maven/licenseadapter/view)
 
-Adapter library for RecyclerView to display your app's OSS dependencies.
+License adapter is an easy-to-use library that provides a RecyclerView
+adapter to display OSS dependencies and their associated licenses.
 
-This library fetch license text from GitHub(and your custom location), so technically this library is capable of displaying any license.
+![demo](./assets/demo.gif)
 
-![screen_gif](./assets/screen.gif)
+![list](./assets/list.png)
+![expanded](./assets/expanded.png)
 
-![screenshot_1](./assets/screenshot_1.png)
-![screenshot_2](./assets/screenshot_2.png)
+## Table of contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Predefined license names](#predefined-license-names)
+  - [Predefined license file names](#predefined-license-file-names)
+- [Apps using License Adapter](#apps-using-license-adapter)
+- [License](#license)
 
 ## Installation
 
-LicenseAdapter is distributed via jCenter. [![Bintray](https://img.shields.io/bintray/v/yshrsmz/maven/licenseadapter.svg)](https://bintray.com/yshrsmz/maven/licenseadapter/view)
+LicenseAdapter is distributed via JCenter:
+[![Bintray](https://img.shields.io/bintray/v/yshrsmz/maven/licenseadapter.svg)](https://bintray.com/yshrsmz/maven/licenseadapter/view)
 
 ```gradle
 dependencies {
-  compile 'net.yslibrary.licenseadapter:licenseadapter:LATEST_LIBRARY_VERSION'
+  implementation 'net.yslibrary.licenseadapter:licenseadapter:LATEST_LIBRARY_VERSION'
 }
 ```
 
-
 ## Usage
 
-
-Don't forget to add `android.permission.INTERNET` permission to your AndroidManifest.
-
-
 ```java
-// create list of licenses
-List<LicenseEntry> dataset = new ArrayList<>();
+// Create list of libraries
+List<Library> libraries = new ArrayList<>();
 
-// library that is not hosted on GitHub
-dataset.add(Licenses.noContent("Android SDK", "Google Inc.", "https://developer.android.com/sdk/terms.html"));
+// Add libraries that are hosted on GitHub with an Apache v2 license.
+libraries.add(Licenses.fromGitHubApacheV2("realm/realm-java"));
+libraries.add(Licenses.fromGitHubApacheV2("square/retrofit"));
 
-// library that does not have their license online
-dataset.add(Licenses.noLink("Google Play Services", "Google Inc.", GoogleApiAvailability.getInstance().getOpenSourceSoftwareLicenseInfo(getContext())));
+// BSD license
+libraries.add(Licenses.fromGitHubBSD("bumptech/glide"));
 
-// library that is hosted on GitHub, but does not provide license text
-dataset.add(Licenses.fromGitHub("gabrielemariotti/changeloglib", Licenses.LICENSE_APACHE_V2));
+// MIT license
+libraries.add(Licenses.fromGitHubMIT("jhy/jsoup"));
 
-// Apache v2 library that is hosted on GitHub
-dataset.add(Licenses.fromGitHubApacheV2("realm/realm-java"));
-dataset.add(Licenses.fromGitHubApacheV2("square/retrofit"));
+// Library that is hosted on GitHub, but does not provide license text.
+libraries.add(Licenses.fromGitHub("gabrielemariotti/changeloglib", Licenses.LICENSE_APACHE_V2));
 
-// BSD library that is hosted on GitHub
-dataset.add(Licenses.fromGitHubBSD("bumptech/glide"));
+// Library that is not hosted on GitHub.
+libraries.add(Licenses.noContent("Android SDK", "Google Inc.", "https://developer.android.com/sdk/terms.html"));
 
-// MIT library that is hosted on GitHub
-dataset.add(Licenses.fromGitHubMIT("jhy/jsoup"));
+// Library that does not have their license online
+libraries.add(Licenses.noLink("Google Play Services", "Google Inc.", GoogleApiAvailability.getInstance().getOpenSourceSoftwareLicenseInfo(this)));
 
-// these 2 licenses have different branch name
-dataset.add(new GitHubLicenseEntry(Licenses.NAME_APACHE_V2, "ReactiveX/RxAndroid", "2.x/", null, Licenses.FILE_AUTO));
-dataset.add(new GitHubLicenseEntry(Licenses.NAME_APACHE_V2, "ReactiveX/RxJava", "2.x/", null, Licenses.FILE_AUTO));
+// These 2 licenses are on a branch name other than master
+libraries.add(Licenses.fromGitHubApacheV2("ReactiveX/RxAndroid", "2.x/" + Licenses.FILE_AUTO));
+libraries.add(Licenses.fromGitHubApacheV2("ReactiveX/RxJava", "2.x/" + Licenses.FILE_AUTO));
 
-// create adapter
-LicenseAdapter adapter = new LicenseAdapter(dataset);
-RecyclerView list = (RecyclerView) findViewById(R.id.list);
-list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-list.setAdapter(adapter);
-
-// finally load license text from Web
-Licenses.load(dataset);
+// Create and display the adapter
+RecyclerView rv = findViewById(R.id.list);
+rv.setLayoutManager(new LinearLayoutManager(this));
+rv.setAdapter(new LicenseAdapter(libraries)); // It's that simple!
 ```
 
+Don't forget to add the `android.permission.INTERNET` permission to your
+manifest.
 
-## Predefined License name strings
+### Predefined license names
 
-License name | Actual variable
+License name | Field
 --- | ---
-Apache License V2.0 | Licenses#NAME_APACHE_V2
-MIT LICENSE | Licenses#NAME_MIT
-BSD LICENSE | Licenses#NAME_BSD
+Apache License 2.0 | `Licenses#NAME_APACHE_V2`
+MIT License | `Licenses#NAME_MIT`
+BSD License | `Licenses#NAME_BSD`
 
+### Predefined license file names
 
-## Predefined License file name
-
-License file name | Actual variable
+License file name | Field
 --- | ---
-Automatically find the license file from the predefined set below | Licenses#FILE_AUTO
-LICENSE | Licenses#FILE_NO_EXTENSION
-LICENSE.txt | Licenses#FILE_TXT
-LICENSE.md | Licenses#FILE_MD
+Automatically find the license file from the predefined set below | `Licenses#FILE_AUTO`
+`LICENSE` | `Licenses#FILE_NO_EXTENSION`
+`LICENSE.txt` | `Licenses#FILE_TXT`
+`LICENSE.md` | `Licenses#FILE_MD`
 
-
-## Apps using LicenseAdapter
+## Apps using License Adapter
 
 Send PR if you want your app to be included here ;)
 
