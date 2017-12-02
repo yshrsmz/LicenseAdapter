@@ -17,11 +17,6 @@ dependencies {
 
   implementation "com.android.support:appcompat-v7:$supportlib_version"
   implementation "android.arch.lifecycle:extensions:$architecture_version"
-
-  implementation("com.google.android.gms:play-services-tasks:11.6.2") {
-    exclude module: 'support-v4'
-    exclude module: 'play-services-tasks-license'
-  }
 }
 
 publish {

@@ -2,12 +2,13 @@ package net.yslibrary.licenseadapter.internal;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.LruCache;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
 import java.io.File;
-import java.util.concurrent.Callable;
+import java.lang.ref.WeakReference;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import net.yslibrary.licenseadapter.Library;
@@ -23,24 +24,44 @@ public class LibrariesHolder extends AndroidViewModel {
     super(application);
   }
 
-  @NonNull
-  public Task<License> load(final Library library) {
-    if (library.isLoaded()) return Tasks.forResult(library.license());
+  public void load(final Library library, final Listener rawListener) {
+    if (library.isLoaded()) rawListener.onComplete(library.license(), null);
 
+    final WeakReference<Listener> listener = new WeakReference<>(rawListener);
     License cache = cachedLicenses.get(library);
     if (cache == null) {
-      return Tasks.call(EXECUTOR, new Callable<License>() {
+      EXECUTOR.execute(new Runnable() {
         @Override
-        public License call() {
-          library.load(new File(getApplication().getCacheDir(), CACHE_DIR_NAME));
+        public void run() {
+          try {
+            library.load(new File(getApplication().getCacheDir(), CACHE_DIR_NAME));
 
-          License license = library.license();
-          cachedLicenses.put(library, license);
-          return license;
+            License license = library.license();
+            cachedLicenses.put(library, license);
+            notifyResult(license, null);
+          } catch (Exception e) {
+            notifyResult(null, e);
+          }
+        }
+
+        private void notifyResult(@Nullable final License license, @Nullable final Exception e) {
+          new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+              Listener rawListener = listener.get();
+              if (rawListener != null) {
+                rawListener.onComplete(license, e);
+              }
+            }
+          });
         }
       });
     } else {
-      return Tasks.forResult(cache);
+      rawListener.onComplete(cache, null);
     }
+  }
+
+  public interface Listener {
+    void onComplete(@Nullable License license, @Nullable Exception e);
   }
 }
