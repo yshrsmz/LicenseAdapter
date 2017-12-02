@@ -34,7 +34,8 @@ public class LibrariesHolder extends AndroidViewModel {
         @Override
         public void run() {
           try {
-            library.load(new File(getApplication().getCacheDir(), CACHE_DIR_NAME));
+            library.load(new File(getApplication().getCacheDir(), CACHE_DIR_NAME + File.separator +
+                library.author() + File.separator + library.name()));
 
             License license = library.license();
             cachedLicenses.put(library, license);

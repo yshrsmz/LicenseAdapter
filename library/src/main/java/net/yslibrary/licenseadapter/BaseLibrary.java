@@ -1,6 +1,7 @@
 package net.yslibrary.licenseadapter;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.RestrictTo;
 import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,13 +15,14 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class BaseLibrary implements Library {
   private static final String TAG = "LicenseAdapter";
+
+  private static final String CACHE_FILE_NAME = "license.txt";
   private static final int CACHE_TIMEOUT_DAYS = 14;
 
   private final String name;
   private final String author;
 
-  @NonNull
-  protected License license;
+  private License license;
 
   public BaseLibrary(@NonNull String name, @NonNull String author, @NonNull License license) {
     this.name = name;
@@ -28,6 +30,7 @@ public abstract class BaseLibrary implements Library {
     this.license = license;
   }
 
+  @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
   protected static String read(@NonNull BufferedReader in) throws IOException {
     StringBuilder builder = new StringBuilder();
     String str;
@@ -49,7 +52,7 @@ public abstract class BaseLibrary implements Library {
       }
 
       stream = new FileOutputStream(cache);
-      stream.write(license.text.getBytes());
+      stream.write((license.url + "\n" + license.text).getBytes());
     } catch (IOException e) {
       Log.d(TAG, "Couldn't cache license: " + cache, e);
     } finally {
@@ -67,13 +70,15 @@ public abstract class BaseLibrary implements Library {
     FileInputStream stream = null;
     try {
       stream = new FileInputStream(cache);
-      String licenseText = read(new BufferedReader(new InputStreamReader(stream)));
+      String encodedLicense = read(new BufferedReader(new InputStreamReader(stream)));
 
-      if (TextUtils.isEmpty(licenseText)) {
+      if (TextUtils.isEmpty(encodedLicense)) {
         loadAndCache(cache);
       } else {
+        int encodedSplit = encodedLicense.indexOf("\n");
         license = new License.Builder(license)
-            .setText(licenseText)
+            .setText(encodedLicense.substring(encodedSplit + 1, encodedLicense.length()))
+            .setUrl(encodedLicense.substring(0, encodedSplit))
             .build();
       }
     } catch (IOException e) {
@@ -102,7 +107,7 @@ public abstract class BaseLibrary implements Library {
   @Override
   public final void load(@NonNull File cacheDir) {
     if (hasContent() && !isLoaded()) {
-      File cache = new File(new File(cacheDir, author), name + ".txt");
+      File cache = new File(cacheDir, CACHE_FILE_NAME);
       if (cache.exists()) {
         if (TimeUnit.MILLISECONDS.toDays(System.currentTimeMillis() - cache.lastModified())
             >= CACHE_TIMEOUT_DAYS) {
@@ -118,12 +123,13 @@ public abstract class BaseLibrary implements Library {
   }
 
   private void loadAndCache(File cache) {
-    doLoad();
+    license = doLoad();
     cacheLicense(cache, license);
   }
 
   @WorkerThread
-  protected abstract void doLoad();
+  @NonNull
+  protected abstract License doLoad();
 
   @NonNull
   @Override

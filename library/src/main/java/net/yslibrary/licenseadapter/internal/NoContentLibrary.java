@@ -1,5 +1,6 @@
 package net.yslibrary.licenseadapter.internal;
 
+import android.support.annotation.NonNull;
 import net.yslibrary.licenseadapter.BaseLibrary;
 import net.yslibrary.licenseadapter.License;
 
@@ -16,9 +17,11 @@ public final class NoContentLibrary extends BaseLibrary {
     return true;
   }
 
+  @NonNull
   @Override
-  public void doLoad() {
+  public License doLoad() {
     // There's no content
+    return license();
   }
 
   @Override

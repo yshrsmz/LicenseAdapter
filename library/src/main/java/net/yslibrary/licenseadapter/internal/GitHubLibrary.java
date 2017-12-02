@@ -46,28 +46,26 @@ public final class GitHubLibrary extends BaseLibrary {
 
   @Override
   public boolean isLoaded() {
-    return !TextUtils.isEmpty(license.text);
+    return !TextUtils.isEmpty(license().text);
   }
 
+  @NonNull
   @WorkerThread
   @Override
-  protected void doLoad() {
-    if (possibleLicenseUrls.isEmpty()) return;
+  protected License doLoad() {
+    if (possibleLicenseUrls.isEmpty()) return license();
 
     for (String url : possibleLicenseUrls) {
       try {
-        license = new License.Builder(license).setUrl(url).setText(loadContents(url)).build();
-        break;
+        return new License.Builder(license()).setText(loadContents(url)).setUrl(url).build();
       } catch (IOException ignored) {
         // Handled below
       }
     }
 
-    if (!isLoaded()) {
-      Log.e(TAG, "Developer error: no license file found. "
-          + "Searched for the following license files:\n" + possibleLicenseUrls);
-      throw new IllegalStateException("Unable to load license");
-    }
+    Log.e(TAG, "Developer error: no license file found. "
+        + "Searched for the following license files:\n" + possibleLicenseUrls);
+    throw new IllegalStateException("Unable to load license");
   }
 
   @Override
