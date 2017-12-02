@@ -15,6 +15,10 @@ import net.yslibrary.licenseadapter.Library;
 import net.yslibrary.licenseadapter.License;
 
 public class LibrariesHolder extends AndroidViewModel {
+  public interface Listener {
+    void onComplete(@Nullable License license, @Nullable Exception e);
+  }
+
   private static final Executor EXECUTOR = Executors.newSingleThreadExecutor();
   private static final String CACHE_DIR_NAME = "license-adapter-cache";
 
@@ -39,13 +43,13 @@ public class LibrariesHolder extends AndroidViewModel {
 
             License license = library.license();
             cachedLicenses.put(library, license);
-            notifyResult(license, null);
+            notify(license, null);
           } catch (Exception e) {
-            notifyResult(null, e);
+            notify(null, e);
           }
         }
 
-        private void notifyResult(@Nullable final License license, @Nullable final Exception e) {
+        private void notify(@Nullable final License license, @Nullable final Exception e) {
           new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
@@ -60,9 +64,5 @@ public class LibrariesHolder extends AndroidViewModel {
     } else {
       rawListener.onComplete(cache, null);
     }
-  }
-
-  public interface Listener {
-    void onComplete(@Nullable License license, @Nullable Exception e);
   }
 }

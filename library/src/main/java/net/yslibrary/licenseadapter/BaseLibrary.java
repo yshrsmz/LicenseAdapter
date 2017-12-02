@@ -33,9 +33,9 @@ public abstract class BaseLibrary implements Library {
   @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
   protected static String read(@NonNull BufferedReader in) throws IOException {
     StringBuilder builder = new StringBuilder();
-    String str;
-    while ((str = in.readLine()) != null) {
-      builder.append(str).append("\n");
+    String line;
+    while ((line = in.readLine()) != null) {
+      builder.append(line).append("\n");
     }
     return builder.toString();
   }
@@ -99,7 +99,7 @@ public abstract class BaseLibrary implements Library {
 
   private void delete(File cache) {
     if (!cache.delete()) {
-      Log.e(TAG, "Couldn't delete cache file. Performing fresh load: " + cache);
+      Log.e(TAG, "Couldn't delete cache file: " + cache + ". Performing fresh load.");
     }
   }
 
