@@ -33,16 +33,9 @@ public final class GitHubLibrary extends BaseLibrary {
   private static String loadContents(@NonNull String url) throws IOException {
     BufferedReader in = null;
     try {
-      in = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
-      StringBuilder builder = new StringBuilder();
-      String str;
-      while ((str = in.readLine()) != null) {
-        builder.append(str).append("\n");
-      }
-      in.close();
-      return builder.toString();
+      return read(in = new BufferedReader(new InputStreamReader(new URL(url).openStream())));
     } catch (IOException e) {
-      Log.d("TAG", e.toString());
+      Log.d(TAG, "Failed to load license.", e);
       throw e;
     } finally {
       if (in != null) {
@@ -51,25 +44,28 @@ public final class GitHubLibrary extends BaseLibrary {
     }
   }
 
+  @Override
+  public boolean isLoaded() {
+    return !TextUtils.isEmpty(license().text);
+  }
+
+  @NonNull
   @WorkerThread
   @Override
-  protected void doLoad() {
-    if (possibleLicenseUrls.isEmpty()) return;
+  protected License doLoad() {
+    if (possibleLicenseUrls.isEmpty()) return license();
 
     for (String url : possibleLicenseUrls) {
       try {
-        license = new License.Builder(license).setUrl(url).setText(loadContents(url)).build();
-        break;
+        return new License.Builder(license()).setText(loadContents(url)).setUrl(url).build();
       } catch (IOException ignored) {
         // Handled below
       }
     }
 
-    if (TextUtils.isEmpty(license.text)) {
-      Log.e(TAG, "Developer error: no license file found. "
-          + "Searched for the following license files:\n" + possibleLicenseUrls);
-      throw new IllegalStateException("Unable to load license");
-    }
+    Log.e(TAG, "Developer error: no license file found. "
+        + "Searched for the following license files:\n" + possibleLicenseUrls);
+    throw new IllegalStateException("Unable to load license");
   }
 
   @Override

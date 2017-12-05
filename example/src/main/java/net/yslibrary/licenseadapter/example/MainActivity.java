@@ -56,7 +56,5 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView list = findViewById(R.id.list);
     list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
     list.setAdapter(adapter);
-
-    Licenses.load(licenses);
   }
 }

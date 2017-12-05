@@ -1,5 +1,11 @@
 package net.yslibrary.licenseadapter;
 
+import android.app.Activity;
+import android.app.Application;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,19 +16,17 @@ import net.yslibrary.licenseadapter.internal.ContentViewHolder;
 import net.yslibrary.licenseadapter.internal.ContentWrapper;
 import net.yslibrary.licenseadapter.internal.HeaderViewHolder;
 import net.yslibrary.licenseadapter.internal.HeaderWrapper;
+import net.yslibrary.licenseadapter.internal.LibrariesHolder;
 import net.yslibrary.licenseadapter.internal.LicenseViewHolder;
 import net.yslibrary.licenseadapter.internal.ViewType;
 import net.yslibrary.licenseadapter.internal.Wrapper;
 
 public class LicenseAdapter extends RecyclerView.Adapter<LicenseViewHolder> {
-
-  private final List<Library> originalDataSet = new ArrayList<>();
   private final List<Wrapper> wrappedDataSet = new ArrayList<>();
+  private LibrariesHolder holder;
 
-  public LicenseAdapter(List<Library> entries) {
-    originalDataSet.addAll(entries);
-
-    for (Library entry : originalDataSet) {
+  public LicenseAdapter(@NonNull List<Library> entries) {
+    for (Library entry : entries) {
       wrappedDataSet.add(new HeaderWrapper(entry));
     }
   }
@@ -39,8 +43,20 @@ public class LicenseAdapter extends RecyclerView.Adapter<LicenseViewHolder> {
 
   @Override
   public LicenseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    Context context = parent.getContext();
+
+    if (holder == null) {
+      if (context instanceof FragmentActivity) {
+        holder = ViewModelProviders.of((FragmentActivity) context).get(LibrariesHolder.class);
+      } else if (context instanceof Activity) {
+        holder = new LibrariesHolder(((Activity) context).getApplication());
+      } else {
+        holder = new LibrariesHolder((Application) context.getApplicationContext());
+      }
+    }
+
     ViewType type = ViewType.values()[viewType];
-    LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+    LayoutInflater inflater = LayoutInflater.from(context);
     View view;
 
     switch (type) {
@@ -50,7 +66,7 @@ public class LicenseAdapter extends RecyclerView.Adapter<LicenseViewHolder> {
 
       case CONTENT:
         view = inflater.inflate(R.layout.license_content, parent, false);
-        return new ContentViewHolder(view);
+        return new ContentViewHolder(view, holder);
 
       default:
         throw new IllegalArgumentException(

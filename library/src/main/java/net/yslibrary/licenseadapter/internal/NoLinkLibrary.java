@@ -14,12 +14,19 @@ public final class NoLinkLibrary extends BaseLibrary {
   }
 
   @Override
-  public void doLoad() {
+  public boolean isLoaded() {
+    return true;
+  }
+
+  @NonNull
+  @Override
+  public License doLoad() {
     // There's no link to load
+    return license();
   }
 
   @Override
   public boolean hasContent() {
-    return false;
+    return true;
   }
 }
