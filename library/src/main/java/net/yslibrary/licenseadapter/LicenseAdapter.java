@@ -71,10 +71,13 @@ public final class LicenseAdapter extends RecyclerView.Adapter<ViewHolderBase>
 
   @Override
   public void onBindViewHolder(ViewHolderBase holder, int position) {
-    if (position % 2 == 0) {
+    int type = getItemViewType(position);
+    if (type == TYPE_LIBRARY) {
       holder.bind(libraries.get(position / 2));
-    } else {
+    } else if (type == TYPE_LICENSE) {
       holder.bind(libraries.get((position - 1) / 2));
+    } else {
+      throw new IllegalStateException("Unknown view type: " + type);
     }
   }
 

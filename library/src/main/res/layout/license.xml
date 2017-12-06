@@ -7,7 +7,7 @@
 
   <!--
   Wrap this LL in a FL to circumvent gone bug where a top-level LL will still be used in onMeasure
-  event though it's marked as gone.
+  event though it's marked as gone. See https://stackoverflow.com/a/20786397/4548500.
   -->
   <LinearLayout
     android:layout_width="match_parent"
