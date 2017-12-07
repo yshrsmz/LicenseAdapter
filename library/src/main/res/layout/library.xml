@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content"
+                                             android:background="?attr/selectableItemBackground"
+                                             android:paddingBottom="@dimen/vertical_padding"
+                                             android:paddingLeft="@dimen/horizontal_padding"
+                                             android:paddingRight="@dimen/horizontal_padding"
+                                             android:paddingTop="@dimen/vertical_padding"
+  >
+
+  <TextView
+    android:id="@+id/name"
+    style="@style/Base.TextAppearance.AppCompat.Title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="start"
+    android:textIsSelectable="false"
+    app:layout_constrainedWidth="true"
+    app:layout_constraintEnd_toStartOf="@id/expand"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:text="LicenseAdapter"
+    />
+
+  <TextView
+    android:id="@+id/author"
+    style="@style/Base.TextAppearance.AppCompat.Body2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textIsSelectable="true"
+    app:layout_constrainedWidth="true"
+    app:layout_constraintEnd_toStartOf="@id/expand"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/name"
+    tools:text="yshrsmz"
+    />
+
+  <ImageView
+    android:id="@+id/expand"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:contentDescription="@string/accessibility_expand"
+    app:layout_constraintBottom_toBottomOf="@id/author"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:srcCompat="@drawable/ic_expand_more_black_24dp"
+    />
+
+</android.support.constraint.ConstraintLayout>

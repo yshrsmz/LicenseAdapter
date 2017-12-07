@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
 import net.yslibrary.licenseadapter.Library;
 import net.yslibrary.licenseadapter.License;
 
-public class LibrariesHolder extends AndroidViewModel {
+public final class LibrariesHolder extends AndroidViewModel {
   public interface Listener {
     void onComplete(@Nullable License license, @Nullable Exception e);
   }
