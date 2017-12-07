@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView list = findViewById(R.id.list);
     list.setLayoutManager(new LinearLayoutManager(this));
+    list.setHasFixedSize(true);
     list.setAdapter(new LicenseAdapter(licenses));
   }
 }

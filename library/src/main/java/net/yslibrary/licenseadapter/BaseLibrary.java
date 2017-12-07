@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A library which handles loading and caching of licenses.
+ * A base library implementation which handles loading and caching of licenses for you.
  */
 public abstract class BaseLibrary implements Library {
   private static final String TAG = "LicenseAdapter";
@@ -146,7 +146,7 @@ public abstract class BaseLibrary implements Library {
    * Loads a fresh copy of the license.
    * <p>
    * In-memory and disk caching will be handled for you. Simply request the license's full legal
-   * text from wherever it may be acquired, network or otherwise. If this library doesn't have
+   * text from wherever it may be obtained, network or otherwise. If this library doesn't have
    * license text or it's short and already loaded in the original license, simply return the
    * existing license through {@link #getLicense()}. Otherwise, block the current thread until the
    * license is loaded.
