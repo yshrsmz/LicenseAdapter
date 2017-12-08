@@ -74,7 +74,7 @@ Thanks [@SUPERCILEX](https://github.com/SUPERCILEX) for adding great new feature
 
 ### Enhancement
 
-- Add `Licenses#fromGitHubApacheV2(String)`, `Licenses#fromGitHubApacheV2(String, String)`, `Licenses#fromGitHubMIT(String)`, `Licenses#fromGitHubMIT(String, String)`, `Licenses#fromGitHubBSD(String)`, `Licenses#fromGitHubBSD(String, String)`.
+- Add `Licenses#fromGitHubApacheV2(String)`, `Licenses#fromGitHubApacheV2(String, String)`, `Licenses#fromGitHubMIT(String)`, `Licenses#fromGitHubMIT(String, String)`, `Licenses#fromGitHubBSD(String)`, `Licenses#fromGitHubBSD(String, String)`.  
   For other licenses, use `Licenses#fromGitHub(String, License)` and `Licenses#fromGitHub(String, String, String)`, the same as before.
 
 

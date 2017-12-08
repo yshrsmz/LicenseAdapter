@@ -1,10 +1,10 @@
-# License Adapter
+# LicenseAdapter
 
 [![Build Status](https://travis-ci.org/yshrsmz/LicenseAdapter.svg?branch=master)](https://travis-ci.org/yshrsmz/LicenseAdapter)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-LicenseAdapter-green.svg?style=true)](https://android-arsenal.com/details/1/3516)
 [![Bintray](https://img.shields.io/bintray/v/yshrsmz/maven/licenseadapter.svg)](https://bintray.com/yshrsmz/maven/licenseadapter/view)
 
-License adapter is an easy-to-use library that provides a RecyclerView
+LicenseAdapter is an easy-to-use library that provides a RecyclerView
 adapter to display OSS dependencies and their associated licenses.
 
 <img src="assets/demo.gif" width="50%" height="50%" />
@@ -17,7 +17,7 @@ adapter to display OSS dependencies and their associated licenses.
 - [Usage](#usage)
   - [Predefined license names](#predefined-license-names)
   - [Predefined license file names](#predefined-license-file-names)
-- [Apps using License Adapter](#apps-using-license-adapter)
+- [Apps using LicenseAdapter](#apps-using-licenseadapter)
 - [License](#license)
 
 ## Installation
@@ -86,7 +86,7 @@ Automatically find the license file from the predefined set below | `Licenses#FI
 `LICENSE.txt` | `Licenses#FILE_TXT`
 `LICENSE.md` | `Licenses#FILE_MD`
 
-## Apps using License Adapter
+## Apps using LicenseAdapter
 
 Send PR if you want your app to be included here ;)
 
