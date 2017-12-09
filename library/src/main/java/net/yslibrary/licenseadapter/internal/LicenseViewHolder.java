@@ -33,7 +33,7 @@ public final class LicenseViewHolder extends ViewHolderBase implements View.OnCl
     expandableLibrary = library;
     boolean expanded = library.isExpanded();
 
-    licenseName.setText(expandableLibrary.library.license().name);
+    licenseName.setText(expandableLibrary.getLibrary().getLicense().getName());
 
     int visibility = expanded ? View.VISIBLE : View.GONE;
     // Hack to circumvent padding bug. See XML.
@@ -42,7 +42,7 @@ public final class LicenseViewHolder extends ViewHolderBase implements View.OnCl
     license.setVisibility(visibility);
 
     if (expanded) {
-      holder.load(expandableLibrary.library, new LibrariesHolder.Listener() {
+      holder.load(expandableLibrary.getLibrary(), new LibrariesHolder.Listener() {
         @Override
         public void onComplete(@Nullable License license, @Nullable Exception e) {
           // Since this view holder could be reused for different libraries, ensure it wasn't
@@ -50,7 +50,7 @@ public final class LicenseViewHolder extends ViewHolderBase implements View.OnCl
           if (LicenseViewHolder.this.expandableLibrary.equals(library)) {
             if (e == null) {
               //noinspection ConstantConditions
-              LicenseViewHolder.this.license.setText(license.text);
+              LicenseViewHolder.this.license.setText(license.getText());
             } else {
               LicenseViewHolder.this.license.setText(R.string.license_load_error);
             }
@@ -62,7 +62,7 @@ public final class LicenseViewHolder extends ViewHolderBase implements View.OnCl
 
   @Override
   public void onClick(View v) {
-    String url = expandableLibrary.library.license().url;
+    String url = expandableLibrary.getLibrary().getLicense().getUrl();
     if (!TextUtils.isEmpty(url)) {
       launchUri(Uri.parse(url));
     }

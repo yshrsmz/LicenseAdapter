@@ -38,12 +38,12 @@ public final class LibraryViewHolder extends ViewHolderBase implements View.OnCl
 
   public void bind(@NonNull ExpandableLibrary library) {
     expandableLibrary = library;
-    bind(expandableLibrary.library);
+    bind(expandableLibrary.getLibrary());
   }
 
   private void bind(@NonNull Library library) {
-    name.setText(library.name());
-    author.setText(library.author());
+    name.setText(library.getName());
+    author.setText(library.getAuthor());
     name.setTextColor(library instanceof GitHubLibrary ? colorAccent : normalTextColor);
 
     updateExpandedStatus(false);
@@ -53,10 +53,10 @@ public final class LibraryViewHolder extends ViewHolderBase implements View.OnCl
   public void onClick(View v) {
     if (v == itemView) {
       expandableLibrary.setExpanded(
-          expandableLibrary.library.hasContent() && !expandableLibrary.isExpanded());
+          expandableLibrary.getLibrary().hasContent() && !expandableLibrary.isExpanded());
       updateExpandedStatus(true);
     } else if (v == name) {
-      launchLibraryUrl(expandableLibrary.library);
+      launchLibraryUrl(expandableLibrary.getLibrary());
     } else {
       throw new IllegalStateException("Unknown view: " + v);
     }
@@ -66,9 +66,9 @@ public final class LibraryViewHolder extends ViewHolderBase implements View.OnCl
     Uri uri;
     if (library instanceof GitHubLibrary) {
       uri = Uri.parse(GitHubLibrary.URL_BASE_PUBLIC
-          + library.author() + GitHubLibrary.URL_REPO_SPLIT + library.name());
+          + library.getAuthor() + GitHubLibrary.URL_REPO_SPLIT + library.getName());
     } else if (library instanceof NoContentLibrary) {
-      uri = Uri.parse(library.license().url);
+      uri = Uri.parse(library.getLicense().getUrl());
     } else {
       onClick(itemView);
       return;
@@ -78,7 +78,7 @@ public final class LibraryViewHolder extends ViewHolderBase implements View.OnCl
   }
 
   private void updateExpandedStatus(boolean animate) {
-    expand.setVisibility(expandableLibrary.library.hasContent() ? View.VISIBLE : View.GONE);
+    expand.setVisibility(expandableLibrary.getLibrary().hasContent() ? View.VISIBLE : View.GONE);
 
     float rotation = expandableLibrary.isExpanded() ? 180 : 0;
     if (animate) {

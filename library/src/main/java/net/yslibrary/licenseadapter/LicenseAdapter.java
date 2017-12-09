@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -18,6 +19,15 @@ import net.yslibrary.licenseadapter.internal.LibraryViewHolder;
 import net.yslibrary.licenseadapter.internal.LicenseViewHolder;
 import net.yslibrary.licenseadapter.internal.ViewHolderBase;
 
+/**
+ * A {@link RecyclerView.Adapter} which displays expandable items with a library and its license.
+ * <p>
+ * For optimal performance, the {@link RecyclerView} using this adapter should be attached a support
+ * library context such as the {@link AppCompatActivity}.
+ *
+ * @see Library
+ * @see Licenses
+ */
 public final class LicenseAdapter extends RecyclerView.Adapter<ViewHolderBase>
     implements ExpandableLibrary.ExpandListener {
   private static final int TYPE_LIBRARY = 0;
@@ -26,6 +36,11 @@ public final class LicenseAdapter extends RecyclerView.Adapter<ViewHolderBase>
   private final List<ExpandableLibrary> libraries;
   private LibrariesHolder holder;
 
+  /**
+   * Construct a new adapter to display a list of libraries and their licenses.
+   *
+   * @param libraries the libraries to display
+   */
   public LicenseAdapter(@NonNull List<Library> libraries) {
     List<ExpandableLibrary> wrappedLibraries = new ArrayList<>();
     for (Library library : libraries) {

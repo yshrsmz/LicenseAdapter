@@ -8,14 +8,19 @@ public final class ExpandableLibrary {
     void onExpand(@NonNull ExpandableLibrary library, boolean expanded);
   }
 
-  @NonNull
-  public final Library library;
+  private final Library library;
   private final ExpandListener listener;
+
   private boolean expanded;
 
   public ExpandableLibrary(@NonNull Library library, @NonNull ExpandListener listener) {
     this.library = library;
     this.listener = listener;
+  }
+
+  @NonNull
+  public Library getLibrary() {
+    return library;
   }
 
   public boolean isExpanded() {

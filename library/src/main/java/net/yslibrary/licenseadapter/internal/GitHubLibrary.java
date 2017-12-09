@@ -49,18 +49,18 @@ public final class GitHubLibrary extends BaseLibrary {
 
   @Override
   public boolean isLoaded() {
-    return !TextUtils.isEmpty(license().text);
+    return !TextUtils.isEmpty(getLicense().getText());
   }
 
   @NonNull
   @WorkerThread
   @Override
   protected License doLoad() {
-    if (possibleLicenseUrls.isEmpty()) return license();
+    if (possibleLicenseUrls.isEmpty()) return getLicense();
 
     for (String url : possibleLicenseUrls) {
       try {
-        return new License.Builder(license()).setText(loadContents(url)).setUrl(url).build();
+        return new License.Builder(getLicense()).setText(loadContents(url)).setUrl(url).build();
       } catch (IOException ignored) {
         // Handled below
       }
