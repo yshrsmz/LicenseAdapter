@@ -9,12 +9,17 @@ android {
     targetSdkVersion 27
     versionCode 2
     versionName rootProject.ext.metadata.version
+    vectorDrawables.useSupportLibrary = true
   }
 }
 
 dependencies {
   api "com.android.support:recyclerview-v7:$supportlib_version"
+
   implementation "com.android.support:appcompat-v7:$supportlib_version"
+  implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta3'
+  implementation "com.android.support:customtabs:$supportlib_version"
+  implementation "android.arch.lifecycle:extensions:$architecture_version"
 }
 
 publish {

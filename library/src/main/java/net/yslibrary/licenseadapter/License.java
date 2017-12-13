@@ -1,82 +1,140 @@
 package net.yslibrary.licenseadapter;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
-public class License implements Parcelable {
-  public static final Creator<License> CREATOR = new Creator<License>() {
-    public License createFromParcel(Parcel source) {
-      return new License(source);
-    }
+/**
+ * An immutable model object representing a library's license.
+ *
+ * @see Library
+ */
+public final class License {
+  private final String name;
+  private final String text;
+  private final String url;
 
-    public License[] newArray(int size) {
-      return new License[size];
-    }
-  };
-  public String name;
-  public String url;
-  public String text;
-
-  protected License(String name, String url, String text) {
+  private License(@NonNull String name, @Nullable String text, @Nullable String url) {
     this.name = name;
     this.url = url;
     this.text = text;
   }
 
-  protected License(Parcel in) {
-    name = in.readString();
-    url = in.readString();
-    text = in.readString();
+  /**
+   * @return the license name
+   */
+  @NonNull
+  public String getName() {
+    return name;
   }
 
-  public static Builder builder() {
-    return new Builder();
+  /**
+   * @return the license's full legal text
+   */
+  @Nullable
+  public String getText() {
+    return text;
+  }
+
+  /**
+   * @return the license's url, either on the creator's website or the copy in a library
+   */
+  @Nullable
+  public String getUrl() {
+    return url;
   }
 
   @Override
-  public int describeContents() {
-    return 0;
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    License license = (License) o;
+
+    return name.equals(license.name)
+        && (text == null ? license.text == null : text.equals(license.text))
+        && (url == null ? license.url == null : url.equals(license.url));
   }
 
   @Override
-  public void writeToParcel(Parcel dest, int flags) {
-    dest.writeString(name);
-    dest.writeString(url);
-    dest.writeString(text);
-  }
-
-  public boolean isLoaded() {
-    return text != null;
+  public int hashCode() {
+    int result = name.hashCode();
+    result = 31 * result + (text == null ? 0 : text.hashCode());
+    result = 31 * result + (url == null ? 0 : url.hashCode());
+    return result;
   }
 
   @Override
   public String toString() {
-    return String.format("\n***** LICENSE *****\nName = %s\nUrl = %s\nText = %s\n", name, url,
-        text);
+    return "License{" +
+        "name='" + name + '\'' +
+        ", text='" + text + '\'' +
+        ", url='" + url + '\''
+        + '}';
   }
 
-  public static class Builder {
-    private String name;
-    private String url;
+  /**
+   * The builder used to construct new license objects.
+   *
+   * @see License
+   */
+  public static final class Builder {
+    private final String name;
+
     private String text;
+    private String url;
 
-    public Builder setName(String name) {
+    /**
+     * Constructs a new builder with the license name.
+     *
+     * @param name the license name
+     */
+    public Builder(@NonNull String name) {
       this.name = name;
-      return this;
     }
 
-    public Builder setUrl(String url) {
-      this.url = url;
-      return this;
+    /**
+     * Constructs a new builder which copies an existing license's fields.
+     *
+     * @param license the license to copy
+     */
+    public Builder(@NonNull License license) {
+      name = license.getName();
+      text = license.getText();
+      url = license.getUrl();
     }
 
-    public Builder setText(String text) {
+    /**
+     * Set the license's text. It should be the full legal text, not a shortened file header.
+     *
+     * @param text the license text
+     * @return the builder for chaining purposes
+     */
+    @NonNull
+    public Builder setText(@Nullable String text) {
       this.text = text;
       return this;
     }
 
+    /**
+     * Set the license's url. It can be the original license on the license creator's website or a
+     * copy of the license in the library using it.
+     *
+     * @param url the license's url
+     * @return the builder for chaining purposes
+     */
+    @NonNull
+    public Builder setUrl(@Nullable String url) {
+      this.url = url;
+      return this;
+    }
+
+    /**
+     * @return the complete license
+     * @see License
+     */
+    @NonNull
     public License build() {
-      return new License(name, url, text);
+      return new License(name, text, url);
     }
   }
 }

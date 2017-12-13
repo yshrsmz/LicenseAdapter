@@ -1,3 +1,46 @@
+## 2.0.0 - 2017/12/XX
+
+### Breaking changes
+
+Most breaking changes should not affect you unless you built custom
+infrastructure around License Adapter model classes. Important changes
+are noted in bold.
+
+- **The `Licenses#load(List<LicenseEntry>)` method is no longer necessary
+  and has been removed.**
+- **The `LicenseEntry` has been renamed to `Library` to minimize
+  confusion.**
+  - The `LicenseAdapter`'s constructor takes in a list of `Library`s
+    instead of `LicenseEntry`s.
+- The standard AppCompat color resources (`colorPrimary`,
+  `colorPrimaryDark`, `colorAccent`) are now required.
+- Models no longer implement `Parcelable`, are final, and follow proper
+  Java Bean getter/setter naming conventions.
+- The `name()`, `version()`, and `link()` getters on the `LicenseEntry`
+  are no longer present in the `Library` interface as they weren't being
+  used.
+- The `Licenses` entry point is now final and cannot be instantiated.
+- `Library` implementation are no longer accessible. The `Licenses`
+  class should cover all cases. If it doesn't, please file an issue!
+- The `BaseLibrary` class now has a simple API which automatically
+  performs in-memory and on-disk caching and can be extended if necessary.
+
+### New features
+
+- Completely revamped UI and improved UX
+- On-demand license legal text loading instead of all at once when it
+  isn't necessarily needed
+- On-device and in-memory (config change resilient) caching for optimal
+  performance
+- Uses vector drawables to minimize resources
+- Massively improved API surface
+
+### Bug fixes
+
+- Input streams weren't closed properly
+- If license text took too long to load, it wouldn't be displayed
+
+
 ## 1.4.1 - 2017/09/XX
 
 ### Changes
