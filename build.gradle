@@ -60,3 +60,7 @@ task releng {
     shell "git push origin master"
   }
 }
+
+// # release commands:
+// ./gradlew clean build releaseAndroidJavadocs releaseAndroidJavadocJar releaseAndroidSourceJar generatePomFileForReleasePublication
+// ./gradlew bintrayUpload

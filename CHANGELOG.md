@@ -1,3 +1,10 @@
+## 2.0.2 - 2017/12/14
+
+### Bug fixes
+
+- Artifact is broken [#39](https://github.com/yshrsmz/LicenseAdapter/issues/39)
+
+
 ## 2.0.1 - 2017/12/14
 
 ### Bug fixes
