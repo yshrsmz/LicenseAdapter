@@ -126,6 +126,9 @@ public final class Licenses {
    * located at {@code github.com/author/name/my/custom/path/LICENSE.weirdextension}, the relative
    * license path would be "my/custom/path/LICENSE.weirdextension".
    *
+   * @param shortUrl            library's GitHub repository in short url format: "user/repoName"
+   * @param relativeLicensePath relative license path.
+   * @return the generated {@link Library} used in {@link LicenseAdapter#LicenseAdapter(List)}
    * @see #fromGitHubApacheV2(String)
    */
   public static Library fromGitHubApacheV2(@NonNull String shortUrl,
@@ -136,6 +139,8 @@ public final class Licenses {
   /**
    * Creates a new library from the {@link #NAME_MIT MIT License}.
    *
+   * @param shortUrl library's GitHub repository in short url format: "user/repoName"
+   * @return the generated {@link Library} used in {@link LicenseAdapter#LicenseAdapter(List)}
    * @see #fromGitHubApacheV2(String)
    */
   public static Library fromGitHubMIT(@NonNull String shortUrl) {
@@ -146,6 +151,9 @@ public final class Licenses {
    * Creates a new library from the {@link #NAME_MIT MIT License} with a custom relative license
    * path.
    *
+   * @param shortUrl            library's GitHub repository in short url format: "user/repoName"
+   * @param relativeLicensePath relative license path.
+   * @return the generated {@link Library} used in {@link LicenseAdapter#LicenseAdapter(List)}
    * @see #fromGitHubApacheV2(String, String)
    */
   public static Library fromGitHubMIT(@NonNull String shortUrl,
@@ -156,6 +164,8 @@ public final class Licenses {
   /**
    * Creates a new library from the {@link #NAME_BSD BSD License}.
    *
+   * @param shortUrl library's GitHub repository in short url format: "user/repoName"
+   * @return the generated {@link Library} used in {@link LicenseAdapter#LicenseAdapter(List)}
    * @see #fromGitHubApacheV2(String)
    */
   public static Library fromGitHubBSD(@NonNull String shortUrl) {
@@ -166,6 +176,9 @@ public final class Licenses {
    * Creates a new library from the {@link #NAME_BSD BSD License} with a custom relative license
    * path.
    *
+   * @param shortUrl            library's GitHub repository in short url format: "user/repoName"
+   * @param relativeLicensePath relative license path.
+   * @return the generated {@link Library} used in {@link LicenseAdapter#LicenseAdapter(List)}
    * @see #fromGitHubApacheV2(String, String)
    */
   public static Library fromGitHubBSD(@NonNull String shortUrl,
@@ -176,6 +189,9 @@ public final class Licenses {
   /**
    * Creates a new library from a custom license.
    *
+   * @param shortUrl library's GitHub repository in short url format: "user/repoName"
+   * @param license  custom license implementation
+   * @return the generated {@link Library} used in {@link LicenseAdapter#LicenseAdapter(List)}
    * @see #fromGitHubApacheV2(String)
    * @see License
    */
@@ -187,19 +203,26 @@ public final class Licenses {
   /**
    * Creates a new library from a custom license name.
    *
+   * @param shortUrl            library's GitHub repository in short url format: "user/repoName"
+   * @param relativeLicensePath relative license path.
+   * @param licenseName         custom license name
+   * @return the generated {@link Library} used in {@link LicenseAdapter#LicenseAdapter(List)}
    * @see #fromGitHubApacheV2(String)
    * @see #fromGitHubApacheV2(String, String)
    */
   public static Library fromGitHub(@NonNull String shortUrl, @NonNull String relativeLicensePath,
       @NonNull String licenseName) {
-    return new GitHubLibrary.Builder(shortUrl, licenseName)
-        .setRelativeLicensePath(relativeLicensePath)
-        .build();
+    return new GitHubLibrary.Builder(shortUrl, licenseName).setRelativeLicensePath(
+        relativeLicensePath).build();
   }
 
   /**
    * Creates a new library with a name, author, and license url, but without any license text.
    *
+   * @param name   library name
+   * @param author name of the library's author
+   * @param url    link to the library's website
+   * @return the generated {@link Library} used in {@link LicenseAdapter#LicenseAdapter(List)}
    * @see #fromGitHubApacheV2(String)
    * @see License
    */
@@ -212,12 +235,16 @@ public final class Licenses {
   /**
    * Creates a new library with a name, author, and license name, but no license text.
    *
+   * @param name        library name
+   * @param author      name of the library's author
+   * @param licenseName name of the license
+   * @param text        content of the license
+   * @return the generated {@link Library} used in {@link LicenseAdapter#LicenseAdapter(List)}
    * @see #fromGitHubApacheV2(String)
    * @see License
    */
   public static Library noLink(@NonNull String name, @NonNull String author,
       @NonNull String licenseName, @Nullable String text) {
-    return new NoLinkLibrary(name, author,
-        new License.Builder(licenseName).setText(text).build());
+    return new NoLinkLibrary(name, author, new License.Builder(licenseName).setText(text).build());
   }
 }
