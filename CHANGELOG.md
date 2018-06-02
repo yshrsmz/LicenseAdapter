@@ -1,3 +1,10 @@
+## 2.1.0 - 2018/06/02
+
+### Bug fixes/Behavior changes
+
+- use Attributes to obtain `colorPrimary` and `colorAccent`, so that we don't need to declare color value named `colorPrimary` or `colorAccent` [#43](https://github.com/yshrsmz/LicenseAdapter/issues/43)
+
+
 ## 2.0.2 - 2017/12/14
 
 ### Bug fixes
