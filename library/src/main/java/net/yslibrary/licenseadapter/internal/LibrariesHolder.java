@@ -7,12 +7,13 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.LruCache;
+import net.yslibrary.licenseadapter.Library;
+import net.yslibrary.licenseadapter.License;
+
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import net.yslibrary.licenseadapter.Library;
-import net.yslibrary.licenseadapter.License;
 
 public final class LibrariesHolder extends AndroidViewModel {
   public interface Listener {

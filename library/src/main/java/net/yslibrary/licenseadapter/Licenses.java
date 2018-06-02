@@ -3,10 +3,11 @@ package net.yslibrary.licenseadapter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import java.util.List;
 import net.yslibrary.licenseadapter.internal.GitHubLibrary;
 import net.yslibrary.licenseadapter.internal.NoContentLibrary;
 import net.yslibrary.licenseadapter.internal.NoLinkLibrary;
+
+import java.util.List;
 
 /**
  * Main entry point to get {@link Library}s and load them.
@@ -132,7 +133,7 @@ public final class Licenses {
    * @see #fromGitHubApacheV2(String)
    */
   public static Library fromGitHubApacheV2(@NonNull String shortUrl,
-      @NonNull String relativeLicensePath) {
+                                           @NonNull String relativeLicensePath) {
     return fromGitHub(shortUrl, relativeLicensePath, NAME_APACHE_V2);
   }
 
@@ -157,7 +158,7 @@ public final class Licenses {
    * @see #fromGitHubApacheV2(String, String)
    */
   public static Library fromGitHubMIT(@NonNull String shortUrl,
-      @NonNull String relativeLicensePath) {
+                                      @NonNull String relativeLicensePath) {
     return fromGitHub(shortUrl, relativeLicensePath, NAME_MIT);
   }
 
@@ -182,7 +183,7 @@ public final class Licenses {
    * @see #fromGitHubApacheV2(String, String)
    */
   public static Library fromGitHubBSD(@NonNull String shortUrl,
-      @NonNull String relativeLicensePath) {
+                                      @NonNull String relativeLicensePath) {
     return fromGitHub(shortUrl, relativeLicensePath, NAME_BSD);
   }
 
@@ -211,7 +212,7 @@ public final class Licenses {
    * @see #fromGitHubApacheV2(String, String)
    */
   public static Library fromGitHub(@NonNull String shortUrl, @NonNull String relativeLicensePath,
-      @NonNull String licenseName) {
+                                   @NonNull String licenseName) {
     return new GitHubLibrary.Builder(shortUrl, licenseName).setRelativeLicensePath(
         relativeLicensePath).build();
   }
@@ -227,7 +228,7 @@ public final class Licenses {
    * @see License
    */
   public static Library noContent(@NonNull String name, @NonNull String author,
-      @NonNull String url) {
+                                  @NonNull String url) {
     return new NoContentLibrary(name, author,
         new License.Builder(NAME_UNKNOWN).setUrl(url).build());
   }
@@ -244,7 +245,7 @@ public final class Licenses {
    * @see License
    */
   public static Library noLink(@NonNull String name, @NonNull String author,
-      @NonNull String licenseName, @Nullable String text) {
+                               @NonNull String licenseName, @Nullable String text) {
     return new NoLinkLibrary(name, author, new License.Builder(licenseName).setText(text).build());
   }
 }

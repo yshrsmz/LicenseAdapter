@@ -2,6 +2,7 @@ package net.yslibrary.licenseadapter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.WorkerThread;
+
 import java.io.File;
 
 /**

@@ -5,6 +5,10 @@ import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
 import android.util.Log;
+import net.yslibrary.licenseadapter.BaseLibrary;
+import net.yslibrary.licenseadapter.License;
+import net.yslibrary.licenseadapter.Licenses;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,9 +17,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import net.yslibrary.licenseadapter.BaseLibrary;
-import net.yslibrary.licenseadapter.License;
-import net.yslibrary.licenseadapter.Licenses;
 
 public final class GitHubLibrary extends BaseLibrary {
   public static final String URL_BASE_PUBLIC = "https://github.com/";
@@ -26,7 +27,7 @@ public final class GitHubLibrary extends BaseLibrary {
   private final List<String> possibleLicenseUrls;
 
   private GitHubLibrary(@NonNull String name, @NonNull String author, @NonNull License license,
-      @NonNull List<String> possibleLicenseUrls) {
+                        @NonNull List<String> possibleLicenseUrls) {
     super(name, author, license);
     this.possibleLicenseUrls = possibleLicenseUrls;
   }
