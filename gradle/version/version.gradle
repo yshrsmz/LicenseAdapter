@@ -5,7 +5,7 @@ task bumpMajor {
       entry(key: 'minor', type: 'int', operation: '=', value: 0)
       entry(key: 'patch', type: 'int', operation: '=', value: 0)
     }
-    tasks.version.execute()
+    printVersionName()
   }
 }
 
@@ -15,7 +15,7 @@ task bumpMinor {
       entry(key: 'minor', type: 'int', operation: '+', value: 1)
       entry(key: 'patch', type: 'int', operation: '=', value: 0)
     }
-    tasks.version.execute()
+    printVersionName()
   }
 }
 
@@ -24,19 +24,23 @@ task bumpPatch {
     ant.propertyfile(file: "${project.rootDir}/gradle/version/version.properties") {
       entry(key: 'patch', type: 'int', operation: '+', value: 1)
     }
-    tasks.version.execute()
+    printVersionName()
   }
 }
 
 task version {
   doLast {
-    println versionName()
+    printVersionName()
   }
 }
 
 ext.versionName = {
   def versionProps = getVersionProps()
   return "${versionProps['major']}.${versionProps['minor']}.${versionProps['patch']}"
+}
+
+def printVersionName() {
+  println versionName()
 }
 
 def Properties getVersionProps() {
