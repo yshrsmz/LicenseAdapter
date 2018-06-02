@@ -1,6 +1,6 @@
 ext {
   metadata = [
-      userOrg   : 'yslibrary.net',
+      userOrg   : 'yshrsmz',
       groupId   : 'net.yslibrary.licenseadapter',
       website   : 'https://github.com/yshrsmz/LicenseAdapter',
       repository: 'git@github.com:yshrsmz/LicenseAdapter.git',
