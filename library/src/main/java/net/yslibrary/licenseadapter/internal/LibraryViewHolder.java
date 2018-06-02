@@ -2,7 +2,6 @@ package net.yslibrary.licenseadapter.internal;
 
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,7 +25,7 @@ public final class LibraryViewHolder extends ViewHolderBase implements View.OnCl
     author = itemView.findViewById(R.id.author);
     expand = itemView.findViewById(R.id.expand);
 
-    colorAccent = ContextCompat.getColor(itemView.getContext(), R.color.colorAccent);
+    colorAccent = Utils.getIntValueFromAttribute(itemView.getContext(), R.attr.colorAccent);
     normalTextColor = name.getCurrentTextColor();
 
     itemView.setOnClickListener(this);
