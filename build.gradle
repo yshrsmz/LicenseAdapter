@@ -10,10 +10,10 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.0.1'
+    classpath 'com.android.tools.build:gradle:3.1.2'
 
     classpath 'com.github.ben-manes:gradle-versions-plugin:0.17.0'
-    classpath 'com.novoda:bintray-release:0.8.0' // https://github.com/novoda/bintray-release
+    classpath 'com.novoda:bintray-release:0.8.1' // https://github.com/novoda/bintray-release
   }
 }
 
@@ -25,8 +25,8 @@ allprojects {
 }
 
 ext {
-  supportlib_version = '27.0.2'
-  architecture_version = '1.0.0'
+  supportlib_version = '27.1.1'
+  architecture_version = '1.1.1'
   metadata.version = ext.versionName()
 }
 
@@ -66,6 +66,6 @@ task releng {
 // ./gradlew bintrayUpload
 
 task wrapper(type: Wrapper) {
-  gradleVersion = "4.4"
+  gradleVersion = "4.4.1"
   distributionType "ALL"
 }

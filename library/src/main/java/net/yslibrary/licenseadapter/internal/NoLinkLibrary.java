@@ -9,7 +9,7 @@ import net.yslibrary.licenseadapter.License;
  */
 public final class NoLinkLibrary extends BaseLibrary {
   public NoLinkLibrary(@NonNull String name, @NonNull String author,
-      @NonNull License license) {
+                       @NonNull License license) {
     super(name, author, license);
   }
 

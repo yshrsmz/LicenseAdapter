@@ -10,14 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import net.yslibrary.licenseadapter.internal.ExpandableLibrary;
 import net.yslibrary.licenseadapter.internal.LibrariesHolder;
 import net.yslibrary.licenseadapter.internal.LibraryViewHolder;
 import net.yslibrary.licenseadapter.internal.LicenseViewHolder;
 import net.yslibrary.licenseadapter.internal.ViewHolderBase;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * A {@link RecyclerView.Adapter} which displays expandable items with a library and its license.
