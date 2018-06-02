@@ -3,7 +3,6 @@ package net.yslibrary.licenseadapter.internal;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.customtabs.CustomTabsIntent;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import net.yslibrary.licenseadapter.R;
@@ -13,7 +12,8 @@ public abstract class ViewHolderBase extends RecyclerView.ViewHolder {
 
   public ViewHolderBase(View itemView) {
     super(itemView);
-    colorPrimary = ContextCompat.getColor(itemView.getContext(), R.color.colorPrimary);
+
+    colorPrimary = Utils.getIntValueFromAttribute(itemView.getContext(), R.attr.colorPrimary);
   }
 
   protected final void launchUri(Uri uri) {
