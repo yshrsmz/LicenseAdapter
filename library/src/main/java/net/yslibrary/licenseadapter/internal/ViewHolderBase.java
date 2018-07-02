@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import net.yslibrary.licenseadapter.R;
 
 public abstract class ViewHolderBase extends RecyclerView.ViewHolder {
   private final int colorPrimary;
@@ -13,7 +12,7 @@ public abstract class ViewHolderBase extends RecyclerView.ViewHolder {
   public ViewHolderBase(View itemView) {
     super(itemView);
 
-    colorPrimary = Utils.getIntValueFromAttribute(itemView.getContext(), R.attr.colorPrimary);
+    colorPrimary = Utils.getIntValueFromAttribute(itemView.getContext(), android.R.attr.colorPrimary);
   }
 
   protected final void launchUri(Uri uri) {
