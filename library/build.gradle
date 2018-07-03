@@ -15,11 +15,14 @@ android {
 }
 
 dependencies {
+  //noinspection GradleCompatible
   api "com.android.support:recyclerview-v7:$supportlib_version"
 
+  //noinspection GradleCompatible
   implementation "com.android.support:appcompat-v7:$supportlib_version"
-  implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+  //noinspection GradleCompatible
   implementation "com.android.support:customtabs:$supportlib_version"
+  implementation 'com.android.support.constraint:constraint-layout:1.1.2'
   implementation "android.arch.lifecycle:extensions:$architecture_version"
 }
 
