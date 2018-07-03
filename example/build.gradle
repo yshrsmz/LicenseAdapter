@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-  compileSdkVersion 27
+  compileSdkVersion 28
 
   defaultConfig {
     applicationId 'net.yslibrary.licenseadapter.example'
     minSdkVersion 15
-    targetSdkVersion 27
+    targetSdkVersion 28
     versionCode 1
     versionName "1.0"
   }
@@ -14,7 +14,6 @@ android {
 
 dependencies {
   implementation project(':library')
-//  implementation "net.yslibrary.licenseadapter:licenseadapter:2.1.0"
   implementation "com.android.support:appcompat-v7:$supportlib_version"
 
   // Needed to fix dependency conflict
