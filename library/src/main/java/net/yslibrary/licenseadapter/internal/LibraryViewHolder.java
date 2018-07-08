@@ -26,7 +26,7 @@ public final class LibraryViewHolder extends ViewHolderBase implements View.OnCl
     author = itemView.findViewById(R.id.author);
     expand = itemView.findViewById(R.id.expand);
 
-    colorAccent = Utils.getIntValueFromAttribute(itemView.getContext(), R.attr.colorAccent);
+    colorAccent = Utils.getIntValueFromAttribute(itemView.getContext(), android.R.attr.colorAccent);
     normalTextColor = name.getCurrentTextColor();
 
     itemView.setOnClickListener(this);
