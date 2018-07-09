@@ -8,6 +8,7 @@ import android.util.Log;
 import net.yslibrary.licenseadapter.BaseLibrary;
 import net.yslibrary.licenseadapter.License;
 import net.yslibrary.licenseadapter.Licenses;
+import net.yslibrary.licenseadapter.OpenSourceLibrary;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,11 +19,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public final class GitHubLibrary extends BaseLibrary {
-  public static final String URL_BASE_PUBLIC = "https://github.com/";
-  public static final String URL_REPO_SPLIT = "/";
-
+public final class GitHubLibrary extends BaseLibrary implements OpenSourceLibrary {
   private static final String TAG = "GitHubLibrary";
+
+  private static final String URL_BASE_PUBLIC = "https://github.com/";
+  private static final String URL_REPO_SPLIT = "/";
 
   private final List<String> possibleLicenseUrls;
 
@@ -75,6 +76,12 @@ public final class GitHubLibrary extends BaseLibrary {
   @Override
   public boolean hasContent() {
     return true;
+  }
+
+  @NonNull
+  @Override
+  public String getSourceUrl() {
+    return URL_BASE_PUBLIC + getAuthor() + URL_REPO_SPLIT + getName();
   }
 
   public static final class Builder {
