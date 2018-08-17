@@ -23,7 +23,7 @@
 
     <TextView
       android:id="@+id/license_name"
-      style="@style/Base.TextAppearance.AppCompat.Subhead"
+      android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="center_horizontal"
@@ -33,7 +33,7 @@
 
     <TextView
       android:id="@+id/license"
-      style="@style/Base.TextAppearance.AppCompat.Body1"
+      android:textAppearance="@style/TextAppearance.AppCompat.Body1"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:textIsSelectable="true"
