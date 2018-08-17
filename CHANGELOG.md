@@ -6,6 +6,7 @@
   - Incorrectly colored library titles
   - Incorrectly styled text
   - Crash loading drawables
+- Fix bug where license wouldn't always display on first load
 
 
 ## 2.1.1 - 2018/07/10
