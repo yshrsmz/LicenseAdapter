@@ -13,7 +13,7 @@
 
   <TextView
     android:id="@+id/name"
-    style="@style/Base.TextAppearance.AppCompat.Title"
+    android:textAppearance="@style/TextAppearance.AppCompat.Title"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="start"
@@ -28,7 +28,7 @@
 
   <TextView
     android:id="@+id/author"
-    style="@style/Base.TextAppearance.AppCompat.Body2"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textIsSelectable="true"

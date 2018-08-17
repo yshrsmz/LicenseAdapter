@@ -12,7 +12,7 @@ public abstract class ViewHolderBase extends RecyclerView.ViewHolder {
   public ViewHolderBase(View itemView) {
     super(itemView);
 
-    colorPrimary = Utils.getIntValueFromAttribute(itemView.getContext(), android.R.attr.colorPrimary);
+    colorPrimary = Utils.getIntValueFromAttribute(itemView.getContext(), android.support.v7.appcompat.R.attr.colorPrimary);
   }
 
   protected final void launchUri(Uri uri) {
