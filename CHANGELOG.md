@@ -1,8 +1,16 @@
+## 2.1.1 - 2018/07/10
+
+### Bug fixes
+
+- Fix crash retrieving attr. Primary and accent colors are now retrieved from the system attrs.
+- Colorize all linkable library names
+
+
 ## 2.1.0 - 2018/06/02
 
 ### Bug fixes/Behavior changes
 
-- use Attributes to obtain `colorPrimary` and `colorAccent`, so that we don't need to declare color value named `colorPrimary` or `colorAccent` [#43](https://github.com/yshrsmz/LicenseAdapter/issues/43)
+- Use Attributes to obtain `colorPrimary` and `colorAccent`, so that we don't need to declare color value named `colorPrimary` or `colorAccent` [#43](https://github.com/yshrsmz/LicenseAdapter/issues/43)
 
 
 ## 2.0.2 - 2017/12/14
@@ -96,7 +104,7 @@ Thanks [@SUPERCILEX](https://github.com/SUPERCILEX) for adding great new feature
 
 ### Enhancement
 
-- Add `Licenses#fromGitHubApacheV2(String)`, `Licenses#fromGitHubApacheV2(String, String)`, `Licenses#fromGitHubMIT(String)`, `Licenses#fromGitHubMIT(String, String)`, `Licenses#fromGitHubBSD(String)`, `Licenses#fromGitHubBSD(String, String)`.  
+- Add `Licenses#fromGitHubApacheV2(String)`, `Licenses#fromGitHubApacheV2(String, String)`, `Licenses#fromGitHubMIT(String)`, `Licenses#fromGitHubMIT(String, String)`, `Licenses#fromGitHubBSD(String)`, `Licenses#fromGitHubBSD(String, String)`.
   For other licenses, use `Licenses#fromGitHub(String, License)` and `Licenses#fromGitHub(String, String, String)`, the same as before.
 
 

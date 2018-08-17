@@ -4,11 +4,12 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import net.yslibrary.licenseadapter.BaseLibrary;
 import net.yslibrary.licenseadapter.License;
+import net.yslibrary.licenseadapter.OpenSourceLibrary;
 
 /**
  * Library without license text.
  */
-public final class NoContentLibrary extends BaseLibrary {
+public final class NoContentLibrary extends BaseLibrary implements OpenSourceLibrary {
   public NoContentLibrary(String name, String author, License license) {
     super(name, author, license);
     if (TextUtils.isEmpty(license.getUrl())) {
@@ -31,5 +32,12 @@ public final class NoContentLibrary extends BaseLibrary {
   @Override
   public boolean hasContent() {
     return false;
+  }
+
+  @NonNull
+  @Override
+  public String getSourceUrl() {
+    //noinspection ConstantConditions checked in constuctor
+    return getLicense().getUrl();
   }
 }

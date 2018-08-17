@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import net.yslibrary.licenseadapter.Library;
+import net.yslibrary.licenseadapter.OpenSourceLibrary;
 import net.yslibrary.licenseadapter.R;
 
 public final class LibraryViewHolder extends ViewHolderBase implements View.OnClickListener {
@@ -25,7 +26,7 @@ public final class LibraryViewHolder extends ViewHolderBase implements View.OnCl
     author = itemView.findViewById(R.id.author);
     expand = itemView.findViewById(R.id.expand);
 
-    colorAccent = Utils.getIntValueFromAttribute(itemView.getContext(), R.attr.colorAccent);
+    colorAccent = Utils.getIntValueFromAttribute(itemView.getContext(), android.R.attr.colorAccent);
     normalTextColor = name.getCurrentTextColor();
 
     itemView.setOnClickListener(this);
@@ -43,7 +44,7 @@ public final class LibraryViewHolder extends ViewHolderBase implements View.OnCl
   private void bind(@NonNull Library library) {
     name.setText(library.getName());
     author.setText(library.getAuthor());
-    name.setTextColor(library instanceof GitHubLibrary ? colorAccent : normalTextColor);
+    name.setTextColor(library instanceof OpenSourceLibrary ? colorAccent : normalTextColor);
 
     updateExpandedStatus(false);
   }
@@ -62,18 +63,11 @@ public final class LibraryViewHolder extends ViewHolderBase implements View.OnCl
   }
 
   private void launchLibraryUrl(@NonNull Library library) {
-    Uri uri;
-    if (library instanceof GitHubLibrary) {
-      uri = Uri.parse(GitHubLibrary.URL_BASE_PUBLIC
-          + library.getAuthor() + GitHubLibrary.URL_REPO_SPLIT + library.getName());
-    } else if (library instanceof NoContentLibrary) {
-      uri = Uri.parse(library.getLicense().getUrl());
+    if (library instanceof OpenSourceLibrary) {
+      launchUri(Uri.parse(((OpenSourceLibrary) library).getSourceUrl()));
     } else {
       onClick(itemView);
-      return;
     }
-
-    launchUri(uri);
   }
 
   private void updateExpandedStatus(boolean animate) {
