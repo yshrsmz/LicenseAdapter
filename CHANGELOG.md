@@ -1,3 +1,13 @@
+## 2.1.2 - 2018/XX/XX
+
+### Bug fixes
+
+- Fix numerous bugs on pre-L devices
+  - Incorrectly colored library titles
+  - Incorrectly styled text
+  - Crash loading drawables
+
+
 ## 2.1.1 - 2018/07/10
 
 ### Bug fixes
