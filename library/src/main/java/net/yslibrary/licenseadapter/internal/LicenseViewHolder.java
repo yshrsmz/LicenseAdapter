@@ -10,7 +10,7 @@ import android.widget.TextView;
 import net.yslibrary.licenseadapter.License;
 import net.yslibrary.licenseadapter.R;
 
-public final class LicenseViewHolder extends ViewHolderBase implements View.OnClickListener {
+public final class LicenseViewHolder extends ViewHolderBase implements View.OnClickListener, LibrariesHolder.Listener {
   private final LibrariesHolder holder;
 
   private final TextView licenseName;
@@ -29,7 +29,7 @@ public final class LicenseViewHolder extends ViewHolderBase implements View.OnCl
   }
 
   @Override
-  public void bind(@NonNull final ExpandableLibrary library) {
+  public void bind(@NonNull ExpandableLibrary library) {
     expandableLibrary = library;
     boolean expanded = library.isExpanded();
 
@@ -41,23 +41,7 @@ public final class LicenseViewHolder extends ViewHolderBase implements View.OnCl
     licenseName.setVisibility(visibility);
     license.setVisibility(visibility);
 
-    if (expanded) {
-      holder.load(expandableLibrary.getLibrary(), new LibrariesHolder.Listener() {
-        @Override
-        public void onComplete(@Nullable License license, @Nullable Exception e) {
-          // Since this view holder could be reused for different libraries, ensure it wasn't
-          // rebound while we were waiting for the license to load.
-          if (LicenseViewHolder.this.expandableLibrary.equals(library)) {
-            if (e == null) {
-              //noinspection ConstantConditions
-              LicenseViewHolder.this.license.setText(license.getText());
-            } else {
-              LicenseViewHolder.this.license.setText(R.string.license_load_error);
-            }
-          }
-        }
-      });
-    }
+    if (expanded) holder.load(expandableLibrary.getLibrary(), this);
   }
 
   @Override
@@ -65,6 +49,20 @@ public final class LicenseViewHolder extends ViewHolderBase implements View.OnCl
     String url = expandableLibrary.getLibrary().getLicense().getUrl();
     if (!TextUtils.isEmpty(url)) {
       launchUri(Uri.parse(url));
+    }
+  }
+
+  @Override
+  public void onComplete(@Nullable License license, @Nullable Exception e) {
+    // Since this view holder could be reused for different libraries, ensure it wasn't
+    // rebound while we were waiting for the license to load.
+    if (expandableLibrary.getLibrary().getLicense().equals(license)) {
+      if (e == null) {
+        //noinspection ConstantConditions
+        this.license.setText(license.getText());
+      } else {
+        this.license.setText(R.string.license_load_error);
+      }
     }
   }
 }

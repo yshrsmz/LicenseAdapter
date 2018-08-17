@@ -29,7 +29,7 @@ public final class LibrariesHolder extends AndroidViewModel {
     super(application);
   }
 
-  public void load(final Library library, final Listener rawListener) {
+  public void load(final Library library, Listener rawListener) {
     if (library.isLoaded()) rawListener.onComplete(library.getLicense(), null);
 
     final WeakReference<Listener> listener = new WeakReference<>(rawListener);
