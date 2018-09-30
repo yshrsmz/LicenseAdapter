@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/yshrsmz/LicenseAdapter.svg?branch=master)](https://travis-ci.org/yshrsmz/LicenseAdapter)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-LicenseAdapter-green.svg?style=true)](https://android-arsenal.com/details/1/3516)
-[![Bintray](https://img.shields.io/bintray/v/yshrsmz/maven/licenseadapter.svg)](https://bintray.com/yshrsmz/maven/licenseadapter/view)
+[![Download](https://api.bintray.com/packages/yshrsmz/maven/licenseadapter/images/download.svg)](https://bintray.com/yshrsmz/maven/licenseadapter/_latestVersion)
 
 LicenseAdapter is an easy-to-use library that provides a RecyclerView
 adapter to display OSS dependencies and their associated licenses.
@@ -23,7 +23,7 @@ adapter to display OSS dependencies and their associated licenses.
 ## Installation
 
 LicenseAdapter is distributed via JCenter:
-[![Bintray](https://img.shields.io/bintray/v/yshrsmz/maven/licenseadapter.svg)](https://bintray.com/yshrsmz/maven/licenseadapter/view)
+[![Download](https://api.bintray.com/packages/yshrsmz/maven/licenseadapter/images/download.svg)](https://bintray.com/yshrsmz/maven/licenseadapter/_latestVersion)
 
 ```gradle
 dependencies {
