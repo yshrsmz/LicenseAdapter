@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
 
 android {
   compileSdkVersion 28
@@ -23,15 +24,76 @@ dependencies {
   implementation "android.arch.lifecycle:extensions:$architecture_version"
 }
 
-publish {
-  artifactId = 'licenseadapter'
-  desc = 'Adapter for RecyclerView to display oss dependencies'
-
-  def metadata = project.rootProject.ext.metadata
-  userOrg = metadata.userOrg
-  groupId = metadata.groupId
-  publishVersion = metadata.version
-  website = metadata.website
-  repository = metadata.repository
-  licences = metadata.licences
+task sourcesJar(type: Jar) {
+  from android.sourceSets.main.java.srcDirs
+  classifier = 'sources'
 }
+
+task javadoc(type: Javadoc) {
+  source += android.sourceSets.main.java.srcDirs
+  classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+  failOnError false
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  from javadoc.destinationDir
+}
+
+artifacts {
+  archives javadocJar
+  archives sourcesJar
+}
+
+publishing {
+  def metadata = project.rootProject.ext.metadata
+
+  publications {
+    release(MavenPublication) {
+      artifact sourcesJar
+      artifact javadocJar
+      artifact "$buildDir/outputs/aar/library-release.aar"
+      groupId metadata.groupId
+      artifactId metadata.artifactId
+      version metadata.version
+
+      pom.withXml {
+        def dependenciesNode = asNode().appendNode('dependencies')
+        // Iterate over the compile dependencies, adding a <dependency> node for each
+        configurations.implementation.allDependencies.each {
+          if (it.group != null && it.name != null && it.version != null) {
+            def dependencyNode = dependenciesNode.appendNode('dependency')
+            dependencyNode.appendNode('groupId', it.group)
+            dependencyNode.appendNode('artifactId', it.name)
+            dependencyNode.appendNode('version', it.version)
+          }
+        }
+      }
+    }
+  }
+}
+
+bintray {
+  def metadata = project.rootProject.ext.metadata
+
+  publications 'release'
+  user bintrayUser
+  key bintrayKey
+  dryRun = dryRun
+  publish = true
+
+  pkg {
+    repo = 'maven'
+    userOrg = metadata.userOrg
+    name = metadata.artifactId
+    vcsUrl = metadata.repository
+    licenses = metadata.licenses
+    version {
+      name = metadata.version
+      desc = 'Adapter for RecyclerView to display oss dependencies'
+    }
+  }
+}
+
+project.ext.publicationName = "release"
+apply from: rootProject.file('gradle/release.gradle')

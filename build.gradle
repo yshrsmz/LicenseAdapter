@@ -4,6 +4,8 @@ apply from: "${project.rootDir}/metadata.gradle"
 apply plugin: 'com.github.ben-manes.versions'
 
 buildscript {
+  apply from: "${rootDir.absolutePath}/ext.gradle"
+
   repositories {
     google()
     jcenter()
@@ -13,14 +15,23 @@ buildscript {
     classpath 'com.android.tools.build:gradle:3.2.0'
 
     classpath 'com.github.ben-manes:gradle-versions-plugin:0.20.0'
-    classpath 'com.novoda:bintray-release:0.8.1' // https://github.com/novoda/bintray-release
+    classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4"
+    classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.7.5"
   }
 }
+
+def generatePomFilesTask = tasks.create("generatePomFiles")
 
 allprojects {
   repositories {
     google()
     jcenter()
+  }
+
+  tasks.whenTaskAdded {
+    if (it.name.matches("generatePomFileFor([A-Z][a-zA-Z]*)Publication")) {
+      generatePomFilesTask.dependsOn it
+    }
   }
 }
 
@@ -62,7 +73,7 @@ task releng {
 }
 
 // # release commands:
-// ./gradlew clean build releaseAndroidJavadocs releaseAndroidJavadocJar releaseAndroidSourceJar generatePomFileForReleasePublication
+// ./gradlew clean build generatePomFileForReleasePublication
 // ./gradlew bintrayUpload
 
 task wrapper(type: Wrapper) {
