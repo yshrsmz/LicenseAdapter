@@ -76,7 +76,7 @@ task releng {
 // ./gradlew clean build generatePomFileForReleasePublication
 // ./gradlew bintrayUpload
 
-task wrapper(type: Wrapper) {
+wrapper {
   gradleVersion = '4.10.2'
   //noinspection UnnecessaryQualifiedReference
   distributionType = Wrapper.DistributionType.ALL
