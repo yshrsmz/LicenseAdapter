@@ -1,3 +1,10 @@
+## 2.2.0
+
+### Changes
+
+- Updated to Android Support Library 28.0.0. This is the last release with Android Support Library.
+
+
 ## 2.1.2 - 2018/08/17
 
 ### Bug fixes
