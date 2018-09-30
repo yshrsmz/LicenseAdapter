@@ -66,5 +66,7 @@ task releng {
 // ./gradlew bintrayUpload
 
 task wrapper(type: Wrapper) {
-  distributionType "ALL"
+  gradleVersion = '4.10.2'
+  //noinspection UnnecessaryQualifiedReference
+  distributionType = Wrapper.DistributionType.ALL
 }
