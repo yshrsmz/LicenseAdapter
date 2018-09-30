@@ -1,8 +1,13 @@
-## 2.2.0
+## 2.2.1 - 2018/09/30
 
 ### Changes
 
-- Updated to Android Support Library 28.0.0. This is the last release with Android Support Library.
+- Update to Android Support Library 28.0.0. This is the last release with Android Support Library.
+- Migrate to gradle-bintray-plugin from novoda/bintray-release.
+
+## 2.2.0 - 2018/09/30
+
+- test release with gradle-bintray-plugin(not working)
 
 
 ## 2.1.2 - 2018/08/17
