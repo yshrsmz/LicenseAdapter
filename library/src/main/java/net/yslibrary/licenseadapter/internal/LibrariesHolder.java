@@ -46,7 +46,7 @@ public final class LibrariesHolder extends AndroidViewModel {
             cachedLicenses.put(library, license);
             notify(license, null);
           } catch (Exception e) {
-            notify(null, e);
+            notify(library.getLicense(), e);
           }
         }
 
