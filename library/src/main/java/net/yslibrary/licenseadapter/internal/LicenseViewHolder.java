@@ -34,6 +34,7 @@ public final class LicenseViewHolder extends ViewHolderBase implements View.OnCl
     boolean expanded = library.isExpanded();
 
     licenseName.setText(expandableLibrary.getLibrary().getLicense().getName());
+    license.setText(R.string.license_loading);
 
     int visibility = expanded ? View.VISIBLE : View.GONE;
     // Hack to circumvent padding bug. See XML.
