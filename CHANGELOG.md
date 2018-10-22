@@ -1,3 +1,15 @@
+## 2.2.2 - 2018/XX/XX
+
+### Changes
+
+- Display loading state
+
+### Bug fixes
+
+- License content from previously displayed library is displayed wrongly while loading actual license content.
+
+
+
 ## 2.2.1 - 2018/09/30
 
 ### Changes
