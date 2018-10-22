@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
     licenses.add(Licenses.noLink("Library without a link to the license, like Google Play Services",
         "Author", "License name", "License content"));
 
+    // this is failing example to check error state
+    //licenses.add(Licenses.fromGitHub("google/guava", "master/" + Licenses.FILE_AUTO, "COPYING"));
+
     RecyclerView list = findViewById(R.id.list);
     list.setLayoutManager(new LinearLayoutManager(this));
     list.setHasFixedSize(true);
