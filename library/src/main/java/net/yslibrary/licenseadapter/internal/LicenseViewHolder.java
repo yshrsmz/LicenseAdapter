@@ -54,7 +54,7 @@ public final class LicenseViewHolder extends ViewHolderBase implements View.OnCl
   }
 
   @Override
-  public void onComplete(@Nullable License license, @Nullable Exception e) {
+  public void onComplete(@NonNull License license, @Nullable Exception e) {
     // Since this view holder could be reused for different libraries, ensure it wasn't
     // rebound while we were waiting for the license to load.
     if (expandableLibrary.getLibrary().getLicense().equals(license)) {
