@@ -86,7 +86,7 @@ public final class LicenseAdapter extends RecyclerView.Adapter<ViewHolderBase>
   }
 
   @Override
-  public void onBindViewHolder(ViewHolderBase holder, int position) {
+  public void onBindViewHolder(@NonNull ViewHolderBase holder, int position) {
     int type = getItemViewType(position);
     if (type == TYPE_LIBRARY) {
       holder.bind(libraries.get(position / 2));

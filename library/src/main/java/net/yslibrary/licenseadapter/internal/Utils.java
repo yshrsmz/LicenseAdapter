@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.support.annotation.AttrRes;
 import android.util.TypedValue;
-import net.yslibrary.licenseadapter.R;
 
 class Utils {
 
