@@ -1,10 +1,12 @@
 ext {
   metadata = [
-      userOrg   : 'yshrsmz',
-      groupId   : 'net.yslibrary.licenseadapter',
-      artifactId: 'licenseadapter',
-      website   : 'https://github.com/yshrsmz/LicenseAdapter',
-      repository: 'git@github.com:yshrsmz/LicenseAdapter.git',
-      licences  : ['Apache-2.0']
+      name       : 'LicenseAdapter',
+      userOrg    : 'yshrsmz',
+      groupId    : 'net.yslibrary.licenseadapter',
+      artifactId : 'licenseadapter',
+      website    : 'https://github.com/yshrsmz/LicenseAdapter',
+      repository : 'git@github.com:yshrsmz/LicenseAdapter.git',
+      description: 'Adapter for RecyclerView to display oss dependencies',
+      licences   : ['Apache-2.0']
   ]
 }

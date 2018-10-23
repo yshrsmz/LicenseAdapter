@@ -45,6 +45,26 @@ artifacts {
   archives sourcesJar
 }
 
+def pomConfig = {
+  licenses {
+    license {
+      name "The Apache Software License, Version 2.0"
+      url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+      distribution "repo"
+    }
+  }
+  developers {
+    developer {
+      id "yshrsmz"
+      name "Yasuhiro Shimizu"
+      email "the.phantom.bane@gmail.com"
+    }
+  }
+  scm {
+    url metadata.repository
+  }
+}
+
 publishing {
   def metadata = project.rootProject.ext.metadata
 
@@ -58,7 +78,14 @@ publishing {
       version metadata.version
 
       pom.withXml {
-        def dependenciesNode = asNode().appendNode('dependencies')
+        def root = asNode()
+
+        root.appendNode('description', metadata.description)
+        root.appendNode('name', metadata.name)
+        root.appendNode('url', metadata.website)
+        root.children().last() + pomConfig
+
+        def dependenciesNode = root.appendNode('dependencies')
         // Iterate over the compile dependencies, adding a <dependency> node for each
         configurations.implementation.allDependencies.each {
           if (it.group != null && it.name != null && it.version != null) {
@@ -90,7 +117,7 @@ bintray {
     licenses = metadata.licenses
     version {
       name = metadata.version
-      desc = 'Adapter for RecyclerView to display oss dependencies'
+      desc = metadata.description
     }
   }
 }
