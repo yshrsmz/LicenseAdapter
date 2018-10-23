@@ -95,5 +95,11 @@ bintray {
   }
 }
 
+javadoc {
+  options.charSet = 'UTF-8'
+  options.encoding = 'UTF-8'
+  options.locale = 'en_US'
+}
+
 project.ext.publicationName = "release"
 apply from: rootProject.file('gradle/release.gradle')
