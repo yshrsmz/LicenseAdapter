@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 
 public final class LibrariesHolder extends AndroidViewModel {
   public interface Listener {
-    void onComplete(@Nullable License license, @Nullable Exception e);
+    void onComplete(@NonNull License license, @Nullable Exception e);
   }
 
   private static final Executor EXECUTOR = Executors.newSingleThreadExecutor();
@@ -46,11 +46,11 @@ public final class LibrariesHolder extends AndroidViewModel {
             cachedLicenses.put(library, license);
             notify(license, null);
           } catch (Exception e) {
-            notify(null, e);
+            notify(library.getLicense(), e);
           }
         }
 
-        private void notify(@Nullable final License license, @Nullable final Exception e) {
+        private void notify(@NonNull final License license, @Nullable final Exception e) {
           new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
