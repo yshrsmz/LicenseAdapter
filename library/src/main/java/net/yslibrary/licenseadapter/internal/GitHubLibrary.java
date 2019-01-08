@@ -1,10 +1,10 @@
 package net.yslibrary.licenseadapter.internal;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
 import android.util.Log;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import net.yslibrary.licenseadapter.BaseLibrary;
 import net.yslibrary.licenseadapter.License;
 import net.yslibrary.licenseadapter.Licenses;

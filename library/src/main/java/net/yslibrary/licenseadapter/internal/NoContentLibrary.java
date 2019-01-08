@@ -1,7 +1,7 @@
 package net.yslibrary.licenseadapter.internal;
 
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import androidx.annotation.NonNull;
 import net.yslibrary.licenseadapter.BaseLibrary;
 import net.yslibrary.licenseadapter.License;
 import net.yslibrary.licenseadapter.OpenSourceLibrary;
