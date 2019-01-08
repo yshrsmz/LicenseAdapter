@@ -14,8 +14,8 @@ android {
 
 dependencies {
   implementation project(':library')
-  implementation 'androidx.appcompat:appcompat:1.0.2'
+  implementation deps.appcompat
 
   // Needed to fix dependency conflict
-  implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+  implementation deps.lifecycle
 }

@@ -1,5 +1,6 @@
 apply from: "${project.rootDir}/gradle/version/version.gradle"
 apply from: "${project.rootDir}/metadata.gradle"
+apply from: "${project.rootDir}/gradle/dependencies.gradle"
 
 apply plugin: 'com.github.ben-manes.versions'
 
@@ -36,8 +37,6 @@ allprojects {
 }
 
 ext {
-  supportlib_version = '28.0.0'
-  architecture_version = '1.1.1'
   metadata.version = ext.versionName()
 }
 
