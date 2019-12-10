@@ -15,6 +15,11 @@
 
 - License content from previously displayed library is displayed wrongly while loading actual license content.
 
+## WIP
+
+### Changes
+
+- 
 
 ## 2.2.1 - 2018/09/30
 
