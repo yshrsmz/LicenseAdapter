@@ -1,6 +1,6 @@
 package net.yslibrary.licenseadapter;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Library who's source code is available online.

@@ -2,8 +2,8 @@ package net.yslibrary.licenseadapter.internal;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.AttrRes;
 import android.util.TypedValue;
+import androidx.annotation.AttrRes;
 
 class Utils {
 

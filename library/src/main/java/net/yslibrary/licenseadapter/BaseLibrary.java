@@ -1,10 +1,10 @@
 package net.yslibrary.licenseadapter;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.RestrictTo;
-import android.support.annotation.WorkerThread;
 import android.text.TextUtils;
 import android.util.Log;
+import androidx.annotation.NonNull;
+import androidx.annotation.RestrictTo;
+import androidx.annotation.WorkerThread;
 
 import java.io.BufferedReader;
 import java.io.File;

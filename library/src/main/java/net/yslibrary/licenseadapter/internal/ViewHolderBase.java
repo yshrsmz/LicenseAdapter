@@ -1,10 +1,10 @@
 package net.yslibrary.licenseadapter.internal;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.customtabs.CustomTabsIntent;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import androidx.annotation.NonNull;
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.recyclerview.widget.RecyclerView;
 
 public abstract class ViewHolderBase extends RecyclerView.ViewHolder {
   private final int colorPrimary;
@@ -12,7 +12,7 @@ public abstract class ViewHolderBase extends RecyclerView.ViewHolder {
   public ViewHolderBase(View itemView) {
     super(itemView);
 
-    colorPrimary = Utils.getIntValueFromAttribute(itemView.getContext(), android.support.v7.appcompat.R.attr.colorPrimary);
+    colorPrimary = Utils.getIntValueFromAttribute(itemView.getContext(), androidx.appcompat.R.attr.colorPrimary);
   }
 
   protected final void launchUri(Uri uri) {

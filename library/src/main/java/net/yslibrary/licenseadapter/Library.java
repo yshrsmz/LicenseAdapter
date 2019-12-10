@@ -1,7 +1,7 @@
 package net.yslibrary.licenseadapter;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
 
 import java.io.File;
 

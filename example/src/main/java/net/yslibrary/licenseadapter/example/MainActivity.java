@@ -1,9 +1,9 @@
 package net.yslibrary.licenseadapter.example;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import net.yslibrary.licenseadapter.Library;
 import net.yslibrary.licenseadapter.LicenseAdapter;
 import net.yslibrary.licenseadapter.Licenses;

@@ -1,12 +1,12 @@
 package net.yslibrary.licenseadapter.internal;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.LruCache;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.AndroidViewModel;
 import net.yslibrary.licenseadapter.Library;
 import net.yslibrary.licenseadapter.License;
 

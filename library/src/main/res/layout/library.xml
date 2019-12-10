@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="wrap_content"
-                                             android:background="?attr/selectableItemBackground"
-                                             android:paddingBottom="@dimen/vertical_padding"
-                                             android:paddingLeft="@dimen/horizontal_padding"
-                                             android:paddingRight="@dimen/horizontal_padding"
-                                             android:paddingTop="@dimen/vertical_padding"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content"
+                                                   android:background="?attr/selectableItemBackground"
+                                                   android:paddingBottom="@dimen/vertical_padding"
+                                                   android:paddingLeft="@dimen/horizontal_padding"
+                                                   android:paddingRight="@dimen/horizontal_padding"
+                                                   android:paddingTop="@dimen/vertical_padding"
   >
 
   <TextView
@@ -51,4 +51,4 @@
     app:srcCompat="@drawable/ic_expand_more_black_24dp"
     />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
