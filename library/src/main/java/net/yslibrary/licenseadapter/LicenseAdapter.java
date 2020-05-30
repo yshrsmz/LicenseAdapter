@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import net.yslibrary.licenseadapter.internal.ExpandableLibrary;
 import net.yslibrary.licenseadapter.internal.LibrariesHolder;
@@ -66,7 +66,7 @@ public final class LicenseAdapter extends RecyclerView.Adapter<ViewHolderBase>
 
     if (holder == null) {
       if (context instanceof FragmentActivity) {
-        holder = ViewModelProviders.of((FragmentActivity) context).get(LibrariesHolder.class);
+        holder = new ViewModelProvider((FragmentActivity) context).get(LibrariesHolder.class);
       } else if (context instanceof Activity) {
         holder = new LibrariesHolder(((Activity) context).getApplication());
       } else {
