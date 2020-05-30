@@ -1,4 +1,8 @@
-## 3.0.1 - 2020/05/30
+## 3.1.0 - 2020/05/30
+
+### Breaking Changes
+
+- Bump minSdkVersion to `16` to use androidx.browser v1.2.0
 
 ### Changes
 
