@@ -1,3 +1,16 @@
+## 3.1.0 - 2020/05/30
+
+### Breaking Changes
+
+- Bump minSdkVersion to `16` to use androidx.browser v1.2.0
+
+### Changes
+
+- Update to Android Gradle Plugin 3.6.3
+- Update to androidx.browser v1.2.0
+- Migrate to lifecycle-viewmodel as lifecycle-extensions was deprecated.
+
+
 ## 3.0.0 - 2019/12/10
 
 ### Breaking Changes

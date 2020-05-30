@@ -6,12 +6,17 @@ android {
   compileSdkVersion 29
 
   defaultConfig {
-    minSdkVersion 15
+    minSdkVersion 16
     targetSdkVersion 29
     versionCode 2
     versionName rootProject.ext.metadata.version
 
     vectorDrawables.useSupportLibrary = true
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
   }
 }
 
@@ -26,7 +31,7 @@ dependencies {
 
 task sourcesJar(type: Jar) {
   from android.sourceSets.main.java.srcDirs
-  classifier = 'sources'
+  archiveClassifier.set( 'sources')
 }
 
 task javadoc(type: Javadoc) {
@@ -36,7 +41,7 @@ task javadoc(type: Javadoc) {
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-  classifier = 'javadoc'
+  archiveClassifier.set('javadoc')
   from javadoc.destinationDir
 }
 

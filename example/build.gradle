@@ -5,10 +5,15 @@ android {
 
   defaultConfig {
     applicationId 'net.yslibrary.licenseadapter.example'
-    minSdkVersion 15
-    targetSdkVersion 28
+    minSdkVersion 16
+    targetSdkVersion 29
     versionCode 1
     versionName "1.0"
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
   }
 }
 
