@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,10 +22,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * A {@link RecyclerView.Adapter} which displays expandable items with a library and its license.
+ * A {@link androidx.recyclerview.widget.RecyclerView.Adapter} which displays expandable items with a library and its license.
  * <p>
- * For optimal performance, the {@link RecyclerView} using this adapter should be attached a support
- * library context such as the {@link AppCompatActivity}.
+ * For optimal performance, the {@link androidx.recyclerview.widget.RecyclerView} using this adapter should be attached a support
+ * library context such as the {@link androidx.appcompat.app.AppCompatActivity}.
  *
  * @see Library
  * @see Licenses
