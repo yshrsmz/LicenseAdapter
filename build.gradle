@@ -13,9 +13,9 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.6.3'
+    classpath 'com.android.tools.build:gradle:4.1.2'
 
-    classpath 'com.github.ben-manes:gradle-versions-plugin:0.28.0'
+    classpath 'com.github.ben-manes:gradle-versions-plugin:0.36.0'
     classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5"
     classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.15.2"
   }
@@ -76,7 +76,20 @@ task releng {
 // ./gradlew bintrayUpload
 
 wrapper {
-  gradleVersion = '6.4.1'
+  gradleVersion = '6.8.2'
   //noinspection UnnecessaryQualifiedReference
   distributionType = Wrapper.DistributionType.ALL
+}
+
+def isNonStable = { String version ->
+    def stableKeyword = ['RELEASE', 'FINAL', 'GA'].any { it -> version.toUpperCase().contains(it) }
+    def regex = /^[0-9,.v-]+(-r)?$/
+    return !stableKeyword && !(version ==~ regex)
+}
+
+tasks.named("dependencyUpdates").configure {
+    // Example 1: reject all non stable versions
+    rejectVersionIf {
+        isNonStable(it.candidate.version)
+    }
 }

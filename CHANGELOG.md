@@ -1,3 +1,14 @@
+## 3.2.0 - not released
+
+### Changes
+
+- target Sdk is now 30
+- Android Gradle Plugin 4.1.2
+- androidx.browser 1.3.0
+- ConstraintLayout 2.0.4
+- androidx.lifecycle: lifecycle-viewmodel 2.3.0
+
+
 ## 3.1.0 - 2020/05/30
 
 ### Breaking Changes
